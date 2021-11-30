@@ -9,6 +9,5 @@ public class SuperMario extends JPanel{
 	// initial frame
 	public static void main(String[] args)  {
 		System.out.println("Hello world");
-		
 	}
 }
