@@ -24,11 +24,14 @@ public class SuperMario extends JFrame{
 		return null;
 	}
 	
-	
+	public static int getWIDTH() {
+		return WIDTH;
+	}
 	public void enterStage(int stageNumber) {
 		Stage stage = new Stage(stageNumber);
 		this.add(stage);
 	}
+	
 	
 	public static void main(String[] args)  {
 		SuperMario game = new SuperMario();

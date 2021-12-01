@@ -7,7 +7,7 @@ public class Map {
 	private List<GameObject> allObj = null;
 	private List<Enemy> allEnemy = null;
 	private int[] marioSpawnCoord = null;
-	
+	private int mapWidth;
 	
 	public Map(int stageNumber) {
 		allObj = new ArrayList<>();
@@ -33,5 +33,9 @@ public class Map {
 		return marioSpawnCoord;
 	}
 	
+	public int getWidth() {
+		//return map width
+		return mapWidth;
+	}
 	
 }
