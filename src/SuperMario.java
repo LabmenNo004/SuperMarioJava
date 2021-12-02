@@ -1,25 +1,26 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class SuperMario extends JFrame{
+public class SuperMario{
+	//	everything static, since there is only one game.
 	private static final int WIDTH = 1200;
 	private static final int HEIGHT = 900;
-	private int stageNumber = 1;
-	private int marioLives = 3;
-	private int points = 0;
-	
+	private static int stageNumber = 1;
+	private static int marioLives = 3;
+	private static int points = 0;
+	private static JFrame frame;
 	public SuperMario() {
 		//creat frame
-		setSize(WIDTH,HEIGHT);
-		setLocationRelativeTo(null);
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
+		frame.setSize(WIDTH,HEIGHT);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		
 		enterStage(1);
 	}
 	
-	public JPanel getStartPanel() {
+	public static JPanel getStartPanel() {
 		// initial frame
 		return null;
 	}
@@ -27,9 +28,14 @@ public class SuperMario extends JFrame{
 	public static int getWIDTH() {
 		return WIDTH;
 	}
-	public void enterStage(int stageNumber) {
+	
+	public static void incrementScore(int number) {
+		points += number;
+	}
+	
+	public static void enterStage(int stageNumber) {
 		Stage stage = new Stage(stageNumber);
-		this.add(stage);
+		frame.add(stage);
 	}
 	
 	
