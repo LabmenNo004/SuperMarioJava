@@ -7,39 +7,20 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GameObject{
-	private boolean canCollide;
-	private int x;
-	private int y;
-	private int length; //for image?
-	private int width; //for image?
-	//need image and type of gameObject?	
-	private int type; //need a list to represent # = what type of object
-	private BufferedImage image; //changed to BufferedImage
-	private static String path = System.getProperty("user.dir") + "/src/images/";
+	protected boolean canCollide;
+	protected int x;
+	protected int y;
+	protected int length; //phsical size
+	protected int width; //phsical size
+	protected BufferedImage image; //changed to BufferedImage
+	protected static String path = System.getProperty("user.dir") + "/src/images/";
 	
 	//Constructor
-	public GameObject(int type, int x, int y,int length, int width) { //canCollide can be determined by type 
-		this.type = type;
+	public GameObject(int x, int y,int length, int width) { //canCollide can be determined by type 
 		this.x = x;
 		this.y = y;
 		this.length = length;
-		this.width = width;
-		
-		//pulling image & canCollide based on type
-		try {
-			this.image = new BufferedImage(width, length, BufferedImage.TYPE_INT_ARGB);
-			this.image = ImageIO.read(new File(path + type +".png")); // user.dir/scr/images/#.png
-		} catch (IOException e) {
-			System.out.println("Fail to import image");
-			e.printStackTrace();
-		}
-		
-		//Maybe will put any transparent (aka canCollide = false) object after certain number of image;
-		if (type > 100) { //putting 100 as placeholder, NEED to reconfirm later
-			this.canCollide = false;			
-		}else {
-			this.canCollide = true;
-		}
+		this.width = width;		
 	}
 	
 	//Getter
