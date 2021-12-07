@@ -78,7 +78,7 @@ public class Map {
 			for (int i = 0; i < 200; i++) { //assume making 200 floor tiles
 				//floor assumption: length & width = 16; y starts at 864; floorType 1
 					//public Floor(int floorType, int x, int y,int length, int width)
-				allObj.add(new Floor(1, i*16, 864, 16 , 16));
+				allObj.add(new Floor(1, i*16, 100, 16 , 16));
 			}
 			//block objects creation
 				//block assumption: object type#: 1 (just one type for now); length & width = 16; y starts at 832;

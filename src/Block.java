@@ -17,7 +17,7 @@ public class Block extends GameObject{
 		//pulling image		
 		try {
 			this.image = new BufferedImage(width, length, BufferedImage.TYPE_INT_ARGB);
-			this.image = ImageIO.read(new File(path+ "Block"+ blockType +".png")); // user.dir/scr/images/Block#.png
+			this.image = ImageIO.read(new File(path+ "block"+ blockType +".png")); // user.dir/scr/images/Block#.png
 		} catch (IOException e) {
 			System.out.println("Fail to import block image");
 			e.printStackTrace();

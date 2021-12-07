@@ -20,13 +20,13 @@ public class SuperMario {
 		frame = new JFrame();
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 
 		frame.addKeyListener(new CustomKeyListener());
 
 		gameStart();
+		frame.setVisible(true);
 	}
 
 	public static JPanel getStartPanel() {
@@ -83,6 +83,9 @@ public class SuperMario {
 
 	public static int getWIDTH() {
 		return WIDTH;
+	}
+	public static int getHEIGHT() {
+		return HEIGHT;
 	}
 
 	class CustomKeyListener implements KeyListener {
