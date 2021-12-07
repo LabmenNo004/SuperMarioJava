@@ -35,4 +35,30 @@ public class GameObject{
 	public int getY() {
 		return y;
 	}
+	public boolean isCanCollide() {
+		return canCollide;
+	}
+	public int getLength() {
+		return length;
+	}
+	public int getWidth() {
+		return width;
+	}
+
+	//Setter
+	public void setX(int x) {
+		this.x = x;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
+	public void setCanCollide(boolean canCollide) {
+		this.canCollide = canCollide;
+	}
+	public void setLength(int length) {
+		this.length = length;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
 }
