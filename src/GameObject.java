@@ -16,6 +16,8 @@ public class GameObject{
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
 	
 	//Constructor
+	public GameObject() {}
+	
 	public GameObject(int x, int y,int length, int width) { //canCollide can be determined by type 
 		this.x = x;
 		this.y = y;

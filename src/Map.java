@@ -1,3 +1,4 @@
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -28,7 +29,7 @@ public class Map {
 	public void stageMarioSpawn (int stageNumber) {
 		//at the beginning
 		marioSpawnCoord = new int[2];
-		//x assuming x starts at 0, will give a bit space
+		//x assuming x starts at 0, will give a bit space (3 blocks)
 		this.marioSpawnCoord[0] = 48;
 		//y assuming floor at y:864 (2 blocks above bottom)
 		this.marioSpawnCoord[1] = 864;
@@ -62,10 +63,11 @@ public class Map {
 	public void stageObjectCreation (int stageNumber){
 		//set background
 		try {
-			this.bgImage = new BufferedImage(1200, 900, BufferedImage.TYPE_INT_ARGB);
-			this.bgImage = ImageIO.read(new File(path+ "bg"+ 1 +".png"));// user.dir/scr/images/bg#.png
+			bgImage = new BufferedImage(1200, 900, BufferedImage.TYPE_INT_ARGB);
+			bgImage = ImageIO.read(new File(path+ "bg"+ stageNumber +".png"));// user.dir/scr/images/bg#.png
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			System.out.println("failed to import background image");
 			e.printStackTrace();
 		} 
 
