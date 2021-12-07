@@ -1,7 +1,11 @@
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 public class Map {
 	protected static BufferedImage bgImage = null;
@@ -9,6 +13,7 @@ public class Map {
 	protected static List<Enemy> allEnemy = null;
 	protected static int[] marioSpawnCoord = null; //[x,y]
 	protected static int mapWidth; //maybe standardize it at a certain #?
+	protected static String path = System.getProperty("user.dir") + "/src/images/";
 	
 	public Map(int stageNumber) {
 		allObj = new ArrayList<>();
@@ -24,9 +29,9 @@ public class Map {
 		//at the beginning
 		marioSpawnCoord = new int[2];
 		//x assuming x starts at 0, will give a bit space
-		this.marioSpawnCoord[0] = 10;
-		//y assuming floor at y:500
-		this.marioSpawnCoord[1] = 501;
+		this.marioSpawnCoord[0] = 48;
+		//y assuming floor at y:864 (2 blocks above bottom)
+		this.marioSpawnCoord[1] = 864;
 		//may add other spawn point based on stage later
 	}
 
@@ -55,22 +60,31 @@ public class Map {
 	
 	//each stage "Floorplan"
 	public void stageObjectCreation (int stageNumber){
+		//set background
+		try {
+			this.bgImage = new BufferedImage(1200, 900, BufferedImage.TYPE_INT_ARGB);
+			this.bgImage = ImageIO.read(new File(path+ "bg"+ 1 +".png"));// user.dir/scr/images/bg#.png
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
 		//ALL subject to change for below, syntax are drafted:
 		if (stageNumber == 1) {
 		//stage 1
 			//floor objects creation:
 			for (int i = 0; i < 200; i++) { //assume making 200 floor tiles
-				//floor assumption: length & width = 1; y starts at 500; floorType 1
+				//floor assumption: length & width = 16; y starts at 864; floorType 1
 					//public Floor(int floorType, int x, int y,int length, int width)
-				allObj.add(new Floor(1, i, 500, 1 , 1));
+				allObj.add(new Floor(1, i*16, 864, 16 , 16));
 			}
 			//block objects creation
-				//block assumption: object type#: 1 (just one type for now); length & width = 1; y starts at 400;
+				//block assumption: object type#: 1 (just one type for now); length & width = 16; y starts at 832;
 					//public Block(int blockType, int x, int y,int length, int width)
 				//x = 23,25,27 (just for tesing...)
-			allObj.add(new Block(1, 23, 400, 1 , 1));
-			allObj.add(new Block(1, 25, 400, 1 , 1));
-			allObj.add(new Block(1, 27, 400, 1 , 1));
+			allObj.add(new Block(1, 23*16, 832, 16 , 16));
+			allObj.add(new Block(1, 25*16, 832, 16 , 16));
+			allObj.add(new Block(1, 27*16, 832, 16 , 16));
 
 			//pipe object creation
 				//will be similar to above once we tested out if above works
