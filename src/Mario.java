@@ -2,13 +2,12 @@ import java.awt.Image;
 import java.util.List;
 
 public class Mario extends Charactor{
+//	by Zehao: you can access status of key pressed using 
+//	SuperMario.isJumpPressed(), SuperMario.isRightPressed(), SuperMario.isLeftPressed()
 	private int x;
 	private int y;
 	private int x_speed;
 	private int y_speed;
-	private boolean leftPressed;
-	private boolean rightPressed;
-	private boolean jumpPressed;
 	
 	private List<GameObject> allObj = null;
 	private List<Enemy> allEnemy = null;
@@ -22,7 +21,7 @@ public class Mario extends Charactor{
 	}
 	
 	public Image getImage() {
-		//图片
+		//image
 		return null;
 	}
 	
@@ -30,17 +29,6 @@ public class Mario extends Charactor{
 		this.allObj = allObj;
 	}
 
-	public void setLeftPressed(boolean leftPressed) {
-		this.leftPressed = leftPressed;
-	}
-
-	public void setRightPressed(boolean rightPressed) {
-		this.rightPressed = rightPressed;
-	}
-
-	public void setJumpPressed(boolean jumpPressed) {
-		this.jumpPressed = jumpPressed;
-	}
 
 	public void setAllEnemy(List<Enemy> allEnemy) {
 		this.allEnemy = allEnemy;
