@@ -15,15 +15,18 @@ public class GameObject{
 	protected BufferedImage image; //changed to BufferedImage
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
 	protected int VelX,VelY;
+	public Id id;
+	public Handler handler;
 	
 	//Constructor
 	public GameObject() {}
 	
-	public GameObject(int x, int y,int length, int width) { //canCollide can be determined by type 
+	public GameObject(int x, int y,int length, int width, Id id) { //canCollide can be determined by type 
 		this.x = x;
 		this.y = y;
 		this.length = length;
 		this.width = width;		
+		//this.handler = handler;
 	}
 	
 	//Getter
