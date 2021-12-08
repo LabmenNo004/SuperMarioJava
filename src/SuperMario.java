@@ -38,7 +38,8 @@ public class SuperMario {
 	
 	public void init() {
 		handler = new Handler();
-		addKeyListener(new KeyInput());
+		frame.addKeyListener(new KeyInput());
+		handler.addCharactor(new Mario(300,500,64,64,Id.Mario,handler));
 		
 	}
 
