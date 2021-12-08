@@ -14,6 +14,7 @@ public class GameObject{
 	protected int width; //phsical size
 	protected BufferedImage image; //changed to BufferedImage
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
+	protected int VelX,VelY;
 	
 	//Constructor
 	public GameObject() {}
@@ -60,5 +61,21 @@ public class GameObject{
 	}
 	public void setWidth(int width) {
 		this.width = width;
+	}
+
+	public int getVelX() {
+		return VelX;
+	}
+
+	public void setVelX(int velX) {
+		VelX = velX;
+	}
+
+	public int getVelY() {
+		return VelY;
+	}
+
+	public void setVelY(int velY) {
+		VelY = velY;
 	}
 }
