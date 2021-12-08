@@ -29,6 +29,22 @@ public class KeyInput implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		int key = e.getKeyCode();  
+		for (Charactor ch:SuperMario.handler.charactor) {
+		switch(key) {
+		case KeyEvent.VK_W:
+			ch.setVelY(0);
+			break;
+		case KeyEvent.VK_S:
+			ch.setVelY(0);
+			break;
+		case KeyEvent.VK_A:
+			ch.setVelX(0);
+			break;
+		case KeyEvent.VK_D:
+			ch.setVelX(0);
+			break;
+		}
+		} 
 		
 	}
 
