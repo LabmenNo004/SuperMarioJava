@@ -2,6 +2,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.List;
+import  java.awt.Rectangle;
 
 public class Mario extends Charactor{
 //	by Zehao: you can access status of key pressed using 
