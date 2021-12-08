@@ -19,7 +19,7 @@ public class Test {
 
 	public Test() {
 		// create frame
-		frame = new JFrame();
+		frame = new JFrame("Super Mario Bros. Remake - TEST");
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

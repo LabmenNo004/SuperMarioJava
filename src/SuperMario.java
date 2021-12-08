@@ -17,7 +17,7 @@ public class SuperMario {
 
 	public SuperMario() {
 		// create frame
-		frame = new JFrame();
+		frame = new JFrame("Super Mario Bros. Remake");
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
