@@ -5,8 +5,8 @@ import java.awt.event.KeyListener;
 
 public class SuperMario {
 	// everything static, since there is only one game.
-	private static final int WIDTH = 1200;
-	private static final int HEIGHT = 900;
+	private static final int WIDTH = 400;
+	private static final int HEIGHT = 318;
 	private static int stageNumber = 1;
 	private static int marioLives = 3;
 	private static int score = 0;
@@ -22,7 +22,7 @@ public class SuperMario {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-
+	
 		frame.addKeyListener(new CustomKeyListener());
 
 		gameStart();

@@ -32,7 +32,7 @@ public class TestStage extends JPanel {
 //    	g.drawImage(mario.getImage(), mario.getX()-cameraX, mario.getY(), null);
     	
     	System.out.println("painted");
-    	g.drawImage(img, 50, 0, null);
+    	g.drawImage(img, 0, 0, null);
     	
     	for (GameObject obj: map.getAllObj()) {
     		System.out.println("printing"+obj);

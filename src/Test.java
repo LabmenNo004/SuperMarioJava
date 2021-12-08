@@ -7,8 +7,8 @@ import java.awt.event.KeyListener;
 
 public class Test {
 	// everything static, since there is only one game.
-	private static final int WIDTH = 800;
-	private static final int HEIGHT = 600;
+	private static final int WIDTH = 400;
+	private static final int HEIGHT = 318;
 	private static int stageNumber = 1;
 	private static int marioLives = 3;
 	private static int score = 0;
