@@ -6,19 +6,19 @@ public class KeyInput implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		int key = e.getKeyCode();  
-		for (Charactor ch:Handler.charactor) {
+		for (Charactor ch:SuperMario.handler.charactor) {
 		switch(key) {
 		case KeyEvent.VK_W:
-			setVelY(-5);
+			ch.setVelY(-5);
 			break;
 		case KeyEvent.VK_S:
-			setVelY(5);
+			ch.setVelY(5);
 			break;
 		case KeyEvent.VK_A:
-			setVelX(-5);
+			ch.setVelX(-5);
 			break;
 		case KeyEvent.VK_D:
-			setVelX(5);
+			ch.setVelX(5);
 			break;
 		}
 		}

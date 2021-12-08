@@ -14,6 +14,7 @@ public class SuperMario {
 	private static boolean leftPressed;
 	private static boolean rightPressed;
 	private static boolean jumpPressed;
+	public static Handler handler;
 
 	public SuperMario() {
 		// create frame
@@ -33,6 +34,12 @@ public class SuperMario {
 //		needs implement
 		// initial frame
 		return null;
+	}
+	
+	public void init() {
+		handler = new Handler();
+		addKeyListener(new KeyInput());
+		
 	}
 
 	public static void gameStart() {
