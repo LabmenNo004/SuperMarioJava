@@ -22,6 +22,8 @@ public class test2 extends Canvas{
 	private static boolean rightPressed;
 	private static boolean jumpPressed;
 	
+	public static Handler handler;
+	
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
 		if (bs==null) {
@@ -31,23 +33,37 @@ public class test2 extends Canvas{
 		Graphics g = bs.getDrawGraphics(); 
 		g.setColor(Color.BLUE);
 		g.fillRect(0,0,200,200);
+		handler.render(g);
 		g.dispose();
 		bs.show();
+	}
+	
+	private static void init() {
+		Handler handler = new Handler();
+		handler.addCharactor(new Mario(10, 10, 60, 60, Id.Mario, handler));
+	}
+	
+	public void tick() {
+		handler.tick();
 	}
 
 	public test2() {
 		// create frame
+		
 		frame = new JFrame("Super Mario Bros. Remake - TEST");
 		frame.setSize(WIDTH, HEIGHT);
+		
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		frame.setResizable(false);
 
-		TestStage die1 = new TestStage();
+		init();
 		render();
+		TestStage die1 = new TestStage();
 		//frame.pack();
 		frame.add(die1);
 		frame.setVisible(true);
+		
 
 	    }
 	
@@ -56,7 +72,6 @@ public class test2 extends Canvas{
 	public static void main(String[] args) {
 		
 		test2 game = new test2();
-		frame.add(game);
 
 	}
 }
