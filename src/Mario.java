@@ -21,10 +21,11 @@ public class Mario extends Charactor{
 		
 	}
 	
+	/*
 	public Image getImage() {
 		//image
 		return null;
-	}
+	}*/
 	
 	public void setObjects(List<GameObject> allObj) {
 		this.allObj = allObj;
@@ -62,7 +63,7 @@ public class Mario extends Charactor{
 		
 	}
 	
-	
+	/*
 	if(jumping) {
 		gravity -=0.1;
 		setVelY((int)-gravity);
@@ -76,6 +77,6 @@ public class Mario extends Charactor{
 		gravity+=0.1;
 		setVelY((int)gravity);
 		
-	}
+	}*/
 		
 }
