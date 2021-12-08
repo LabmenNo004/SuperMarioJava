@@ -14,6 +14,11 @@ public abstract class Charactor implements Runnable{
 	public Id id;
 	public Handler handler;
 	
+	public boolean jumping=false;
+	public boolean falling=true;
+	
+	public double gravity = 0.0;
+	
 	//Constructor
 	public Charactor() {}
 	

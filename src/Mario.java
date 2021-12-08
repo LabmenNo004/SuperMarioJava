@@ -62,4 +62,19 @@ public class Mario extends Charactor{
 		
 	}
 	
+	if(jumping) {
+		gravity -=0.1;
+		setVelY((int)-gravity);
+		if(gravity<=0.0) {
+			jumping = false;
+			falling = true;
+		}
+	}
+		
+	if(falling) {
+		gravity+=0.1;
+		setVelY((int)gravity);
+		
+	}
+		
 }
