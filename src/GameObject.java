@@ -30,6 +30,12 @@ public class GameObject{
 	public BufferedImage getImage() {
 		return this.image;
 	}
+	
+	public void tick() {
+		
+	}
+	
+	
 	public int getX() {
 		return x;
 	}
