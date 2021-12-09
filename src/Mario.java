@@ -105,27 +105,31 @@ public class Mario extends Charactor{
 		
 	}*/
 	public void rightPressed() {
+		setVelX(5);
 		
 	}
 	public void rightReleased() {
+		setVelX(0);
 
 	}
 	public void leftPressed() {
+		setVelX(-5);
 		
 	}
 	public void leftReleased() {
+		setVelX(0);
 
 	}
 	public void downPressed() {
-		
+		setVelY(5);
 	}
 	public void downReleased() {
-
+		setVelY(0);
 	}
 	public void jumpPressed() {
-		
+		setVelX(-5);
 	}
 	public void jumpReleased() {
-
+		setVelX(0);
 	}
 }
