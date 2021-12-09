@@ -19,7 +19,7 @@ public class Mario extends Charactor{
 	private List<GameObject> allObj = null;
 	private List<Enemy> allEnemy = null;
 	
-	protected static BufferedImage bgImage = null;
+	protected static BufferedImage maImage = null;
 	
 	public Mario(int x, int y,int length, int width, Id id, Handler handler) {
 		super(x,y,length,width,id,handler);
@@ -33,13 +33,14 @@ public class Mario extends Charactor{
 	public void MarioImage (){
 		//set background
 		try {
-			bgImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
-			bgImage = ImageIO.read(new File(path+ "bg"+ "marioRight"+".png"));// user.dir/scr/images/bg#.png
+			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
+			maImage = ImageIO.read(new File(path+ "bg"+ "marioRight"+".png"));// user.dir/scr/images/bg#.png
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("failed to import background image");
 			e.printStackTrace();
 		} 
+	}
 	
 	/*
 	public Image getImage() {

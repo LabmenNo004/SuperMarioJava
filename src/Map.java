@@ -262,7 +262,7 @@ public class Map {
 	public List<Enemy> getAllEnemy() {
 		return allEnemy;
 	}
-	public int[] getMarioSpawnCoord() {
+	public static int[] getMarioSpawnCoord() {
 		return marioSpawnCoord;
 	}
 	public int getWidth() {
