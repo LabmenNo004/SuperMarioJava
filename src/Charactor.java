@@ -1,12 +1,13 @@
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.awt.Graphics;
 
 public abstract class Charactor implements Runnable{
 	protected boolean canCollide;
 	protected int x;
 	protected int y;
-	protected int length; //phsical size
+	protected int height; //phsical size
 	protected int width; //phsical size
 	protected BufferedImage image; //changed to BufferedImage
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
@@ -25,7 +26,7 @@ public abstract class Charactor implements Runnable{
 	public Charactor(int x, int y,int length, int width, Id id, Handler handler) { //canCollide can be determined by type 
 		this.x = x;
 		this.y = y;
-		this.length = length;
+		this.height = length;
 		this.width = width;		
 		this.handler = handler;
 	}
@@ -53,8 +54,8 @@ public abstract class Charactor implements Runnable{
 	public boolean isCanCollide() {
 		return canCollide;
 	}
-	public int getLength() {
-		return length;
+	public int getHeight() {
+		return height;
 	}
 	public int getWidth() {
 		return width;
@@ -70,8 +71,8 @@ public abstract class Charactor implements Runnable{
 	public void setCanCollide(boolean canCollide) {
 		this.canCollide = canCollide;
 	}
-	public void setLength(int length) {
-		this.length = length;
+	public void setHeight(int height) {
+		this.height = height;
 	}
 	public void setWidth(int width) {
 		this.width = width;
@@ -94,8 +95,18 @@ public abstract class Charactor implements Runnable{
 	public boolean[] collisionDetection() {
 //		returns [True, False, False, False] 
 //		for whether there is object in up, right, down, left direction
-		
-		return null;
+		List<GameObject> allObj = Map.getAllObj();
+		boolean[] result = new boolean[4];
+		for (GameObject obj: allObj) {
+			if (obj.getX()>(this.getX()+this.getWidth()) || obj.getX()+obj.getWidth()<this.getX()) {
+				continue;
+			}
+			if (obj.getY()<this.getY())
+			if (obj.getY()<=(this.getY()+this.getHeight())  ) {
+				
+			}
+		}
+		return result;
 	}
 
 	}

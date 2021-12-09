@@ -10,7 +10,7 @@ public class GameObject{
 	protected boolean canCollide;
 	protected int x;
 	protected int y;
-	protected int length; //phsical size
+	protected int height; //phsical size
 	protected int width; //phsical size
 	protected BufferedImage image; //changed to BufferedImage
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
@@ -21,10 +21,10 @@ public class GameObject{
 	//Constructor
 	public GameObject() {}
 	
-	public GameObject(int x, int y,int length, int width) { //canCollide can be determined by type 
+	public GameObject(int x, int y, int height, int width) { //canCollide can be determined by type 
 		this.x = x;
 		this.y = y;
-		this.length = length;
+		this.height = height;
 		this.width = width;		
 		//this.handler = handler;
 	}
@@ -48,8 +48,8 @@ public class GameObject{
 	public boolean isCanCollide() {
 		return canCollide;
 	}
-	public int getLength() {
-		return length;
+	public int getHeight() {
+		return height;
 	}
 	public int getWidth() {
 		return width;
@@ -65,8 +65,8 @@ public class GameObject{
 	public void setCanCollide(boolean canCollide) {
 		this.canCollide = canCollide;
 	}
-	public void setLength(int length) {
-		this.length = length;
+	public void setHeight(int length) {
+		this.height = length;
 	}
 	public void setWidth(int width) {
 		this.width = width;

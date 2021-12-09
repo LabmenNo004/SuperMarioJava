@@ -23,6 +23,7 @@ public class Stage extends JPanel implements Runnable{
         setLayout(null);
 		
 //        add timer ...
+//        add UI
 	}
 	public void run() {
 		
