@@ -73,7 +73,7 @@ public class SuperMario {
 		gameStart();
 	}
 
-	public static void loseLive() {
+	public static void loseLife() {
 		if (marioLives == 1) {
 			gameOver();
 		} else {
