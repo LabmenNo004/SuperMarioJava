@@ -35,13 +35,7 @@ public class SuperMario {
 		// initial frame
 		return null;
 	}
-	
-	public void init() {
-		handler = new Handler();
-		frame.addKeyListener(new KeyInput());
-		handler.addCharactor(new Mario(300,500,64,64,Id.Mario,handler));
-		
-	}
+
 
 	public static void gameStart() {
 //		needs implement

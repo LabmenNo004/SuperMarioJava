@@ -91,5 +91,11 @@ public abstract class Charactor implements Runnable{
 		return this.id;
 	}
 	
+	public boolean[] collisionDetection() {
+//		returns [True, False, False, False] 
+//		for whether there is object in up, right, down, left direction
+		
+		return null;
+	}
 
 	}
