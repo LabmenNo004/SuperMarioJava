@@ -2,15 +2,24 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+
 import  java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Mario extends Charactor{
 //	by Zehao: you can access status of key pressed using 
 //	SuperMario.isJumpPressed(), SuperMario.isRightPressed(), SuperMario.isLeftPressed()
 
 	
+	
 	private List<GameObject> allObj = null;
 	private List<Enemy> allEnemy = null;
+	
+	protected static BufferedImage bgImage = null;
 	
 	public Mario(int x, int y,int length, int width, Id id, Handler handler) {
 		super(x,y,length,width,id,handler);
@@ -20,6 +29,17 @@ public class Mario extends Charactor{
 	public void run() {
 		
 	}
+	
+	public void MarioImage (){
+		//set background
+		try {
+			bgImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
+			bgImage = ImageIO.read(new File(path+ "bg"+ "marioRight"+".png"));// user.dir/scr/images/bg#.png
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("failed to import background image");
+			e.printStackTrace();
+		} 
 	
 	/*
 	public Image getImage() {
