@@ -198,7 +198,7 @@ public class Mario extends Charactor{
 				} else {
 //					up collision
 					this.setY(obj.getY() + obj.getHeight());
-					this.jumping=false;
+					this.jumping=true;
 					this.setVelY(0);
 					upCollide(obj);
 				}
