@@ -11,7 +11,8 @@ public class Stage extends JPanel implements Runnable{
 	public Handler handler;
 	public Stage(int stageNumber) {
 		this.map = new Map(stageNumber);
-		Mario mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1],40,40,Id.Mario,handler);
+		this.mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1],16,16,Id.Mario,handler);
+		
 		
 	}
 	public void run() {

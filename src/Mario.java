@@ -23,6 +23,7 @@ public class Mario extends Charactor{
 	
 	public Mario(int x, int y,int length, int width, Id id, Handler handler) {
 		super(x,y,length,width,id,handler);
+		this.image = getMarioImage(); 
 		
 	}
 	
@@ -30,10 +31,11 @@ public class Mario extends Charactor{
 		
 	}
 	
-	public BufferedImage getImage (){
+	public BufferedImage getMarioImage (){
 		//set background
 		try {
 			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
+			System.out.println("mario image loaded");
 			maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
 			
 		} catch (IOException e) {
