@@ -8,9 +8,10 @@ public class Stage extends JPanel implements Runnable{
 	private static final int CAMERAEDGE = 300;
 	private Map map = null;
 	private Mario mario;
+	public Handler handler;
 	public Stage(int stageNumber) {
 		this.map = new Map(stageNumber);
-		Mario mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1]);
+		Mario mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1],40,40,Id.Mario,handler);
 		
 	}
 	public void run() {
