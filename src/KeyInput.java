@@ -2,6 +2,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 public class KeyInput implements KeyListener {
 
+
+    
+    public boolean LEFT;
+    public boolean RIGHT;
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -24,9 +28,13 @@ public class KeyInput implements KeyListener {
 			break;
 		case KeyEvent.VK_A:
 			ch.setVelX(-5);
+			LEFT = true;
+			RIGHT = false;
 			break;
 		case KeyEvent.VK_D:
 			ch.setVelX(5);
+			RIGHT = true;
+			LEFT = false;
 			break;
 		}
 		}
