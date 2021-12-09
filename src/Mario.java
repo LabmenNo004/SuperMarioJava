@@ -88,6 +88,7 @@ public class Mario extends Charactor{
 		
 	}
 	
+
 	/*
 	if(jumping) {
 		gravity -=0.1;
@@ -103,5 +104,28 @@ public class Mario extends Charactor{
 		setVelY((int)gravity);
 		
 	}*/
+	public void rightPressed() {
 		
+	}
+	public void rightReleased() {
+
+	}
+	public void leftPressed() {
+		
+	}
+	public void leftReleased() {
+
+	}
+	public void downPressed() {
+		
+	}
+	public void downReleased() {
+
+	}
+	public void jumpPressed() {
+		
+	}
+	public void jumpReleased() {
+
+	}
 }

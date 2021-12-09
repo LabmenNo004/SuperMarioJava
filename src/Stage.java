@@ -63,4 +63,8 @@ public class Stage extends JPanel implements Runnable{
     		cameraX = marioX + CAMERAEDGE - SuperMario.getWIDTH();
     	}
     }
+	public Mario getMario() {
+		return mario;
+	}
+    
 }

@@ -13,12 +13,9 @@ public class SuperMario {
 	private static int marioLives = 3;
 	private static int score = 0;
 	private static JFrame frame;
-	private static boolean leftPressed;
-	private static boolean rightPressed;
-	private static boolean jumpPressed;
 	public static Handler handler;
 	private static boolean hasStarted = false;
-
+	private static Stage stage;
 	public SuperMario() {
 		// create frame
 		frame = new JFrame("Super Mario Bros. Remake");
@@ -56,7 +53,7 @@ public class SuperMario {
 	}
 
 	public static void enterStage() {
-		Stage stage = new Stage(stageNumber);
+		stage = new Stage(stageNumber);
 		new Thread(stage).start();
 //		TestStage stage = new TestStage();
 		frame.getContentPane().removeAll();
@@ -85,18 +82,6 @@ public class SuperMario {
 		}
 	}
 
-	public static boolean isLeftPressed() {
-		return leftPressed;
-	}
-
-	public static boolean isRightPressed() {
-		return rightPressed;
-	}
-
-	public static boolean isJumpPressed() {
-		return jumpPressed;
-	}
-
 	public static int getWIDTH() {
 		return WIDTH;
 	}
@@ -115,22 +100,29 @@ public class SuperMario {
 
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				leftPressed = true;
+				stage.getMario().leftPressed();
 			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				rightPressed = true;
+				stage.getMario().rightPressed();
 			} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				jumpPressed = true;
+				stage.getMario().jumpPressed();
+			}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				stage.getMario().downPressed();
 			}
 		}
 
 		public void keyReleased(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				leftPressed = false;
+				stage.getMario().leftReleased();
+				
 			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				rightPressed = false;
+				stage.getMario().rightReleased();
+
 			} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				jumpPressed = false;
-			}
+				stage.getMario().jumpReleased();
+				
+			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					stage.getMario().downReleased();
+				}
 		}
 	}
 
