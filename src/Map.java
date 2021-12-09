@@ -257,10 +257,10 @@ public class Map {
 	public BufferedImage getBgImage() {
 		return bgImage;
 	}
-	public List<GameObject> getAllObj() {
+	public static List<GameObject> getAllObj() {
 		return allObj;
 	}
-	public List<Enemy> getAllEnemy() {
+	public static List<Enemy> getAllEnemy() {
 		return allEnemy;
 	}
 	public static int[] getMarioSpawnCoord() {
