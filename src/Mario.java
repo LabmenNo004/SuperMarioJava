@@ -93,9 +93,15 @@ public class Mario extends Charactor{
 
 	public void leftCollide(GameObject obj) {}
 
-	public void upCollide(GameObject obj) {}
+	public void upCollide(GameObject obj) {					
+		this.jumping=true;
+		this.setVelY(0);}
 
-	public void downCollide(GameObject obj) {}
+	public void downCollide(GameObject obj) {
+		this.falling = false;
+		this.jumping = false;
+		this.setVelY(0);
+	}
 
 	/*
 	if(jumping) {
@@ -149,11 +155,11 @@ public class Mario extends Charactor{
 	
 	public void addingGravity() {
 	int velY = this.VelY;
-	if(jumping) {
+	//if(jumping) {
 		velY += 1;
 		setVelY(velY);
 
-	}
+	//}
 	
 }
 	
@@ -191,15 +197,11 @@ public class Mario extends Charactor{
 				if (this.getY() + this.getHeight() < obj.getY() + obj.getHeight()) {
 //					down collision
 					this.setY(obj.getY() - this.getHeight());
-					this.falling = false;
-					this.jumping = false;
-					this.setVelY(0);
 					downCollide(obj);
 				} else {
 //					up collision
 					this.setY(obj.getY() + obj.getHeight());
-					this.jumping=true;
-					this.setVelY(0);
+
 					upCollide(obj);
 				}
 			}
