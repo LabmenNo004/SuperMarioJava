@@ -88,7 +88,13 @@ public class Mario extends Charactor{
 		g.fillRect(x,y,height,width);
 		
 	}
-	
+	public void rightCollide(GameObject obj) {}
+
+	public void leftCollide(GameObject obj) {}
+
+	public void upCollide(GameObject obj) {}
+
+	public void downCollide(GameObject obj) {}
 
 	/*
 	if(jumping) {

@@ -99,24 +99,13 @@ public abstract class Charactor implements Runnable {
 		return this.id;
 	}
 
-	public void rightCollide(GameObject obj) {
-//		System.out.println("right");
-	}
+	public abstract void rightCollide(GameObject obj);
 
-	public void leftCollide(GameObject obj) {
-//		System.out.println("left");
+	public abstract void leftCollide(GameObject obj);
 
-	}
+	public abstract void upCollide(GameObject obj);
 
-	public void upCollide(GameObject obj) {
-//		System.out.println("up");
-
-	}
-
-	public void downCollide(GameObject obj) {
-//		System.out.println("down");
-
-	}
+	public abstract void downCollide(GameObject obj);
 
 	public void collisionDetection() {
 		List<GameObject> allObj = Map.getAllObj();
