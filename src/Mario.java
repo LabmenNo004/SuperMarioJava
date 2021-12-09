@@ -30,16 +30,18 @@ public class Mario extends Charactor{
 		
 	}
 	
-	public void MarioImage (){
+	public BufferedImage getImage (){
 		//set background
 		try {
 			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
-			maImage = ImageIO.read(new File(path+ "bg"+ "marioRight"+".png"));// user.dir/scr/images/bg#.png
+			maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("failed to import background image");
 			e.printStackTrace();
 		} 
+		return maImage;
 	}
 	
 	/*
