@@ -15,6 +15,7 @@ public class SuperMario {
 	private static boolean rightPressed;
 	private static boolean jumpPressed;
 	public static Handler handler;
+	private static boolean hasStarted = false;
 
 	public SuperMario() {
 		// create frame
@@ -45,6 +46,7 @@ public class SuperMario {
 
 	public static void gameStart() {
 //		needs implement
+		
 	}
 
 	public static void increaseScore(int number) {
@@ -53,6 +55,7 @@ public class SuperMario {
 
 	public static void enterStage() {
 		Stage stage = new Stage(stageNumber);
+		frame.removeAll();
 		frame.add(stage);
 	}
 
@@ -98,6 +101,10 @@ public class SuperMario {
 
 	class CustomKeyListener implements KeyListener {
 		public void keyTyped(KeyEvent e) {
+			if (!hasStarted) {
+				hasStarted=true;
+				enterStage();
+			}
 		}
 
 		public void keyPressed(KeyEvent e) {
@@ -123,6 +130,6 @@ public class SuperMario {
 
 	public static void main(String[] args) {
 		SuperMario game = new SuperMario();
-
+		
 	}
 }
