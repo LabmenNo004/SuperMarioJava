@@ -5,6 +5,14 @@ public class KeyInput implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
+
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 		int key = e.getKeyCode();  
 		for (Charactor ch:SuperMario.handler.charactor) {
 		switch(key) {
@@ -22,11 +30,12 @@ public class KeyInput implements KeyListener {
 			break;
 		}
 		}
+
 		
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		int key = e.getKeyCode();  
 		for (Charactor ch:SuperMario.handler.charactor) {
@@ -45,12 +54,6 @@ public class KeyInput implements KeyListener {
 			break;
 		}
 		} 
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 		
