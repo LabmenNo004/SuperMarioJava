@@ -92,21 +92,62 @@ public abstract class Charactor implements Runnable{
 		return this.id;
 	}
 	
-	public boolean[] collisionDetection() {
-//		returns [True, False, False, False] 
-//		for whether there is object in up, right, down, left direction
+	public void rightCollide(GameObject obj) {
+		System.out.println("right");
+	}
+	public void leftCollide(GameObject obj) {
+		System.out.println("left");
+
+	}
+	public void upCollide(GameObject obj) {
+		System.out.println("up");
+
+	}
+	public void downCollide(GameObject obj) {
+		System.out.println("down");
+
+	}
+	public void collisionDetection() {
 		List<GameObject> allObj = Map.getAllObj();
 		boolean[] result = new boolean[4];
 		for (GameObject obj: allObj) {
-			if (obj.getX()>(this.getX()+this.getWidth()) || obj.getX()+obj.getWidth()<this.getX()) {
+			if (obj.getX()>(this.getX()+this.getWidth()) || obj.getX()+obj.getWidth()<this.getX() || 
+					obj.getY()>(this.getY()+this.getHeight()) || obj.getY()+obj.getHeight()<this.getY()) {
+//				if Character on left or right or above or below, skip
 				continue;
 			}
-			if (obj.getY()<this.getY())
-			if (obj.getY()<=(this.getY()+this.getHeight())  ) {
-				
+			
+			
+			
+			int rightOverlap = this.getX()+this.getWidth()-obj.getX();
+			int leftOverlap = obj.getX()+obj.getWidth()-this.getX();
+			int upOverlap = obj.getY()+obj.getHeight()-this.getY();
+			int downOverlap = this.getY()+this.getHeight()-obj.getY();
+			
+				if(obj.getX()<=(this.getX()+this.getWidth()) && obj.getX()>this.getX() && rightOverlap<upOverlap && rightOverlap<downOverlap) {
+					
+//				right collision
+					this.setX(obj.getX()-this.getWidth());
+					this.rightCollide(obj);
+				}
+				else if (this.getX()<=obj.getX()+obj.getWidth() && this.getX()+this.getWidth()>obj.getX()+obj.getWidth() && leftOverlap<upOverlap && leftOverlap<downOverlap) {
+//					left collision
+					this.setX(obj.getX()+obj.getWidth());
+					this.leftCollide(obj);
+				}
+			
+			else {
+				if (this.getY()+this.getHeight()<obj.getY()+obj.getHeight()) {
+//					down collision
+					this.setY(obj.getY()-this.getHeight());
+					downCollide(obj);
+				}else {
+//					up collision
+					this.setY(obj.getY()+obj.getHeight());
+					upCollide(obj);
+				}
 			}
 		}
-		return result;
 	}
 
 	}
