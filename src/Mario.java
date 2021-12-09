@@ -76,8 +76,8 @@ public class Mario extends Charactor{
 		y+=VelY;
 		if(x<=0) x=0;
 		if(y<=0) y=0;
-		if(x+length>400) x = 400-length;   //   to control Mario not go out of the screen
-		if(y+width>318) y = 318-width;
+//		if(x+length>400) x = 400-length;   //   to control Mario not go out of the screen
+//		if(y+width>318) y = 318-width;
 	}
 
 	@Override
@@ -127,9 +127,9 @@ public class Mario extends Charactor{
 		setVelY(0);
 	}
 	public void jumpPressed() {
-		setVelX(-5);
+		setVelY(-5);
 	}
 	public void jumpReleased() {
-		setVelX(0);
+		setVelY(0);
 	}
 }

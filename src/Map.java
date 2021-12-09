@@ -45,7 +45,7 @@ public class Map {
 			//Enemy character creation: assume character# is 0
 				//need to know: Enemy type#, spawn coords
 				allEnemy.add(new Enemy( ));
-				
+		
 			}
 		else if (stageNumber == 2) {
 			//stage 2
@@ -70,6 +70,7 @@ public class Map {
 		if (stageNumber == 1) {
 			//stage 1
 			stageOneObjIniti();
+			mapWidth = 3520;
 		}
 		else if (stageNumber == 2) {
 			//stage 2
