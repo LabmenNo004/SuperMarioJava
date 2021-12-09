@@ -107,6 +107,8 @@ public class SuperMario {
 				stage.getMario().jumpPressed();
 			}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				stage.getMario().downPressed();
+			}else if (e.getKeyCode() == KeyEvent.VK_UP) {
+				stage.getMario().jumpPressed();
 			}
 		}
 
@@ -122,6 +124,8 @@ public class SuperMario {
 				
 			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 					stage.getMario().downReleased();
+				}else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					stage.getMario().jumpReleased();
 				}
 		}
 	}
