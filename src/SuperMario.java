@@ -16,6 +16,7 @@ public class SuperMario {
 	public static Handler handler;
 	private static boolean hasStarted = false;
 	private static Stage stage;
+
 	public SuperMario() {
 		// create frame
 		frame = new JFrame("Super Mario Bros. Remake");
@@ -23,7 +24,7 @@ public class SuperMario {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-	
+
 		frame.addKeyListener(new CustomKeyListener());
 
 		gameStart();
@@ -36,10 +37,9 @@ public class SuperMario {
 		return null;
 	}
 
-
 	public static void gameStart() {
 //		needs implement
-		
+
 	}
 
 	public static void increaseScore(int number) {
@@ -79,6 +79,7 @@ public class SuperMario {
 	public static int getWIDTH() {
 		return WIDTH;
 	}
+
 	public static int getHEIGHT() {
 		return HEIGHT;
 	}
@@ -86,46 +87,54 @@ public class SuperMario {
 	class CustomKeyListener implements KeyListener {
 		public void keyTyped(KeyEvent e) {
 			if (!hasStarted) {
-				hasStarted=true;
+				hasStarted = true;
 				enterStage();
 				System.out.println("entering");
 			}
 		}
 
 		public void keyPressed(KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				stage.getMario().leftPressed();
-			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				stage.getMario().rightPressed();
-			} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				stage.getMario().jumpPressed();
-			}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				stage.getMario().downPressed();
-			}else if (e.getKeyCode() == KeyEvent.VK_UP) {
-				stage.getMario().jumpPressed();
+			if (hasStarted) {
+				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+					stage.getMario().leftPressed();
+				} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+					stage.getMario().rightPressed();
+				} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+					stage.getMario().jumpPressed();
+				} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					stage.getMario().downPressed();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					stage.getMario().jumpPressed();
+				}
+			}else {
+				keyTyped(e);
 			}
 		}
 
 		public void keyReleased(KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				stage.getMario().leftReleased();
-				
-			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				stage.getMario().rightReleased();
+			if (hasStarted) {
+				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+					stage.getMario().leftReleased();
 
-			} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				stage.getMario().jumpReleased();
-				
-			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+					stage.getMario().rightReleased();
+
+				} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+					stage.getMario().jumpReleased();
+
+				} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 					stage.getMario().downReleased();
-				}else if (e.getKeyCode() == KeyEvent.VK_UP) {
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 					stage.getMario().jumpReleased();
 				}
+			}else {
+				keyTyped(e);
+			}
 		}
 	}
 
 	public static void main(String[] args) {
 		SuperMario game = new SuperMario();
-		
+
 	}
 }

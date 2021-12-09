@@ -22,13 +22,15 @@ public class Stage extends JPanel implements Runnable{
         setSize(size);
         setLayout(null);
 		
+//        add timer ...
 	}
 	public void run() {
-//		int i = 0;
+		
+		
 		while (true) {
+//			check timer ...
+			
 			mario.tick();
-//			System.out.println("frame"+i);
-//			i++;
 			updateCamera();
 		repaint();
 		try {
