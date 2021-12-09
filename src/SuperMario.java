@@ -57,6 +57,7 @@ public class SuperMario {
 
 	public static void enterStage() {
 		Stage stage = new Stage(stageNumber);
+		new Thread(stage).start();
 //		TestStage stage = new TestStage();
 		frame.getContentPane().removeAll();
 		frame.add(stage);
