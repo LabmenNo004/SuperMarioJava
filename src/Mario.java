@@ -77,6 +77,7 @@ public class Mario extends Charactor{
 		if(x<=0) x=0;
 		if(y<=0) y=0;
 		collisionDetection();
+		addingGravity();
 //		if(x+length>400) x = 400-length;   //   to control Mario not go out of the screen
 //		if(y+width>318) y = 318-width;
 	}
@@ -128,15 +129,88 @@ public class Mario extends Charactor{
 
 	}
 	public void downPressed() {
+		if(falling==false) {
 		setVelY(5);
+	}
 	}
 	public void downReleased() {
 		setVelY(0);
 	}
 	public void jumpPressed() {
-		setVelY(-5);
+		if(this.jumping==false) {
+		setVelY(-12);
+		this.jumping = true;
+		this.falling= false;
+	}
 	}
 	public void jumpReleased() {
-		setVelY(0);
+		//setVelY(0);
 	}
+	
+	public void addingGravity() {
+	int velY = this.VelY;
+	if(jumping) {
+		velY += 1;
+		setVelY(velY);
+		if(velY<=0.0) {
+			//this.jumping = false;
+			this.falling = true;
+		}
+	}
+	if(falling) {
+		velY+=1;
+		setVelY((int)velY);
+	}
+	
+}
+	
+	@Override
+	public void collisionDetection() {
+		List<GameObject> allObj = Map.getAllObj();
+		boolean[] result = new boolean[4];
+		for (GameObject obj : allObj) {
+			if (obj.getX() > (this.getX() + this.getWidth()) || obj.getX() + obj.getWidth() < this.getX()
+					|| obj.getY() > (this.getY() + this.getHeight()) || obj.getY() + obj.getHeight() < this.getY()) {
+//				if Character on left or right or above or below, skip
+				continue;
+			}
+
+			int rightOverlap = this.getX() + this.getWidth() - obj.getX();
+			int leftOverlap = obj.getX() + obj.getWidth() - this.getX();
+			int upOverlap = obj.getY() + obj.getHeight() - this.getY();
+			int downOverlap = this.getY() + this.getHeight() - obj.getY();
+
+			if (obj.getX() <= (this.getX() + this.getWidth()) && obj.getX() > this.getX() && rightOverlap < upOverlap
+					&& rightOverlap < downOverlap) {
+
+//				right collision
+				this.setX(obj.getX() - this.getWidth());
+				this.rightCollide(obj);
+			} else if (this.getX() <= obj.getX() + obj.getWidth()
+					&& this.getX() + this.getWidth() > obj.getX() + obj.getWidth() && leftOverlap < upOverlap
+					&& leftOverlap < downOverlap) {
+//					left collision
+				this.setX(obj.getX() + obj.getWidth());
+				this.leftCollide(obj);
+			}
+
+			else {
+				if (this.getY() + this.getHeight() < obj.getY() + obj.getHeight()) {
+//					down collision
+					this.setY(obj.getY() - this.getHeight());
+					this.falling = false;
+					this.jumping = false;
+					this.setVelY(0);
+					downCollide(obj);
+				} else {
+//					up collision
+					this.setY(obj.getY() + obj.getHeight());
+					this.jumping=false;
+					this.setVelY(0);
+					upCollide(obj);
+				}
+			}
+		}
+	}
+	
 }
