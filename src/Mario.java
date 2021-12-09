@@ -21,8 +21,8 @@ public class Mario extends Charactor{
 	
 	protected static BufferedImage maImage = null;
 	
-	public Mario(int x, int y,int length, int width, Id id, Handler handler) {
-		super(x,y,length,width,id,handler);
+	public Mario(int x, int y,int height, int width, Id id, Handler handler) {
+		super(x,y,height,width,id,handler);
 		this.image = getMarioImage(); 
 		
 	}
@@ -84,7 +84,7 @@ public class Mario extends Charactor{
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		g.setColor(Color.BLUE);
-		g.fillRect(x,y,length,width);
+		g.fillRect(x,y,height,width);
 		
 	}
 	
