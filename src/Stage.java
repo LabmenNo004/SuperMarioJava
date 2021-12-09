@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -13,6 +14,13 @@ public class Stage extends JPanel implements Runnable{
 		this.map = new Map(stageNumber);
 		this.mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1],16,16,Id.Mario,handler);
 		
+        Dimension size = new Dimension(SuperMario.WIDTH, SuperMario.HEIGHT);
+
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
 		
 	}
 	public void run() {
@@ -29,13 +37,14 @@ public class Stage extends JPanel implements Runnable{
 		}
 	
     public void paintComponent(Graphics g) {
-    	g.drawImage(mario.getImage(), mario.getX()-cameraX, mario.getY(), null);
+    	
     	for (GameObject obj: map.getAllObj()) {
     		g.drawImage(obj.getImage(), obj.getX()-cameraX, obj.getY(), null);
     	}
-    	for (Enemy ene: map.getAllEnemy()) {
-    		g.drawImage(ene.getImage(), ene.getX()-cameraX, ene.getY(), null);
-    	}
+//    	for (Enemy ene: map.getAllEnemy()) {
+//    		g.drawImage(ene.getImage(), ene.getX()-cameraX, ene.getY(), null);
+//    	}
+    	g.drawImage(mario.getImage(), mario.getX()-cameraX, mario.getY(), null);
     }
     private void updateCamera() {
     	int marioX = mario.getX();

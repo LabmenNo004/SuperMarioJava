@@ -1,12 +1,14 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class SuperMario {
 	// everything static, since there is only one game.
-	private static final int WIDTH = 400;
-	private static final int HEIGHT = 318;
+	public static final int WIDTH = 400;
+	public static final int HEIGHT = 318;
 	private static int stageNumber = 1;
 	private static int marioLives = 3;
 	private static int score = 0;
@@ -55,8 +57,10 @@ public class SuperMario {
 
 	public static void enterStage() {
 		Stage stage = new Stage(stageNumber);
-		frame.removeAll();
+//		TestStage stage = new TestStage();
+		frame.getContentPane().removeAll();
 		frame.add(stage);
+		SwingUtilities.updateComponentTreeUI(frame);
 	}
 
 	public static void gameOver() {
@@ -104,6 +108,7 @@ public class SuperMario {
 			if (!hasStarted) {
 				hasStarted=true;
 				enterStage();
+				System.out.println("entering");
 			}
 		}
 
