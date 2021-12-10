@@ -11,7 +11,7 @@ public class Stage extends JPanel implements Runnable {
 	private Mario mario;
 	private EnemyKuribo enemykuribo;
 	public Handler handler;
-	private int time = 300;
+	private float time = 400;
 	private boolean inProgress = true;
 	private boolean showMario=true;
 
@@ -30,7 +30,6 @@ public class Stage extends JPanel implements Runnable {
 		setSize(size);
 		setLayout(null);
 
-//        add timer ...
 	}
 
 	public void run() {
@@ -39,11 +38,13 @@ public class Stage extends JPanel implements Runnable {
 //			check timer ...
 
 			if (inProgress) {
+				this.time -= (1 / FRAMERATE);
+				
 				mario.tick();
 				if (mario.getX() >= Map.flagX) {
 					win();
 				}
-				if (mario.y>Map.mapHeight) {
+				if (mario.y>Map.mapHeight || time < 0.5) {
 					SuperMario.loseLife();
 					Thread.currentThread().interrupt();
 					return;
@@ -130,7 +131,7 @@ public class Stage extends JPanel implements Runnable {
 		return mario;
 	}
 
-	public int getTime() {
+	public float getTime() {
 		return time;
 	}
 }

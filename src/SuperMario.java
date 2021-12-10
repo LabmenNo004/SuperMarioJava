@@ -27,6 +27,7 @@ public class SuperMario {
 	public static BufferedImage startImages;
 	public static BufferedImage uiImages;
 	public static Thread stageThread;
+
 	static {
 		try {
 			startImages = ImageIO.read(new File(GameObject.path+"start.png"));
@@ -150,7 +151,7 @@ public class SuperMario {
 			x = 318;
 			y = 28;
 			offset = 0;
-			BufferedImage[] timeImages = getImages(stage.getTime(), 0);
+			BufferedImage[] timeImages = getImages((int)stage.getTime(), 0);
 			for (BufferedImage img: timeImages) {
 				g.drawImage(img,x+offset,y,size,size,null);
 				offset+=size;
@@ -171,7 +172,7 @@ public class SuperMario {
 			if (!hasStarted) {
 				hasStarted = true;
 				enterStage();
-				System.out.println("entering");
+				System.out.println("entering stage"+stageNumber);
 			}
 		}
 
