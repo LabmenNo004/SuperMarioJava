@@ -11,12 +11,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
 public class EnemyKuribo extends Enemy{
 	
 	private List<GameObject> allObj = null;
 	private List<Enemy> allEnemy = null;
 	protected static BufferedImage KuriImage = null;
 	public Handler handler;
+	int counter = 0;
 	
 	
 	
@@ -50,12 +52,19 @@ public class EnemyKuribo extends Enemy{
 
 
 	public void randomWalk() {
+		    counter+=1;
 			Random rand = new Random();
 			int walkNumber = rand.nextInt(1000);
-			if (walkNumber<500) setVelX(-1);
+			if(counter ==rand.nextInt(15)) {
+			if (walkNumber<500) {
+				setVelX(-1);
+				
+			}
 			else {
 				setVelX(1);
 			}
+			counter = 0;
+		  }
 		}
 
 		public void tick() {
