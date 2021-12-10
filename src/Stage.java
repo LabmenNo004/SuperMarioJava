@@ -9,7 +9,7 @@ public class Stage extends JPanel implements Runnable {
 	private static final int CAMERAEDGE = (int) SuperMario.WIDTH / 2;
 	private Map map = null;
 	private Mario mario;
-	private EnemyKuribo enemykuribo;
+	private EnemyKuribo enemykuribo; //will use allEnemy list to create enemies
 	public Handler handler;
 	private float time = 400;
 	private boolean inProgress = true;
@@ -19,7 +19,7 @@ public class Stage extends JPanel implements Runnable {
 		this.map = new Map(stageNumber);
 
 		this.mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1],16,16);
-		this.enemykuribo = new EnemyKuribo(map.getMarioSpawnCoord()[0]+50,map.getMarioSpawnCoord()[1],12,12);
+		//this.enemykuribo = new EnemyKuribo(map.getMarioSpawnCoord()[0]+200,map.getMarioSpawnCoord()[1],16,16);
 
 //		new Thread(mario).start();
 		Dimension size = new Dimension(SuperMario.WIDTH, SuperMario.HEIGHT);
@@ -70,9 +70,12 @@ public class Stage extends JPanel implements Runnable {
 				}
 			}
 
-			
-
-			enemykuribo.tick();
+			//edited here to incorp. allEnemy list usage
+			for (Enemy kuribou: map.allEnemy) {
+				if (kuribou instanceof EnemyKuribo) {
+					kuribou.tick();
+				}
+			}
 
 			updateCamera();
 			repaint();
@@ -97,15 +100,15 @@ public class Stage extends JPanel implements Runnable {
 		for (GameObject obj : map.getAllObj()) {
 			g.drawImage(obj.getImage(), obj.getX() - cameraX, obj.getY(), null);
 		}
-//    	for (Enemy ene: map.getAllEnemy()) {
-//    		g.drawImage(ene.getImage(), ene.getX()-cameraX, ene.getY(), null);
-//    	}
+    	for (Enemy ene: map.getAllEnemy()) {
+    		g.drawImage(ene.getImage(), ene.getX()-cameraX, ene.getY(), null);
+    	}
 		SuperMario.paintUI(g);
 		if (showMario) {
 			g.drawImage(mario.getImage(), mario.getX() - cameraX, mario.getY(), null);
 		    
 		}
-		g.drawImage(enemykuribo.getImage(), enemykuribo.getX() - cameraX, enemykuribo.getY(), null);
+		//g.drawImage(enemykuribo.getImage(), enemykuribo.getX() - cameraX, enemykuribo.getY(), null);
 	}
 
 	private void updateCamera() {

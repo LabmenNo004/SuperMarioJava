@@ -16,7 +16,7 @@ public class Map {
 	protected static int mapWidth = SuperMario.getWIDTH();
 	protected static int mapHeight = SuperMario.getHEIGHT()-23-16; //max/lowest pixel of the game
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
-	protected static int BLOCK_SIZE = 16; //constant of each block legth and width
+	protected static final int BLOCK_SIZE = 16; //constant of each block legth and width
 	protected static int flagX;
 	public Map(int stageNumber) {
 		allObj = new ArrayList<>();
@@ -44,6 +44,15 @@ public class Map {
 		if (stageNumber == 1) {
 		//stage 1
 			//Enemy character creation: assume character# is 0
+			//below are testing location
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*6, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*8, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*10, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*75, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*78, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*79, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*80, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
+
 				//need to know: Enemy type#, spawn coords
 				//allEnemy.add(new EnemyKuribo(getMarioSpawnCoord()[0]+50,getMarioSpawnCoord()[1],12,12));
 		
