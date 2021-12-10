@@ -53,6 +53,7 @@ public class Stage extends JPanel implements Runnable{
 //    	for (Enemy ene: map.getAllEnemy()) {
 //    		g.drawImage(ene.getImage(), ene.getX()-cameraX, ene.getY(), null);
 //    	}
+    	SuperMario.paintUI(g);
     	g.drawImage(mario.getImage(), mario.getX()-cameraX, mario.getY(), null);
     }
     private void updateCamera() {
