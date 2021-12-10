@@ -68,4 +68,17 @@ public class EnemyKuribo extends Enemy{
 	
 	
 }
+	public void rightCollide(GameObject obj) {}
+
+	public void leftCollide(GameObject obj) {}
+
+	public void upCollide(GameObject obj) {					
+//		this.jumping=true;
+		this.setVelY(0);}
+
+	public void downCollide(GameObject obj) {
+//		this.falling = false;
+//		this.jumping = false;
+		this.setVelY(0);
+	}
 }
