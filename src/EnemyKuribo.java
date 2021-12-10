@@ -55,7 +55,7 @@ public class EnemyKuribo extends Enemy{
 			Random rand = new Random();
 			int walkNumber = rand.nextInt(1000);
 			if(rand.nextInt(30)<5) {
-			if (walkNumber<500) {
+			if (walkNumber<380) {
 				setVelX(-1);
 				
 			}
