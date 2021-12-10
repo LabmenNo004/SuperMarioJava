@@ -113,24 +113,47 @@ public class SuperMario {
 		int size = 14;
 //		score
 		int x = 10;
-		int y = 30;
+		int y = 28;
 		int offset = 0;
 		BufferedImage[] scoreImages = getImages(score, 6);
 		for (BufferedImage img: scoreImages) {
 			g.drawImage(img,x+offset,y,size,size,null);
 			offset+=size;
 		}
-//		coins
 		
+//		coins
+		x = 85;
+		y= 26;
+		BufferedImage[] coinImages = getImages(coins, 2);
+		for (BufferedImage img: coinImages) {
+			g.drawImage(img,x+offset,y,size,size,null);
+			offset+=size;
+		}
 		
 //		stage
+		x = 225;
+		y= 26;
+		g.drawImage(numberImages[1],x,y,size,size,null);
+		g.drawImage(numberImages[stageNumber],x+45,y,size,size,null);
 		
 		if (hasStarted) {
 //			time
-
+			x = 318;
+			y = 28;
+			offset = 0;
+			BufferedImage[] timeImages = getImages(stage.getTime(), 0);
+			for (BufferedImage img: timeImages) {
+				g.drawImage(img,x+offset,y,size,size,null);
+				offset+=size;
+			}
 		}else {
 //			paint mario life and stage in the center
+			x = 205;
+			y= 112;
+			g.drawImage(numberImages[1],x,y,size,size,null);
+			g.drawImage(numberImages[stageNumber],x+40,y,size,size,null);
 			
+			g.drawImage(numberImages[marioLives],220,160,size,size,null);
 		}
 	}
 
@@ -185,7 +208,8 @@ public class SuperMario {
 	public static BufferedImage[] getImages(int i, int len) {
 //		len is the total length. if length is variable, set it to 0.
 		String str = Integer.toString(i);
-		if (len==0) len = str.length();
+		if (len==0 || len<str.length()) len = str.length();
+
 		BufferedImage[] result = new BufferedImage[len];
 		int padding = len - str.length();
 		for (int j = 0; j<padding;j++) {

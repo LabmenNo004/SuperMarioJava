@@ -10,6 +10,7 @@ public class Stage extends JPanel implements Runnable{
 	private Map map = null;
 	private Mario mario;
 	public Handler handler;
+	private int time = 300;
 	public Stage(int stageNumber) {
 		this.map = new Map(stageNumber);
 		this.mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1],16,16,Id.Mario,handler);
@@ -78,5 +79,7 @@ public class Stage extends JPanel implements Runnable{
 	public Mario getMario() {
 		return mario;
 	}
-    
+	public int getTime() {
+		return time;
+	}
 }
