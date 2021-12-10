@@ -143,7 +143,9 @@ public class Mario extends Charactor{
 		setVelY(0);
 	}
 	public void jumpPressed() {
+
 		if(!this.isInAir) {
+
 		setVelY(-12);
 //		this.jumping = true;
 //		this.falling= false;
@@ -156,8 +158,12 @@ public class Mario extends Charactor{
 	public void addingGravity() {
 	int velY = this.VelY;
 	//if(jumping) {
+	if(velY>0) {
+		this.falling = true;
+	}
 		velY += 1;
 		setVelY(velY);
+		
 
 	//}
 	
