@@ -46,28 +46,8 @@ public class EnemyKuribo extends Enemy{
 		return y;
 	}
 
-	@Override
-	public void tick() {
-		// TODO Auto-generated method stub
-		x+=VelX;
-		y+=VelY;
-		if(x<=0) x=0;
-		if(y<=0) y=0;
-		collisionDetection();
-		addingGravity();
-//		if(x+length>400) x = 400-length;   //   to control Mario not go out of the screen
-//		if(y+width>318) y = 318-width;
-	}
-	public void addingGravity() {
-		int velY = this.VelY;
-		//if(jumping) {
 
-			velY += 1;
-			setVelY(velY);
-			
-	
-	
-}
+
 	public void rightCollide(GameObject obj) {}
 
 	public void leftCollide(GameObject obj) {}
