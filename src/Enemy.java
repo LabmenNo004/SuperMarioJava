@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.Image;
 
 public class Enemy extends Charactor{
@@ -9,21 +10,37 @@ public class Enemy extends Charactor{
 	}
 
 	@Override
-	public Image getImage() {
+	public void tick() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
-	public int getX() {
+	public void rightCollide(GameObject obj) {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
 
 	@Override
-	public int getY() {
+	public void leftCollide(GameObject obj) {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
+
+	@Override
+	public void upCollide(GameObject obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void downCollide(GameObject obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
 
 }

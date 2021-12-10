@@ -82,13 +82,7 @@ public class Mario extends Charactor{
 //		if(y+width>318) y = 318-width;
 	}
 
-	@Override
-	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-		g.setColor(Color.BLUE);
-		g.fillRect(x,y,height,width);
-		
-	}
+
 	public void rightCollide(GameObject obj) {}
 
 	public void leftCollide(GameObject obj) {}

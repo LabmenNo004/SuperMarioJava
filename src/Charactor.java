@@ -41,7 +41,6 @@ public abstract class Charactor implements Runnable {
 
 	public abstract void tick();
 
-	public abstract void render(Graphics g);
 
 	public void die() {
 		handler.removeCharactor(this);
