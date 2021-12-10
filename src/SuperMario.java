@@ -26,6 +26,7 @@ public class SuperMario {
 	public static BufferedImage[] numberImages = new BufferedImage[10];
 	public static BufferedImage startImages;
 	public static BufferedImage uiImages;
+	public static Thread stageThread;
 	static {
 		try {
 			startImages = ImageIO.read(new File(GameObject.path+"start.png"));
@@ -68,7 +69,8 @@ public class SuperMario {
 
 	public static void enterStage() {
 		stage = new Stage(stageNumber);
-		new Thread(stage).start();
+		stageThread = new Thread(stage);
+		stageThread.start();
 //		TestStage stage = new TestStage();
 		frame.getContentPane().removeAll();
 		frame.add(stage);
@@ -94,6 +96,8 @@ public class SuperMario {
 	}
 
 	public static void loseLife() {
+		stageThread.interrupt();
+		
 		if (marioLives == 1) {
 			gameOver();
 		} else {

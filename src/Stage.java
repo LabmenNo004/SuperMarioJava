@@ -43,6 +43,11 @@ public class Stage extends JPanel implements Runnable {
 				if (mario.getX() >= Map.flagX) {
 					win();
 				}
+				if (mario.y>Map.mapHeight) {
+					SuperMario.loseLife();
+					Thread.currentThread().interrupt();
+					return;
+				}
 			} else if(SuperMario.stageNumber==1){
 //				animation of going to castle
 				if(mario.getY()+mario.height<Map.mapHeight-(Map.BLOCK_SIZE*2)) {
@@ -73,6 +78,7 @@ public class Stage extends JPanel implements Runnable {
 			try {
 				Thread.sleep((long) (1000 / FRAMERATE));
 			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
 				e.printStackTrace();
 			}
 		}
@@ -82,7 +88,7 @@ public class Stage extends JPanel implements Runnable {
 		inProgress = false;
 		SuperMario.increaseScore(2000);
 	}
-
+	
 	public void paintComponent(Graphics g) {
 
 		g.drawImage(map.getBgImage(), -cameraX, 0, null);
