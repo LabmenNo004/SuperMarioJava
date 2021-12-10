@@ -26,7 +26,7 @@ public class EnemyKuribo extends Enemy{
 	public BufferedImage KuriImage (){
 		//set background
 		try {
-			KuriImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
+			KuriImage = new BufferedImage(Map.getMarioSpawnCoord()[0]-2,Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
 			System.out.println("kuribo image loaded");
 			KuriImage = ImageIO.read(new File(path+"kuribou1"+".png"));// user.dir/scr/images/bg#.png
 			
