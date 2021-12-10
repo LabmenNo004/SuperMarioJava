@@ -16,8 +16,8 @@ public abstract class Charactor implements Runnable {
 	public Handler handler;
 	protected boolean isInAir;
 
-	public boolean jumping = false;
-	public boolean falling = true;
+//	public boolean jumping = false;
+//	public boolean falling = true;
 
 	public double gravity = 0.0;
 

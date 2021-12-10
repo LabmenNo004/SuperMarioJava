@@ -145,8 +145,8 @@ public class Mario extends Charactor{
 	public void jumpPressed() {
 		if(!this.isInAir) {
 		setVelY(-12);
-		this.jumping = true;
-		this.falling= false;
+//		this.jumping = true;
+//		this.falling= false;
 	}
 	}
 	public void jumpReleased() {
