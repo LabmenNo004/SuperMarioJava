@@ -15,7 +15,7 @@ public class Stage extends JPanel implements Runnable{
 	public Stage(int stageNumber) {
 		this.map = new Map(stageNumber);
 		this.mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1],16,16,handler);
-		this.enemykuribo = new EnemyKuribo(map.getMarioSpawnCoord()[0]-2,map.getMarioSpawnCoord()[1],12,12,handler);
+		this.enemykuribo = new EnemyKuribo(map.getMarioSpawnCoord()[0]+50,map.getMarioSpawnCoord()[1],12,12,handler);
 //		new Thread(mario).start();
         Dimension size = new Dimension(SuperMario.WIDTH, SuperMario.HEIGHT);
 
