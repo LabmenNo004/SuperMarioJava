@@ -94,12 +94,12 @@ public class Mario extends Charactor{
 	public void leftCollide(GameObject obj) {}
 
 	public void upCollide(GameObject obj) {					
-		this.jumping=true;
+//		this.jumping=true;
 		this.setVelY(0);}
 
 	public void downCollide(GameObject obj) {
-		this.falling = false;
-		this.jumping = false;
+//		this.falling = false;
+//		this.jumping = false;
 		this.setVelY(0);
 	}
 
@@ -135,7 +135,7 @@ public class Mario extends Charactor{
 
 	}
 	public void downPressed() {
-		if(falling==false) {
+		if(isInAir) {
 		setVelY(5);
 	}
 	}
@@ -143,7 +143,7 @@ public class Mario extends Charactor{
 		setVelY(0);
 	}
 	public void jumpPressed() {
-		if(this.jumping==false) {
+		if(!this.isInAir) {
 		setVelY(-12);
 		this.jumping = true;
 		this.falling= false;

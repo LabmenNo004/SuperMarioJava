@@ -14,6 +14,7 @@ public abstract class Charactor implements Runnable {
 	protected int VelX, VelY;
 	public Id id;
 	public Handler handler;
+	protected boolean isInAir;
 
 	public boolean jumping = false;
 	public boolean falling = true;
@@ -110,6 +111,7 @@ public abstract class Charactor implements Runnable {
 	public void collisionDetection() {
 		List<GameObject> allObj = Map.getAllObj();
 		boolean[] result = new boolean[4];
+		boolean inAir = true;
 		for (GameObject obj : allObj) {
 			if (obj.getX() > (this.getX() + this.getWidth()) || obj.getX() + obj.getWidth() < this.getX()
 					|| obj.getY() > (this.getY() + this.getHeight()) || obj.getY() + obj.getHeight() < this.getY()) {
@@ -140,6 +142,7 @@ public abstract class Charactor implements Runnable {
 				if (this.getY() + this.getHeight() < obj.getY() + obj.getHeight()) {
 //					down collision
 					this.setY(obj.getY() - this.getHeight());
+					inAir = false;
 					downCollide(obj);
 				} else {
 //					up collision
@@ -148,6 +151,7 @@ public abstract class Charactor implements Runnable {
 				}
 			}
 		}
+		this.isInAir=inAir;
 	}
 
 }
