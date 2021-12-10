@@ -17,7 +17,7 @@ public class Map {
 	protected static int mapHeight = SuperMario.getHEIGHT()-23-16; //max/lowest pixel of the game
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
 	protected static int BLOCK_SIZE = 16; //constant of each block legth and width
-	
+	protected static int flagX;
 	public Map(int stageNumber) {
 		allObj = new ArrayList<>();
 		//...
@@ -70,6 +70,7 @@ public class Map {
 		if (stageNumber == 1) {
 			//stage 1
 			stageOneObjIniti();
+			flagX = 198*BLOCK_SIZE;
 			mapWidth = 3520;
 		}
 		else if (stageNumber == 2) {

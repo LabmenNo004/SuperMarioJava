@@ -54,7 +54,7 @@ public class SuperMario {
 		frame.setVisible(true);
 	}
 
-
+	
 	public static void gameStart() {
 		StartPanel startPanel = new StartPanel();
 		frame.getContentPane().removeAll();
@@ -74,7 +74,12 @@ public class SuperMario {
 		frame.add(stage);
 		SwingUtilities.updateComponentTreeUI(frame);
 	}
-
+	public static void gameWin() {
+		stageNumber=stageNumber+1;
+		hasStarted=false;
+		gameStart();
+	}
+	
 	public static void gameOver() {
 //		show game over view, showing score. 
 //		needs implement
