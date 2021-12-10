@@ -20,6 +20,7 @@ public class Map {
 	protected static int flagX;
 	public Map(int stageNumber) {
 		allObj = new ArrayList<>();
+		allEnemy = new ArrayList<>();
 		//...
 		/**given stageNumber, will create the Map object, GameObjects stored in allObj with the corr. private things above*/
 		stageObjectCreation(stageNumber);
@@ -44,7 +45,7 @@ public class Map {
 		//stage 1
 			//Enemy character creation: assume character# is 0
 				//need to know: Enemy type#, spawn coords
-				allEnemy.add(new Enemy( ));
+				allEnemy.add(new EnemyKuribo(map.getMarioSpawnCoord()[0]+50,map.getMarioSpawnCoord()[1],12,12,handler));
 		
 			}
 		else if (stageNumber == 2) {
