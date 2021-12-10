@@ -11,11 +11,7 @@ public class Handler {
 		
 	}
 	
-	public void render(Graphics g) {
-		for(Charactor ch:charactor) {
-			ch.render(g);
-		}
-	}
+
 	
 	public void addCharactor(Charactor ch) {
 		charactor.add(ch);

@@ -21,8 +21,8 @@ public class Mario extends Charactor{
 	
 	protected static BufferedImage maImage = null;
 	
-	public Mario(int x, int y,int height, int width, Id id, Handler handler) {
-		super(x,y,height,width,id,handler);
+	public Mario(int x, int y,int height, int width, Handler handler) {
+		super(x,y,height,width,handler);
 		this.image = getMarioImage(); 
 		
 	}
@@ -82,13 +82,7 @@ public class Mario extends Charactor{
 //		if(y+width>318) y = 318-width;
 	}
 
-	@Override
-	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-		g.setColor(Color.BLUE);
-		g.fillRect(x,y,height,width);
-		
-	}
+
 	public void rightCollide(GameObject obj) {}
 
 	public void leftCollide(GameObject obj) {}

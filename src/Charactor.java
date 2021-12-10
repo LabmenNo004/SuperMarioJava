@@ -25,7 +25,7 @@ public abstract class Charactor implements Runnable {
 	public Charactor() {
 	}
 
-	public Charactor(int x, int y, int length, int width, Id id, Handler handler) { // canCollide can be determined by
+	public Charactor(int x, int y, int length, int width, Handler handler) { // canCollide can be determined by
 																					// type
 		this.x = x;
 		this.y = y;
@@ -41,7 +41,6 @@ public abstract class Charactor implements Runnable {
 
 	public abstract void tick();
 
-	public abstract void render(Graphics g);
 
 	public void die() {
 		handler.removeCharactor(this);

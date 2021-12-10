@@ -9,6 +9,7 @@ public class Stage extends JPanel implements Runnable {
 	private static final int CAMERAEDGE = (int) SuperMario.WIDTH / 2;
 	private Map map = null;
 	private Mario mario;
+	private EnemyKuribo enemykuribo;
 	public Handler handler;
 	private int time = 300;
 	private boolean inProgress = true;
@@ -16,7 +17,10 @@ public class Stage extends JPanel implements Runnable {
 
 	public Stage(int stageNumber) {
 		this.map = new Map(stageNumber);
-		this.mario = new Mario(map.getMarioSpawnCoord()[0], map.getMarioSpawnCoord()[1], 16, 16, Id.Mario, handler);
+
+		this.mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1],16,16,handler);
+		this.enemykuribo = new EnemyKuribo(map.getMarioSpawnCoord()[0]+50,map.getMarioSpawnCoord()[1],12,12,handler);
+
 //		new Thread(mario).start();
 		Dimension size = new Dimension(SuperMario.WIDTH, SuperMario.HEIGHT);
 
@@ -33,6 +37,7 @@ public class Stage extends JPanel implements Runnable {
 
 		while (true) {
 //			check timer ...
+
 			if (inProgress) {
 				mario.tick();
 				if (mario.getX() >= Map.flagX) {
@@ -58,6 +63,11 @@ public class Stage extends JPanel implements Runnable {
 					return;
 				}
 			}
+
+			
+
+			enemykuribo.tick();
+
 			updateCamera();
 			repaint();
 			try {

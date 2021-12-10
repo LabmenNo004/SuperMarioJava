@@ -33,14 +33,14 @@ public class test2 extends Canvas{
 		Graphics g = bs.getDrawGraphics(); 
 		g.setColor(Color.BLUE);
 		g.fillRect(0,0,200,200);
-		handler.render(g);
+		//handler.render(g);
 		g.dispose();
 		bs.show();
 	}
 	
 	private static void init() {
 		Handler handler = new Handler();
-		handler.addCharactor(new Mario(10, 10, 60, 60, Id.Mario, handler));
+		handler.addCharactor(new Mario(10, 10, 60, 60,  handler));
 	}
 	
 	public void tick() {
