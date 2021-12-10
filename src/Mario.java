@@ -21,8 +21,8 @@ public class Mario extends Charactor{
 	
 	protected static BufferedImage maImage = null;
 	
-	public Mario(int x, int y,int height, int width, Id id, Handler handler) {
-		super(x,y,height,width,id,handler);
+	public Mario(int x, int y,int height, int width, Handler handler) {
+		super(x,y,height,width,handler);
 		this.image = getMarioImage(); 
 		
 	}
