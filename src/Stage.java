@@ -102,6 +102,7 @@ public class Stage extends JPanel implements Runnable {
 		SuperMario.paintUI(g);
 		if (showMario)
 			g.drawImage(mario.getImage(), mario.getX() - cameraX, mario.getY(), null);
+		    g.drawImage(enemykuribo.getImage(), enemykuribo.getX() - cameraX, enemykuribo.getY(), null);
 	}
 
 	private void updateCamera() {
