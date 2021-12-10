@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class EnemyKuribo extends Enemy{
 	
+	private List<GameObject> allObj = null;
+	private List<Enemy> allEnemy = null;
 	protected static BufferedImage KuriImage = null;
 	public Handler handler;
 	
@@ -36,5 +38,34 @@ public class EnemyKuribo extends Enemy{
 		return KuriImage;
 	}
 	
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	@Override
+	public void tick() {
+		// TODO Auto-generated method stub
+		x+=VelX;
+		y+=VelY;
+		if(x<=0) x=0;
+		if(y<=0) y=0;
+		collisionDetection();
+		addingGravity();
+//		if(x+length>400) x = 400-length;   //   to control Mario not go out of the screen
+//		if(y+width>318) y = 318-width;
+	}
+	public void addingGravity() {
+		int velY = this.VelY;
+		//if(jumping) {
+
+			velY += 1;
+			setVelY(velY);
+			
 	
+	
+}
 }
