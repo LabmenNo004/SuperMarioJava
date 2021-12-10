@@ -22,8 +22,8 @@ public class EnemyKuribo extends Enemy{
 	
 	
 	
-	public EnemyKuribo(int x, int y,int length, int width, Handler handler) {
-		super(x,y,length,width,handler);
+	public EnemyKuribo(int x, int y,int length, int width) {
+		super(x,y,length,width);
 		this.image = KuriImage(); 
 }
 	public BufferedImage KuriImage (){

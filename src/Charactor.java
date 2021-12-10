@@ -25,13 +25,13 @@ public abstract class Charactor implements Runnable {
 	public Charactor() {
 	}
 
-	public Charactor(int x, int y, int length, int width, Handler handler) { // canCollide can be determined by
+	public Charactor(int x, int y, int length, int width) { // canCollide can be determined by
 																					// type
 		this.x = x;
 		this.y = y;
 		this.height = length;
 		this.width = width;
-		this.handler = handler;
+		
 	}
 
 	// Getter

@@ -40,7 +40,7 @@ public class test2 extends Canvas{
 	
 	private static void init() {
 		Handler handler = new Handler();
-		handler.addCharactor(new Mario(10, 10, 60, 60,  handler));
+		handler.addCharactor(new Mario(10, 10, 60, 60));
 	}
 	
 	public void tick() {

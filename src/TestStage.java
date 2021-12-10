@@ -16,7 +16,7 @@ public class TestStage extends JPanel {
 	
 	public TestStage() {
 		this.map = new Map(1);
-		this.mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1],16,16,handler);
+		this.mario = new Mario(map.getMarioSpawnCoord()[0],map.getMarioSpawnCoord()[1],16,16);
 
 		
 //		repaint();

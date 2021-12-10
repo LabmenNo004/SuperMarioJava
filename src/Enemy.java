@@ -7,8 +7,8 @@ public class Enemy extends Charactor{
 		super();
 	}
 	
-	public Enemy(int x, int y, int length, int width, Handler handler) {
-		super(x,  y,  length,  width,  handler);
+	public Enemy(int x, int y, int length, int width) {
+		super(x,  y,  length,  width);
 	}
 
 	@Override
