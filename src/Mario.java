@@ -158,11 +158,9 @@ public class Mario extends Charactor{
 	public void addingGravity() {
 	int velY = this.VelY;
 	//if(jumping) {
-	if(velY>0) {
-		this.falling = true;
-	}
+
 		velY += 1;
-		setVelY(velY);
+//		setVelY(velY);
 		
 
 	//}
