@@ -160,7 +160,7 @@ public class Mario extends Charactor{
 	//if(jumping) {
 
 		velY += 1;
-//		setVelY(velY);
+		setVelY(velY);
 		
 
 	//}
