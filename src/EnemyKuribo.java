@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.List;
@@ -44,6 +45,12 @@ public class EnemyKuribo extends Enemy{
 
 	public int getY() {
 		return y;
+	}
+	
+	public int randomWalkNumber() {
+		Random rand = new Random();
+		int walkNumber = rand.nextInt(1000);
+		return walkNumber;
 	}
 
 	public void tick() {
