@@ -45,7 +45,7 @@ public class Map {
 		//stage 1
 			//Enemy character creation: assume character# is 0
 				//need to know: Enemy type#, spawn coords
-				//allEnemy.add(new EnemyKuribo(map.getMarioSpawnCoord()[0]+50,map.getMarioSpawnCoord()[1],12,12));
+				//allEnemy.add(new EnemyKuribo(getMarioSpawnCoord()[0]+50,getMarioSpawnCoord()[1],12,12));
 		
 			}
 		else if (stageNumber == 2) {
