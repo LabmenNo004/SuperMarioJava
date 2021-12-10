@@ -2,6 +2,14 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 public class Enemy extends Charactor{
+	
+	public Enemy() {
+		super();
+	}
+	
+	public Enemy(int x, int y, int length, int width, Handler handler) {
+		super(x,  y,  length,  width,  handler);
+	}
 
 	@Override
 	public void run() {
