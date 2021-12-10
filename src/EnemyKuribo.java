@@ -47,23 +47,28 @@ public class EnemyKuribo extends Enemy{
 		return y;
 	}
 	
-	public int randomWalkNumber() {
-		Random rand = new Random();
-		int walkNumber = rand.nextInt(1000);
-		return walkNumber;
-	}
 
-	public void tick() {
-		// TODO Auto-generated method stub
-		x+=VelX;
-		y+=VelY;
-		if(x<=0) x=0;
-		if(y<=0) y=0;
-		collisionDetection();
-		addingGravity();
-//		if(x+length>400) x = 400-length;   //   to control Mario not go out of the screen
-//		if(y+width>318) y = 318-width;
-}
+
+	public void randomWalk() {
+			Random rand = new Random();
+			int walkNumber = rand.nextInt(1000);
+			if (walkNumber<500) setVelX(-1);
+			else {
+				setVelX(1);
+			}
+		}
+
+		public void tick() {
+			// TODO Auto-generated method stub
+			x+=VelX;
+			y+=VelY;
+			if(x<=0) x=0;
+			if(y<=0) y=0;
+			collisionDetection();
+			addingGravity();
+			randomWalk();
+			
+	}
 
 	public void rightCollide(GameObject obj) {}
 
