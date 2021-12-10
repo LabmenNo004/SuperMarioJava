@@ -111,6 +111,8 @@ public abstract class Charactor implements Runnable {
 		List<GameObject> allObj = Map.getAllObj();
 		boolean[] result = new boolean[4];
 		boolean inAir = true;
+		int edge = 6;
+		
 		for (GameObject obj : allObj) {
 			if (obj.getX() > (this.getX() + this.getWidth()) || obj.getX() + obj.getWidth() < this.getX()
 					|| obj.getY() > (this.getY() + this.getHeight()) || obj.getY() + obj.getHeight() < this.getY()) {
@@ -122,16 +124,29 @@ public abstract class Charactor implements Runnable {
 			int leftOverlap = obj.getX() + obj.getWidth() - this.getX();
 			int upOverlap = obj.getY() + obj.getHeight() - this.getY();
 			int downOverlap = this.getY() + this.getHeight() - obj.getY();
-
-			if (obj.getX() <= (this.getX() + this.getWidth()) && obj.getX() > this.getX() && rightOverlap < upOverlap
-					&& rightOverlap < downOverlap) {
+			
+			if (this.isInAir && rightOverlap < edge) {
+//				slide
+				this.setX(obj.getX() - this.getWidth());
+				this.rightCollide(obj);
+				continue;
+			}
+			if (this.isInAir && leftOverlap < edge) {
+//				slide
+				this.setX(obj.getX() + obj.getWidth());
+				this.leftCollide(obj);
+				continue;
+			}
+			
+			if (obj.getX() <= (this.getX() + this.getWidth()) && obj.getX() > this.getX() && (rightOverlap < upOverlap
+					&& rightOverlap < downOverlap)) {
 
 //				right collision
 				this.setX(obj.getX() - this.getWidth());
 				this.rightCollide(obj);
 			} else if (this.getX() <= obj.getX() + obj.getWidth()
-					&& this.getX() + this.getWidth() > obj.getX() + obj.getWidth() && leftOverlap < upOverlap
-					&& leftOverlap < downOverlap) {
+					&& this.getX() + this.getWidth() > obj.getX() + obj.getWidth() && (leftOverlap < upOverlap
+					&& leftOverlap < downOverlap)) {
 //					left collision
 				this.setX(obj.getX() + obj.getWidth());
 				this.leftCollide(obj);

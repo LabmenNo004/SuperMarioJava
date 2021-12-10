@@ -18,7 +18,7 @@ public class Mario extends Charactor{
 	
 	private List<GameObject> allObj = null;
 	private List<Enemy> allEnemy = null;
-	
+	private final static int MAXVEL = 15;
 	protected static BufferedImage maImage = null;
 	
 	public Mario(int x, int y,int height, int width) {
@@ -94,6 +94,7 @@ public class Mario extends Charactor{
 	public void downCollide(GameObject obj) {
 //		this.falling = false;
 //		this.jumping = false;
+		if (VelY>0)
 		this.setVelY(0);
 	}
 
@@ -141,6 +142,7 @@ public class Mario extends Charactor{
 		if(!this.isInAir) {
 
 		setVelY(-12);
+		this.isInAir = true;
 //		this.jumping = true;
 //		this.falling= false;
 	}
@@ -152,10 +154,10 @@ public class Mario extends Charactor{
 	public void addingGravity() {
 	int velY = this.VelY;
 	//if(jumping) {
-
+		if (velY<MAXVEL) {
 		velY += 1;
 		setVelY(velY);
-		
+		}
 
 	//}
 	

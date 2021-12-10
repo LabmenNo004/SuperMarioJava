@@ -134,6 +134,11 @@ public class SuperMario {
 //		coins
 		x = 85;
 		y= 26;
+		if (coins == 100) {
+			coins = 0;
+			score+=10000;
+//			play sound
+		}
 		BufferedImage[] coinImages = getImages(coins, 2);
 		for (BufferedImage img: coinImages) {
 			g.drawImage(img,x+offset,y,size,size,null);
