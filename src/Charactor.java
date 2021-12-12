@@ -18,6 +18,7 @@ public abstract class Charactor implements Runnable {
     protected boolean FACE=true;  // true=right, false=left
 
 
+
 //	public boolean jumping = false;
 //	public boolean falling = true;
 

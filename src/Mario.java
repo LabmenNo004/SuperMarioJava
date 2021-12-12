@@ -20,6 +20,7 @@ public class Mario extends Charactor{
 	private List<Enemy> allEnemy = null;
 	private final static int MAXVEL = 15;
 	protected static BufferedImage maImage = null;
+    protected boolean jumping=false;
 	
 	public Mario(int x, int y,int height, int width) {
 		super(x,y,height,width);
@@ -36,11 +37,17 @@ public class Mario extends Charactor{
 		try {
 			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
 			System.out.println("mario image loaded");
-			if(this.FACE) {
+			if(this.FACE && !isInAir) {
 			maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
 			}
-			else  {
+			else if(this.FACE && isInAir){
+				maImage = ImageIO.read(new File(path+"marioWalkRight"+".png"));
+			}
+			else  if(!this.FACE && !isInAir) {
 				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
+			}
+			else if(!this.FACE && isInAir) {
+				maImage = ImageIO.read(new File(path+"marioWalkLeft"+".png"));
 			}
 			
 		} catch (IOException e) {
