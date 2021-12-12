@@ -317,6 +317,7 @@ public class Mario extends Charactor{
 		if (stageNumber ==3) {
 		}
 	}
+	
 
 	
 }

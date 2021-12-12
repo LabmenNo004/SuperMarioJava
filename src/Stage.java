@@ -179,6 +179,9 @@ public class Stage extends JPanel implements Runnable {
 	public float getTime() {
 		return time;
 	}
+	public boolean getIsDead() {
+		return this.isDead;
+	}
 	public void setCameraX(int cameraX) {
 		this.cameraX = cameraX;
 	}
