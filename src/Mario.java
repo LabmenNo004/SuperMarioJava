@@ -110,6 +110,16 @@ public class Mario extends Charactor{
 		if (VelY>0)
 		this.setVelY(0);
 	}
+	
+	public void EnemyRightCollide(Enemy enm) {}
+
+	public void EnemyLeftCollide(Enemy enm) {}
+
+	public void EnemyUpCollide(Enemy enm) {					
+		}
+
+	public void EnemyDownCollide(Enemy enm) {
+		}
 
 	/*
 	if(jumping) {
@@ -188,5 +198,72 @@ public class Mario extends Charactor{
 	//}
 	
 }
+	
+	public void EnemycollisionDetection() {
+		List<Enemy> allenemy = Map.getAllEnemy();
+		boolean[] result = new boolean[4];
+		boolean inAir = false;
+		int edge = 6;
+		int slide = 0;
+		Enemy sobj = null;
+		for (Enemy enm : allenemy) {
+			if (enm.getX() > (this.getX() + this.getWidth()) || enm.getX() + enm.getWidth() < this.getX()
+					|| enm.getY() > (this.getY() + this.getHeight()) || enm.getY() + enm.getHeight() < this.getY()) {
+//				if Character on left or right or above or below, skip
+				continue;
+			}
+
+			int rightOverlap = this.getX() + this.getWidth() - enm.getX();
+			int leftOverlap = enm.getX() + enm.getWidth() - this.getX();
+			int upOverlap = enm.getY() + enm.getHeight() - this.getY();
+			int downOverlap = this.getY() + this.getHeight() - enm.getY();
+			
+			if (this.isInAir && rightOverlap < edge) {
+//				slide
+				slide = 1;
+				sobj = enm;
+				continue;
+			}
+			if (this.isInAir && leftOverlap < edge) {
+//				slide
+				slide = 2;
+				sobj = enm;
+				continue;
+			}
+			
+			if (enm.getX() <= (this.getX() + this.getWidth()) && enm.getX() > this.getX() && (rightOverlap < upOverlap
+					&& rightOverlap < downOverlap)) {
+
+//				right collision
+				this.EnemyRightCollide(enm);
+			} else if (this.getX() <= enm.getX() + enm.getWidth()
+					&& this.getX() + this.getWidth() > enm.getX() + enm.getWidth() && (leftOverlap < upOverlap
+					&& leftOverlap < downOverlap)) {
+//					left collision
+				this.EnemyLeftCollide(enm);
+			}
+
+			else {
+				if (this.getY() + this.getHeight() < enm.getY() + enm.getHeight()) {
+//					down collision
+					this.EnemyDownCollide(enm);
+					allenemy.remove(enm);
+				} else {
+//					up collision
+					this.EnemyUpCollide(enm);
+				}
+			}
+		}
+		this.isInAir=inAir;
+		if(isInAir) {
+			if(slide == 1) {
+				this.EnemyRightCollide(sobj);
+			}
+			else if (slide == 2) {
+				this.setX(sobj.getX() + sobj.getWidth());
+				this.EnemyLeftCollide(sobj);
+			}
+		}
+	}
 	
 }
