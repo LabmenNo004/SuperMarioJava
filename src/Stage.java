@@ -19,6 +19,7 @@ public class Stage extends JPanel implements Runnable {
 	private boolean showMario=true;
 	private boolean isDead = false;
 	AudioStream BGM = null;
+
 	
 	public Stage(int stageNumber) {
 		this.map = new Map(stageNumber);
@@ -37,8 +38,10 @@ public class Stage extends JPanel implements Runnable {
 		
 
 		BGM = SuperMario.playSound("bgm2");
+
 		
 	}
+	
 
 	public void run() {
 
@@ -51,13 +54,14 @@ public class Stage extends JPanel implements Runnable {
 				mario.tick();
 				if (mario.getX() >= Map.flagX) {
 //					win					
-					AudioPlayer.player.stop(BGM);
+					//AudioPlayer.player.stop(BGM);
 					win();
 					SuperMario.playSound("pass1");
 				}
 				if (isDead) {
 					SuperMario.playSound("die");
 					AudioPlayer.player.stop(BGM);
+
 
 					SuperMario.loseLife();
 					Thread.currentThread().interrupt();
