@@ -23,22 +23,22 @@ public class Block extends GameObject{
 			e.printStackTrace();
 		}
 	}
-
 	public int getBlockType() {
-		return this.blockType;
+		return blockType;
 	}
-
 	public void change() {
 		if (this.blockType  == 3) {
 			this.blockType = 8;
-			//update image on this block
-			try {
-				this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-				this.image = ImageIO.read(new File(path+ "block"+ blockType +".png")); // user.dir/scr/images/Block#.png
-			} catch (IOException e) {
-				System.out.println("Fail to import block image");
-				e.printStackTrace();
-			}
+		try {
+			this.image = ImageIO.read(new File(path+ "block8.png"));
+			Stage.interactives.add(new Coin(x,y,height,width));
+			SuperMario.eatCoin();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();}
 		}
+
+
+		
 	}
 }

@@ -23,7 +23,7 @@ public class Mario extends Charactor{
 	
 	public Mario(int x, int y,int height, int width) {
 		super(x,y,height,width);
-		this.image = getMarioImage(); 
+//		this.image = getMarioImage(); 
 		
 	}
 	
@@ -31,21 +31,21 @@ public class Mario extends Charactor{
 		
 	}
 	
-	public BufferedImage getMarioImage (){
+	public BufferedImage getImage (){
 		//set background
 		try {
 			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
 			System.out.println("mario image loaded");
-			if(this.FACE && !isInAir) {
+			if(this.face && !isInAir) {
 				maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
 			}
-			else if(this.FACE && isInAir){
+			else if(this.face && isInAir){
 				maImage = ImageIO.read(new File(path+"jump_right"+".png"));
 			}
-			else  if(!this.FACE && !isInAir) {
+			else  if(!this.face && !isInAir) {
 				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
 			}
-			else if(!this.FACE && isInAir) {
+			else if(!this.face && isInAir) {
 				maImage = ImageIO.read(new File(path+"jump_left"+".png"));
 			}
 			
@@ -57,11 +57,7 @@ public class Mario extends Charactor{
 		return maImage;
 	}
 	
-	/*
-	public Image getImage() {
-		//image
-		return null;
-	}*/
+
 	
 	public void setObjects(List<GameObject> allObj) {
 		this.allObj = allObj;
@@ -141,18 +137,24 @@ public class Mario extends Charactor{
 		
 	}*/
 	public void rightPressed() {
+		if (! isInAir)
+		this.face = true;
 		setVelX(5);
 		
 	}
 	public void rightReleased() {
+		if (VelX>0)
 		setVelX(0);
 
 	}
 	public void leftPressed() {
+		if (! isInAir)
+		this.face = false;
 		setVelX(-5);
 		
 	}
 	public void leftReleased() {
+		if (VelX<0)
 		setVelX(0);
 
 	}
