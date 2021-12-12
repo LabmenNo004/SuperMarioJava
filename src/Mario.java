@@ -36,7 +36,13 @@ public class Mario extends Charactor{
 		try {
 			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
 			System.out.println("mario image loaded");
+			if(this.FACE) {
 			maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
+			}
+			else  {
+				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
+				System.out.println("left:"+FACE);
+			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -115,6 +121,12 @@ public class Mario extends Charactor{
 	}*/
 	public void rightPressed() {
 		setVelX(5);
+
+		if(!this.FACE) {
+			this.FACE=true;
+		}
+		//System.out.println("left:"+LEFT);
+		//System.out.println("right:"+RIGHT);
 		
 	}
 	public void rightReleased() {
@@ -123,6 +135,12 @@ public class Mario extends Charactor{
 	}
 	public void leftPressed() {
 		setVelX(-5);
+
+		if(this.FACE) {
+			this.FACE=false;
+		}
+		//System.out.println("left:"+LEFT);
+		//System.out.println("right:"+RIGHT);
 		
 	}
 	public void leftReleased() {
