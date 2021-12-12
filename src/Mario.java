@@ -89,6 +89,7 @@ public class Mario extends Charactor{
 		if(x<=0) x=0;
 		if(y<=0) y=0;
 		collisionDetection();
+		EnemycollisionDetection();
 		addingGravity();
 		this.image = getMarioImage(); 
 //		if(x+length>400) x = 400-length;   //   to control Mario not go out of the screen
