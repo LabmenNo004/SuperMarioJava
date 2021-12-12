@@ -115,6 +115,7 @@ public abstract class Charactor implements Runnable {
 		int slide = 0;
 		GameObject sobj = null;
 		for (GameObject obj : allObj) {
+			if (!obj.canCollide) continue;
 			if (obj.getX() > (this.getX() + this.getWidth()) || obj.getX() + obj.getWidth() < this.getX()
 					|| obj.getY() > (this.getY() + this.getHeight()) || obj.getY() + obj.getHeight() < this.getY()) {
 //				if Character on left or right or above or below, skip

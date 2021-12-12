@@ -141,8 +141,9 @@ public class Mario extends Charactor{
 
 		if(!this.isInAir) {
 
-		setVelY(-12);
-		this.isInAir = true;
+			setVelY(-12);
+			this.isInAir = true;
+			SuperMario.playSound("jump");
 //		this.jumping = true;
 //		this.falling= false;
 	}

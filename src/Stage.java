@@ -3,6 +3,9 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 public class Stage extends JPanel implements Runnable {
 	private static final float FRAMERATE = 30;
 	private int cameraX = 0;
@@ -14,7 +17,8 @@ public class Stage extends JPanel implements Runnable {
 	private float time = 400;
 	private boolean inProgress = true;
 	private boolean showMario=true;
-
+	AudioStream BGM = null;
+	
 	public Stage(int stageNumber) {
 		this.map = new Map(stageNumber);
 
@@ -29,7 +33,12 @@ public class Stage extends JPanel implements Runnable {
 		setMaximumSize(size);
 		setSize(size);
 		setLayout(null);
-
+		
+		if (stageNumber == 1)
+			BGM = SuperMario.playSound("bgm");
+		else
+			BGM = SuperMario.playSound("bgm2");
+		
 	}
 
 	public void run() {
@@ -42,9 +51,16 @@ public class Stage extends JPanel implements Runnable {
 				
 				mario.tick();
 				if (mario.getX() >= Map.flagX) {
+//					win					
+					AudioPlayer.player.stop(BGM);
 					win();
+
 				}
 				if (mario.y>Map.mapHeight || time < 0.5) {
+//					die
+					SuperMario.playSound("die");
+					AudioPlayer.player.stop(BGM);
+
 					SuperMario.loseLife();
 					Thread.currentThread().interrupt();
 					return;
