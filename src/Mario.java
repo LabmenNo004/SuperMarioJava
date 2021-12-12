@@ -35,7 +35,7 @@ public class Mario extends Charactor{
 		//set background
 		try {
 			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
-			System.out.println("mario image loaded");
+//			System.out.println("mario image loaded");
 			if(this.face && !isInAir) {
 				maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
 			}
@@ -102,7 +102,7 @@ public class Mario extends Charactor{
 	public void upCollide(GameObject obj) {					
 //		this.jumping=true;
 		if (obj instanceof Block && ((Block) obj).getBlockType()==3) {
-			if (x>obj.x-(obj.width/3) && x+width<obj.x+(obj.width/3)+obj.width) {
+			if (x>obj.x-(obj.width/2) && x+width<obj.x+(obj.width/2)+obj.width) {
 //				System.out.println("coin");
 				((Block) obj).change();
 			}
