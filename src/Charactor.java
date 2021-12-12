@@ -15,7 +15,7 @@ public abstract class Charactor implements Runnable {
 	public Id id;
 	public Handler handler;
 	protected boolean isInAir;
-    protected boolean FACE=true;  // true=right, false=left
+    protected boolean face=true;  // true=right, false=left
 
 
 

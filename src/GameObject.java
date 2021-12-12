@@ -15,6 +15,7 @@ public class GameObject{
 	protected BufferedImage image; //changed to BufferedImage
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
 	protected int VelX,VelY;
+	protected boolean visible = true;
 	//public Id id;
 	//public Handler handler;
 	
