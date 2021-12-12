@@ -17,6 +17,7 @@ public class Stage extends JPanel implements Runnable {
 	private float time = 400;
 	private boolean inProgress = true;
 	private boolean showMario=true;
+	private boolean isDead = false;
 	AudioStream BGM = null;
 	
 	public Stage(int stageNumber) {
@@ -34,10 +35,8 @@ public class Stage extends JPanel implements Runnable {
 		setSize(size);
 		setLayout(null);
 		
-		if (stageNumber == 1)
-			BGM = SuperMario.playSound("bgm");
-		else
-			BGM = SuperMario.playSound("bgm2");
+
+		BGM = SuperMario.playSound("bgm2");
 		
 	}
 
@@ -54,10 +53,9 @@ public class Stage extends JPanel implements Runnable {
 //					win					
 					AudioPlayer.player.stop(BGM);
 					win();
-
+					SuperMario.playSound("pass1");
 				}
-				if (mario.y>Map.mapHeight || time < 0.5) {
-//					die
+				if (isDead) {
 					SuperMario.playSound("die");
 					AudioPlayer.player.stop(BGM);
 
@@ -65,7 +63,12 @@ public class Stage extends JPanel implements Runnable {
 					Thread.currentThread().interrupt();
 					return;
 				}
+				if (mario.y>Map.mapHeight || time < 0.5) {
+//					die
+					isDead = true;
+				}
 			} else if(SuperMario.stageNumber==1){
+				
 //				animation of going to castle
 				if(mario.getY()+mario.height<Map.mapHeight-(Map.BLOCK_SIZE*2)) {
 					mario.y+=5;
@@ -103,7 +106,9 @@ public class Stage extends JPanel implements Runnable {
 			}
 		}
 	}
-
+	public void die() {
+		isDead = true;
+	}
 	public void win() {
 		inProgress = false;
 		SuperMario.increaseScore(2000);
