@@ -112,7 +112,8 @@ public abstract class Charactor implements Runnable {
 		boolean[] result = new boolean[4];
 		boolean inAir = true;
 		int edge = 6;
-		
+		int slide = 0;
+		GameObject sobj = null;
 		for (GameObject obj : allObj) {
 			if (obj.getX() > (this.getX() + this.getWidth()) || obj.getX() + obj.getWidth() < this.getX()
 					|| obj.getY() > (this.getY() + this.getHeight()) || obj.getY() + obj.getHeight() < this.getY()) {
@@ -127,14 +128,14 @@ public abstract class Charactor implements Runnable {
 			
 			if (this.isInAir && rightOverlap < edge) {
 //				slide
-				this.setX(obj.getX() - this.getWidth());
-				this.rightCollide(obj);
+				slide = 1;
+				sobj = obj;
 				continue;
 			}
 			if (this.isInAir && leftOverlap < edge) {
 //				slide
-				this.setX(obj.getX() + obj.getWidth());
-				this.leftCollide(obj);
+				slide = 2;
+				sobj = obj;
 				continue;
 			}
 			
@@ -166,6 +167,16 @@ public abstract class Charactor implements Runnable {
 			}
 		}
 		this.isInAir=inAir;
+		if(isInAir) {
+			if(slide == 1) {
+				this.setX(sobj.getX() - this.getWidth());
+				this.rightCollide(sobj);
+			}
+			else if (slide == 2) {
+				this.setX(sobj.getX() + sobj.getWidth());
+				this.leftCollide(sobj);
+			}
+		}
 	}
 
 }
