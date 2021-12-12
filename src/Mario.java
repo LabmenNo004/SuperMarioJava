@@ -258,4 +258,53 @@ public class Mario extends Charactor{
 		}
 	}
 	
+	public void checkHiddenPipe() {
+		//2 cases: either going in or going out of the room
+			//1) going in
+		if ((this.getX() >= Map.hiddenPipeIn.getX() && this.getX() <= Map.hiddenPipeIn.getX() + Map.hiddenPipeIn.getWidth())
+				&& (this.getY() == Map.hiddenPipeIn.getY() + Map.BLOCK_SIZE)) {
+			hiddenRoomIn(SuperMario.stageNumber);
+		}
+			//2) PipeExit
+		if ((this.getX() >= Map.hiddenPipeExit.getX() && this.getX() <= Map.hiddenPipeExit.getX() + Map.hiddenPipeExit.getWidth())
+				&& (this.getY() == Map.hiddenPipeExit.getY() + Map.BLOCK_SIZE)) {
+			hiddenRoomOut(SuperMario.stageNumber);
+		}
+	}
+	public void hiddenRoomIn(int stageNumber) {
+		//change mario x,y coord to the corr beginning point of the room
+		if (stageNumber ==1) {
+			
+		}
+		if (stageNumber ==2) {		
+			Stage.camUpdate = false;
+			//Starting Point: x: 163+18 y: 15
+			//set mario x y to above
+			this.setX(163+18);
+			this.setY(15);
+		}
+		if (stageNumber ==3) {
+			
+		}
+	}
+	public void hiddenRoomOut(int stageNumber) {
+		//change mario x,y coord to the corr beginning point of the map
+		if (stageNumber ==1) {
+		
+		}
+		if (stageNumber ==2) {
+			Stage.camUpdate = true;
+			//Exiting Point: x:116 Y:5
+			//set Mariox y to above
+			this.setX(116);
+			this.setY(5);
+		}
+		if (stageNumber ==3) {
+		}
+	}
+
+	
 }
+
+
+

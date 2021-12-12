@@ -47,48 +47,6 @@ public class Map {
 
 	}
 	
-	public void checkHiddenPipe() {
-		//2 cases: either going in or going out of the room
-			//1) going in
-		if (mario.x >= Map.hiddenPipeIn.getX() + Map.hiddenPipeIn.getWidth() && mario.y >= Map.hiddenPipeIn.getY() + Map.BLOCK_SIZE) {
-			hiddenRoomIn(SuperMario.stageNumber);
-		}
-			//2) PipeExit
-		if (mario.x >= Map.hiddenPipeExit.getX() + Map.hiddenPipeIn.getWidth() && mario.y >= Map.hiddenPipeIn.getY + Map.BLOCK_SIZE) {
-			hiddenRoomOut(SuperMario.stageNumber);
-		}
-	}
-	public static void hiddenRoomIn(int stageNumber) {
-		//change mario x,y coord to the corr beginning point of the room
-		if (stageNumber ==1) {
-			
-		}
-		if (stageNumber ==2) {		
-			Stage.camUpdate = false;
-			//Starting Point: x: 163+18 y: 15
-			//set mario x y to above
-			mario.setX(163+18);
-			mario.setY(15);
-		}
-		if (stageNumber ==3) {
-			
-		}
-	}
-	public static void hiddenRoomOut(int stageNumber) {
-		//change mario x,y coord to the corr beginning point of the map
-		if (stageNumber ==1) {
-		
-		}
-		if (stageNumber ==2) {
-			Stage.camUpdate = true;
-			//Exiting Point: x:116 Y:5
-			//set Mariox y to above
-			mario.setX(116);
-			mario.setY(5);
-		}
-		if (stageNumber ==3) {
-		}
-	}
 
 
 	public void stageEnemyCreation (int stageNumber) {
