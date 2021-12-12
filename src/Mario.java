@@ -91,9 +91,13 @@ public class Mario extends Charactor{
 	}
 
 
-	public void rightCollide(GameObject obj) {}
+	public void rightCollide(GameObject obj) {
+		
+	}
 
-	public void leftCollide(GameObject obj) {}
+	public void leftCollide(GameObject obj) {
+		
+	}
 
 	public void upCollide(GameObject obj) {					
 //		this.jumping=true;
@@ -111,9 +115,13 @@ public class Mario extends Charactor{
 		this.setVelY(0);
 	}
 	
-	public void EnemyRightCollide(Enemy enm) {}
+	public void EnemyRightCollide(Enemy enm) {
+		SuperMario.stage.die();
+	}
 
-	public void EnemyLeftCollide(Enemy enm) {}
+	public void EnemyLeftCollide(Enemy enm) {
+		SuperMario.stage.die();
+	}
 
 	public void EnemyUpCollide(Enemy enm) {					
 		}
