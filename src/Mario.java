@@ -16,9 +16,6 @@ public class Mario extends Charactor{
 
 	
 	
-	private List<GameObject> allObj = null;
-	private List<Enemy> allEnemy = null;
-	
 	protected static BufferedImage maImage = null;
 	
 	public Mario(int x, int y,int height, int width) {
@@ -58,15 +55,6 @@ public class Mario extends Charactor{
 	}
 	
 
-	
-	public void setObjects(List<GameObject> allObj) {
-		this.allObj = allObj;
-	}
-
-
-	public void setAllEnemy(List<Enemy> allEnemy) {
-		this.allEnemy = allEnemy;
-	}
 
 	public int getX() {
 		return x;

@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-public class Map {
+public class Map implements java.io.Serializable{
 	protected static BufferedImage bgImage = null;
 	protected static List<GameObject> allObj = null;
 	protected static List<Enemy> allEnemy = null;

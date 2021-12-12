@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.awt.Graphics;
 
-public abstract class Charactor implements Runnable {
+public abstract class Charactor implements Runnable, java.io.Serializable {
 	protected boolean canCollide;
 	protected int x;
 	protected int y;

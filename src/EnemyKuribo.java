@@ -26,11 +26,14 @@ public class EnemyKuribo extends Enemy{
 		super(x,y,length,width);
 		this.image = KuriImage(); 
 }
+public void reload() {
+	this.image = KuriImage(); 
+	}
 	public BufferedImage KuriImage (){
 		//set background
 		try {
 			KuriImage = new BufferedImage(width,height, BufferedImage.TYPE_INT_ARGB);
-			System.out.println("kuribo image loaded");
+//			System.out.println("kuribo image loaded");
 			KuriImage = ImageIO.read(new File(path+"kuribou1"+".png"));// user.dir/scr/images/bg#.png
 			
 		} catch (IOException e) {

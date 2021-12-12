@@ -28,7 +28,12 @@ public class Enemy extends Charactor{
 			setVelY(velY);
 	
 }
-
+	public void reload() {
+		
+	}
+	public void clear() {
+		this.image = null;
+	}
 	@Override
 	public void rightCollide(GameObject obj) {
 		// TODO Auto-generated method stub

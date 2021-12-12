@@ -41,4 +41,13 @@ public class Block extends GameObject{
 
 		
 	}
+public void reload() {
+	try {
+		this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		this.image = ImageIO.read(new File(path+ "block"+ blockType +".png")); // user.dir/scr/images/Block#.png
+	} catch (IOException e) {
+		System.out.println("Fail to import block image");
+		e.printStackTrace();
+	}
+	}
 }

@@ -21,9 +21,9 @@ public class Stage extends JPanel implements Runnable {
 	private boolean showMario=true;
 	protected static boolean camUpdate = true; //when enter tube = false, when enter again/coming out = true
 	private boolean isDead = false;
-	AudioStream BGM = null;
+	static AudioStream BGM = null;
 	public static List<GameObject> interactives = new ArrayList<>();;
-
+	public boolean stop = false;
 	
 	public Stage(int stageNumber) {
 		this.map = new Map(stageNumber);
@@ -49,7 +49,7 @@ public class Stage extends JPanel implements Runnable {
 
 	public void run() {
 
-		while (true) {
+		while (!stop) {
 //			check timer ...
 
 			if (inProgress) {
@@ -120,6 +120,7 @@ public class Stage extends JPanel implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		Thread.currentThread().interrupt();
 	}
 	public void die() {
 		isDead = true;

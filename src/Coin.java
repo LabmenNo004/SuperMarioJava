@@ -36,4 +36,12 @@ public class Coin extends GameObject{
 			this.exist = false;
 		}
 	}
+public void reload() {
+	try {
+		this.image = ImageIO.read(new File(path+ "coin1.png")); // user.dir/scr/images/Block#.png
+	} catch (IOException e) {
+		System.out.println("Fail to import block image");
+		e.printStackTrace();
+	}
+	}
 }

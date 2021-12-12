@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class GameObject{
+public class GameObject implements java.io.Serializable{
 	protected boolean canCollide;
 	protected int x;
 	protected int y;
@@ -29,7 +29,12 @@ public class GameObject{
 		this.width = width;		
 		//this.handler = handler;
 	}
-	
+	public void clear() {
+		this.image = null;
+	}
+	public void reload() {
+		
+	}
 	//Getter
 	public BufferedImage getImage() {
 		return this.image;

@@ -23,7 +23,15 @@ public class Castle extends GameObject{
 			e.printStackTrace();
 		}
 	}
-
+	public void reload() {
+		try {
+			this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+			this.image = ImageIO.read(new File(path+ "castle"+ castleType +".png")); // user.dir/scr/images/Floor#.png
+		} catch (IOException e) {
+			System.out.println("Fail to import image");
+			e.printStackTrace();
+		}
+	}
 
 
 }

@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -25,12 +26,13 @@ public class SuperMario {
 	public static int score = 0;
 	public static int coins=0;
 	private static JFrame frame;
-	private static boolean hasStarted = false;
+	public static boolean hasStarted = false;
 	public static Stage stage;
 	public static BufferedImage[] numberImages = new BufferedImage[10];
 	public static BufferedImage startImages;
 	public static BufferedImage uiImages;
-	public static Thread stageThread;
+	public static Thread stageThread = null;
+	private GameData gameData = new GameData();
 
 	static {
 		try {
@@ -55,11 +57,42 @@ public class SuperMario {
 		frame.setResizable(false);
 
 		frame.addKeyListener(new CustomKeyListener());
-
+		
 		gameStart();
 		frame.setVisible(true);
 	}
+	
+	public void load() {
+		stage.stop = true;
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("mario.sav");
+	      ObjectInputStream ois = new ObjectInputStream(fis);
 
+	      gameData = (GameData) ois.readObject();
+	      gameData.load();
+	      ois.close();
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		SuperMario.reload();
+	}
+	
+	public static void reload() {
+		stageThread = new Thread(stage);
+		stageThread.start();
+		frame.getContentPane().removeAll();
+		frame.add(stage);
+		SwingUtilities.updateComponentTreeUI(frame);
+	}
 	
 	public static void gameStart() {
 		StartPanel startPanel = new StartPanel();
@@ -102,6 +135,10 @@ public class SuperMario {
 	public static void eatCoin() {
 		score+=200;
 		coins+=1;
+		if (coins == 100) {
+			coins = 0;
+			score+=10000;
+		}
 		playSound("coin");
 	}
 	public static void loseLife() {
@@ -142,11 +179,7 @@ public class SuperMario {
 //		coins
 		x = 85;
 		y= 26;
-		if (coins == 100) {
-			coins = 0;
-			score+=10000;
-//			play sound
-		}
+
 		BufferedImage[] coinImages = getImages(coins, 2);
 		for (BufferedImage img: coinImages) {
 			g.drawImage(img,x+offset,y,size,size,null);
@@ -182,7 +215,17 @@ public class SuperMario {
 
 	class CustomKeyListener implements KeyListener {
 		public void keyTyped(KeyEvent e) {
-			if (!hasStarted) {
+//			System.out.print("typed"+e.getKeyCode());
+			 if(e.getKeyCode() == KeyEvent.VK_S) {
+				gameData.save();
+				System.out.println("Game saved.");
+				return;
+			}else if(e.getKeyCode() == KeyEvent.VK_L) {
+				load();
+				System.out.println("Game loaded.");
+				return;
+			}
+			 else if (!hasStarted) {
 				hasStarted = true;
 				enterStage();
 				System.out.println("entering stage"+stageNumber);
@@ -201,8 +244,17 @@ public class SuperMario {
 					stage.getMario().downPressed();
 				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 					stage.getMario().jumpPressed();
+				} else if(e.getKeyCode() == KeyEvent.VK_S) {
+					gameData.save();
+					System.out.println("Game saved.");
+					return;
+				}else if(e.getKeyCode() == KeyEvent.VK_L) {
+					load();
+					System.out.println("Game loaded.");
+					return;
 				}
 			}else {
+				
 				keyTyped(e);
 			}
 		}
