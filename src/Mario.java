@@ -104,8 +104,9 @@ public class Mario extends Charactor{
 	public void upCollide(GameObject obj) {					
 //		this.jumping=true;
 		if (obj instanceof Block && ((Block) obj).getBlockType()==3) {
-			if (x>obj.x-(obj.width/4) && x+width<obj.x+(obj.width/4)*5) {
-				System.out.println("coin");
+			if (x>obj.x-(obj.width/3) && x+width<obj.x+(obj.width/3)+obj.width) {
+//				System.out.println("coin");
+				((Block) obj).change();
 			}
 		}
 		this.setVelY(0);}
