@@ -41,13 +41,13 @@ public class Mario extends Charactor{
 			maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
 			}
 			else if(this.FACE && isInAir){
-				maImage = ImageIO.read(new File(path+"marioWalkRight"+".png"));
+				maImage = ImageIO.read(new File(path+"jump_right"+".png"));
 			}
 			else  if(!this.FACE && !isInAir) {
 				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
 			}
 			else if(!this.FACE && isInAir) {
-				maImage = ImageIO.read(new File(path+"marioWalkLeft"+".png"));
+				maImage = ImageIO.read(new File(path+"jump_left"+".png"));
 			}
 			
 		} catch (IOException e) {
@@ -102,6 +102,11 @@ public class Mario extends Charactor{
 
 	public void upCollide(GameObject obj) {					
 //		this.jumping=true;
+		if (obj instanceof Block && ((Block) obj).getBlockType()==3) {
+			if (x>obj.x-(obj.width/4) && x+width<obj.x+(obj.width/4)*5) {
+				System.out.println("coin");
+			}
+		}
 		this.setVelY(0);}
 
 	public void downCollide(GameObject obj) {
