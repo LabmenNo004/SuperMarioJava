@@ -157,6 +157,7 @@ public class Mario extends Charactor{
 
 	}
 	public void downPressed() {
+		checkHiddenPipe();
 	}
 	public void downReleased() {
 	}
@@ -257,13 +258,18 @@ public class Mario extends Charactor{
 	public void checkHiddenPipe() {
 		//2 cases: either going in or going out of the room
 			//1) going in
+		System.out.println("Hidden pipe X: " + Map.hiddenPipeIn.getX() +" Y: " + (Map.hiddenPipeIn.getY() - Map.BLOCK_SIZE));		
+		System.out.println("Mario X: " + this.getX() +" Y: " + this.getY());		
+		
 		if ((this.getX() >= Map.hiddenPipeIn.getX() && this.getX() <= Map.hiddenPipeIn.getX() + Map.hiddenPipeIn.getWidth())
-				&& (this.getY() == Map.hiddenPipeIn.getY() + Map.BLOCK_SIZE)) {
+				&& (this.getY() == Map.hiddenPipeIn.getY() - Map.BLOCK_SIZE)) {
+			System.out.println("1st if called");
 			hiddenRoomIn(SuperMario.stageNumber);
 		}
 			//2) PipeExit
-		if ((this.getX() >= Map.hiddenPipeExit.getX() && this.getX() <= Map.hiddenPipeExit.getX() + Map.hiddenPipeExit.getWidth())
-				&& (this.getY() == Map.hiddenPipeExit.getY() + Map.BLOCK_SIZE)) {
+		else if ((this.getX() >= Map.hiddenPipeExit.getX() && this.getX() <= Map.hiddenPipeExit.getX() + Map.hiddenPipeExit.getWidth())
+				&& (this.getY() == Map.hiddenPipeExit.getY() - Map.BLOCK_SIZE)) {
+			System.out.println("pipe function out called");
 			hiddenRoomOut(SuperMario.stageNumber);
 		}
 	}
@@ -272,12 +278,14 @@ public class Mario extends Charactor{
 		if (stageNumber ==1) {
 			
 		}
-		if (stageNumber ==2) {		
-			Stage.camUpdate = false;
-			//Starting Point: x: 163+18 y: 15
+		if (stageNumber ==2) {
+			//Starting Point: x: 163+18=181 y: 15
 			//set mario x y to above
-			this.setX(163+18);
-			this.setY(15);
+			this.setX(181 * Map.BLOCK_SIZE);
+			this.setY(15* Map.BLOCK_SIZE);
+			//set camera X
+			SuperMario.stage.setCameraX(181 * Map.BLOCK_SIZE);
+			Stage.camUpdate = false;
 		}
 		if (stageNumber ==3) {
 			
@@ -289,11 +297,12 @@ public class Mario extends Charactor{
 		
 		}
 		if (stageNumber ==2) {
-			Stage.camUpdate = true;
 			//Exiting Point: x:116 Y:5
 			//set Mariox y to above
-			this.setX(116);
-			this.setY(5);
+			this.setX(116* Map.BLOCK_SIZE);
+			this.setY(5* Map.BLOCK_SIZE);
+			SuperMario.stage.setCameraX(116* Map.BLOCK_SIZE);
+			Stage.camUpdate = true;
 		}
 		if (stageNumber ==3) {
 		}

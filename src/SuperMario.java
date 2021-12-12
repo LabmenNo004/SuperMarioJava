@@ -26,7 +26,7 @@ public class SuperMario {
 	public static int coins=0;
 	private static JFrame frame;
 	private static boolean hasStarted = false;
-	private static Stage stage;
+	public static Stage stage;
 	public static BufferedImage[] numberImages = new BufferedImage[10];
 	public static BufferedImage startImages;
 	public static BufferedImage uiImages;

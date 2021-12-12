@@ -162,4 +162,7 @@ public class Stage extends JPanel implements Runnable {
 	public float getTime() {
 		return time;
 	}
+	public void setCameraX(int cameraX) {
+		this.cameraX = cameraX;
+	}
 }
