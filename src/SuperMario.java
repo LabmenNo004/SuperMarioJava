@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.*;
 import java.io.FileInputStream;
-import sun.audio.*;
+//import sun.audio.*;
 
 public class SuperMario {
 	// everything static, since there is only one game.
@@ -239,6 +239,7 @@ public class SuperMario {
 	}
 	
 //	playing sound: https://www.tabnine.com/code/java/classes/sun.audio.AudioPlayer
+	/*
 	public static AudioStream playSound(String s) {
 		String songFile = System.getProperty("user.dir") + "/src/sound/"+s+".wav";
 	    InputStream in;
@@ -258,6 +259,7 @@ public class SuperMario {
 		}
 		return null;
 	}
+	*/
 
 		
 	

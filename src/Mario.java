@@ -249,6 +249,7 @@ public class Mario extends Charactor{
 //					down collision
 					this.EnemyDownCollide(enm);
 					allenemy.remove(enm);
+					this.setVelY(-6);
 					break;
 				} else {
 //					up collision
