@@ -11,5 +11,5 @@
 - [ ] hidden room -d
 - [ ] (more enemy)
 - [ ] stage 2
-- [ ] save/load game -f
+- [x] save/load game
 
