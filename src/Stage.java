@@ -63,7 +63,7 @@ public class Stage extends JPanel implements Runnable {
 				
 				if (mario.getX() >= Map.flagX && mario.getX() < Map.flagX + 20) {
 //					win					
-					//AudioPlayer.player.stop(BGM);
+					AudioPlayer.player.stop(BGM);
 
 					win();
 					SuperMario.playSound("pass1");
