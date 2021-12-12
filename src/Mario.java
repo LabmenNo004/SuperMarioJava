@@ -41,7 +41,6 @@ public class Mario extends Charactor{
 			}
 			else  {
 				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
-				System.out.println("left:"+FACE);
 			}
 			
 		} catch (IOException e) {
@@ -84,6 +83,7 @@ public class Mario extends Charactor{
 		if(y<=0) y=0;
 		collisionDetection();
 		addingGravity();
+		this.image = getMarioImage(); 
 //		if(x+length>400) x = 400-length;   //   to control Mario not go out of the screen
 //		if(y+width>318) y = 318-width;
 	}
