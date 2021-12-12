@@ -86,6 +86,8 @@ public class Map {
 		else if (stageNumber == 2) {
 			//stage 2
 			stageTwoObjIniti();
+			flagX = 165*BLOCK_SIZE;
+			mapWidth = 3520;
 		}
 		else if (stageNumber == 3) {
 			//stage 3
@@ -120,7 +122,6 @@ public class Map {
 	//block objects creation
 		//block assumption: object type#: 1 (just one type for now); length & width = 16; y starts at mapHeight - 3 blocks min.;
 			//public Block(int blockType, int x, int y,int length, int width)
-		//x = 23,25,27 blocks (just for tesing...)
 	allObj.add(new Block(3, 17*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));//item box
 	allObj.add(new Block(1, 21*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));
 	allObj.add(new Block(3, 22*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));//item box
@@ -259,7 +260,181 @@ public class Map {
 
 	}
 
-	public void stageTwoObjIniti() {}
+	public void stageTwoObjIniti() {
+	//floor objects creation:
+		//empty floor list:
+		//x:81-83; 121,122; 125,126; 139-145; 154-161
+		for (int i = 0; i < 80; i++) { //assume making 100 floor tiles
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+			//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
+		for (int i = 84; i <= 120; i++) { //assume making 100 floor tiles
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+			//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
+		for (int i = 123; i <= 124; i++) { //assume making 100 floor tiles
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+			//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
+		for (int i = 127; i <= 138; i++) { //assume making 100 floor tiles
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+			//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
+		for (int i = 146; i <= 153; i++) { //assume making 100 floor tiles
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+			//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
+		for (int i = 162; i <= 193; i++) { //assume making 100 floor tiles
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+			//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
+		
+	//block objects creation
+		//block assumption: object type#: 1 (just one type for now); length & width = 16; y starts at mapHeight - 3 blocks min.;
+			//public Block(int blockType, int x, int y,int length, int width)
+
+		//item box --> block 3
+		for (int i = 11; i <=15; i++) {
+			allObj.add(new Block(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));
+		}
+
+		//normal block --> block 6
+		for (int i = 7 ; i<138; i++) {
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*13), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 3 ; i<14; i++) {
+			allObj.add(new Block(6, 0*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		allObj.add(new Block(6, 30*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE , BLOCK_SIZE));
+		
+		for (int i = 3 ; i<14; i++) {
+			allObj.add(new Block(6, 0*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		
+		for (int i = 6 ; i<=8; i++ ) {
+			allObj.add(new Block(6, 40*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		allObj.add(new Block(6, 41*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));		
+		for (int i = 6 ; i<=8; i++ ) {
+			allObj.add(new Block(6, 42*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		allObj.add(new Block(6, 43*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*8), BLOCK_SIZE , BLOCK_SIZE));		
+		allObj.add(new Block(6, 44*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*8), BLOCK_SIZE , BLOCK_SIZE));		
+		for (int i = 6 ; i<=8; i++ ) {
+			allObj.add(new Block(6, 45*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		allObj.add(new Block(6, 46*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));		
+		for (int i = 6 ; i<=8; i++ ) {
+			allObj.add(new Block(6, 47*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+
+		for (int i = 6 ; i<=10; i++ ) {
+			allObj.add(new Block(6, 53*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, 54*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, 63*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, 64*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, 68*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, 73*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, 74*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+
+		for (int i = 11 ; i<=12; i++ ) {
+			allObj.add(new Block(6, 55*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, 56*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+			for (int j = 59; j<=64;j++) {
+				allObj.add(new Block(6, j*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));				
+			}
+			for (int k = 67; k<=70;k++) {
+				allObj.add(new Block(6, k*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));				
+			}
+			for (int l = 77; l<=80;l++) {
+				allObj.add(new Block(6, l*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));				
+			}
+		}
+		
+
+		
+		for (int i = 85; i<=90; i++) {			
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*8), BLOCK_SIZE , BLOCK_SIZE));				
+		}		
+		for (int i =123 ; i<=124;i++ ) {
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 146; i<=151; i++) {			
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE , BLOCK_SIZE));
+		}		
+
+		
+		//wall block --> block 7
+		allObj.add(new Block(7, 18*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE , BLOCK_SIZE));
+		for (int i = 3 ; i<=4; i++ ) {
+			allObj.add(new Block(7, 20*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 3 ; i<=5; i++ ) {
+			allObj.add(new Block(7, 22*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 3 ; i<=6; i++ ) {
+			allObj.add(new Block(7, 24*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 3 ; i<=6; i++ ) {
+			allObj.add(new Block(7, 26*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 3 ; i<=5; i++ ) {
+			allObj.add(new Block(7, 28*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 3 ; i<=5; i++ ) {
+			allObj.add(new Block(7, 32*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 3 ; i<=4; i++ ) {
+			allObj.add(new Block(7, 34*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int j = 134;j<=137;j++) {
+			for (int i = 3; i<j-130;i++) {
+				allObj.add(new Block(7, j*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+			}
+		}
+		for (int i =3 ; i<=6;i++ ) {
+			allObj.add(new Block(7, 138*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		
+
+
+		
+	//pipe object creation
+		//will be similar to above once we tested out if above works
+		allObj.add(new PipeHead(1, 104*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		allObj.add(new PipeBody(1, 104*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		allObj.add(new PipeBody(1, 104*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+
+		allObj.add(new PipeHead(1, 110*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		allObj.add(new PipeBody(1, 110*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		allObj.add(new PipeBody(1, 110*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		allObj.add(new PipeBody(1, 110*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+
+		allObj.add(new PipeHead(1, 116*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		allObj.add(new PipeBody(1, 116*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+
+	//flagPole object creation
+		allObj.add(new FlagPole(1, 165*BLOCK_SIZE, (int)(mapHeight-(BLOCK_SIZE*12.5)), BLOCK_SIZE , BLOCK_SIZE));
+		allObj.add(new Flag(1, 165*BLOCK_SIZE-8, mapHeight-(BLOCK_SIZE*12), BLOCK_SIZE , BLOCK_SIZE)); //flag in the middle of a block (of the pole), need to go down once goal is hit
+		allObj.add(new Block(7, 165*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE , BLOCK_SIZE));
+
+	}
 	public void stageThreeObjIniti() {}
 	
 	//--------------------------------------------------------------
