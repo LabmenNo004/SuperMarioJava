@@ -143,7 +143,7 @@ public class Mario extends Charactor{
 		
 	}
 	public void rightReleased() {
-		
+		if (VelX>0)
 		setVelX(0);
 
 	}
@@ -154,6 +154,7 @@ public class Mario extends Charactor{
 		
 	}
 	public void leftReleased() {
+		if (VelX<0)
 		setVelX(0);
 
 	}
