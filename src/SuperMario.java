@@ -27,7 +27,7 @@ public class SuperMario {
 	public static int coins=0;
 	private static JFrame frame;
 	public static boolean hasStarted = false;
-	public static Stage stage;
+	public static Stage stage = null;
 	public static BufferedImage[] numberImages = new BufferedImage[10];
 	public static BufferedImage startImages;
 	public static BufferedImage uiImages;
@@ -63,7 +63,8 @@ public class SuperMario {
 	}
 	
 	public void load() {
-		stage.stop = true;
+		if (stage!=null)
+			stage.stop = true;
 		FileInputStream fis;
 		try {
 			fis = new FileInputStream("mario.sav");
@@ -87,11 +88,17 @@ public class SuperMario {
 	}
 	
 	public static void reload() {
-		stageThread = new Thread(stage);
-		stageThread.start();
-		frame.getContentPane().removeAll();
-		frame.add(stage);
-		SwingUtilities.updateComponentTreeUI(frame);
+		if (hasStarted) {
+			stageThread = new Thread(stage);
+			stageThread.start();
+			frame.getContentPane().removeAll();
+			frame.add(stage);
+			SwingUtilities.updateComponentTreeUI(frame);
+		}
+		else {
+			gameStart();
+		}
+		
 	}
 	
 	public static void gameStart() {

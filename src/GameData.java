@@ -39,13 +39,14 @@ public class GameData implements java.io.Serializable{
 		this.allEnemy = Map.allEnemy;
 		
 		this.interactives.removeAll(interactives);
+		if (allObj!=null) {
 		for(GameObject obj: allObj) {
 			obj.clear();
 		}
 		for(Enemy obj: allEnemy) {
 			obj.clear();
 		}
-		
+		}
 		try {
 		FileOutputStream fos = new FileOutputStream("mario.sav");
 	      ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -57,13 +58,14 @@ public class GameData implements java.io.Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(GameObject obj: allObj) {
-			obj.reload();
+		if (allObj!=null) {
+			for(GameObject obj: allObj) {
+				obj.reload();
+			}
+			for(Enemy obj: allEnemy) {
+				obj.reload();
+			}
 		}
-		for(Enemy obj: allEnemy) {
-			obj.reload();
-		}
-
 	    }
 	public void load() {
 		SuperMario.stage=this.stage;
@@ -78,14 +80,14 @@ public class GameData implements java.io.Serializable{
 		
 		Map.allEnemy=this.allEnemy;
 		Map.allObj = this.allObj;
-		
+		if (allObj!=null) {
 		for(GameObject obj: allObj) {
 			obj.reload();
 		}
 		for(Enemy obj: allEnemy) {
 			obj.reload();
 		}
-		
+		}
 		
 	}
 }
