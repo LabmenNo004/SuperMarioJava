@@ -157,12 +157,8 @@ public class Mario extends Charactor{
 
 	}
 	public void downPressed() {
-		if(isInAir) {
-		setVelY(5);
-	}
 	}
 	public void downReleased() {
-		setVelY(0);
 	}
 	public void jumpPressed() {
 
