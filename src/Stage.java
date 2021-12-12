@@ -1,5 +1,7 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -19,6 +21,7 @@ public class Stage extends JPanel implements Runnable {
 	private boolean showMario=true;
 	private boolean isDead = false;
 	AudioStream BGM = null;
+	public static List<GameObject> interactives = new ArrayList<>();;
 
 	
 	public Stage(int stageNumber) {
@@ -37,7 +40,7 @@ public class Stage extends JPanel implements Runnable {
 		setLayout(null);
 		
 
-		BGM = SuperMario.playSound("bgm2");
+		BGM = SuperMario.playSound("bgm");
 
 		
 	}
@@ -52,6 +55,11 @@ public class Stage extends JPanel implements Runnable {
 				this.time -= (1 / FRAMERATE);
 				
 				mario.tick();
+				
+				for(GameObject o: interactives) {
+					o.tick();
+				}
+				
 				if (mario.getX() >= Map.flagX) {
 //					win					
 					//AudioPlayer.player.stop(BGM);
@@ -118,10 +126,16 @@ public class Stage extends JPanel implements Runnable {
 		SuperMario.increaseScore(2000);
 	}
 	
+	public void animation() {
+		
+	}
 	public void paintComponent(Graphics g) {
 
 		g.drawImage(map.getBgImage(), -cameraX, 0, null);
-
+		for (GameObject obj : interactives) {
+			if (obj.visible)
+				g.drawImage(obj.getImage(), obj.getX() - cameraX, obj.getY(), null);
+		}
 		for (GameObject obj : map.getAllObj()) {
 			g.drawImage(obj.getImage(), obj.getX() - cameraX, obj.getY(), null);
 		}

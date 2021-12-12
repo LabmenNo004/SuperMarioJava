@@ -96,7 +96,11 @@ public class SuperMario {
 		hasStarted= false;
 		gameStart();
 	}
-
+	public static void eatCoin() {
+		score+=200;
+		coins+=1;
+		playSound("coin");
+	}
 	public static void loseLife() {
 		stageThread.interrupt();
 		
