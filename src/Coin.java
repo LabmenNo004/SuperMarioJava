@@ -9,7 +9,7 @@ public class Coin extends GameObject{
 	
 	public Coin(int x, int y,int length, int width) { //type for different type of blocks
 		super(x,y,length,width);
-		this.canCollide = true;
+		this.canCollide = false;
 		
 		
 		//pulling image		
