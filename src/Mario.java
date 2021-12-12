@@ -248,6 +248,7 @@ public class Mario extends Charactor{
 //					down collision
 					this.EnemyDownCollide(enm);
 					allenemy.remove(enm);
+					break;
 				} else {
 //					up collision
 					this.EnemyUpCollide(enm);
