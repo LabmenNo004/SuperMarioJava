@@ -1,16 +1,20 @@
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import sun.audio.*;
 
 public class SuperMario {
 	// everything static, since there is only one game.
@@ -48,7 +52,7 @@ public class SuperMario {
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.setResizable(false);
+		frame.setResizable(false);
 
 		frame.addKeyListener(new CustomKeyListener());
 
@@ -236,10 +240,34 @@ public class SuperMario {
 		}
 		return result;
 	}
+	
+//	playing sound: https://www.tabnine.com/code/java/classes/sun.audio.AudioPlayer
+	
+	public static AudioStream playSound(String s) {
+		String songFile = System.getProperty("user.dir") + "/src/sound/"+s+".wav";
+	    InputStream in;
+		try {
+			in = new FileInputStream(songFile);
+		    // create an audiostream from the inputstream
+		    AudioStream audioStream = new AudioStream(in);
+		    // play the audio clip with the audioplayer class
+		    AudioPlayer.player.start(audioStream);
+		    return audioStream;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 
+		
+	
 	public static void main(String[] args) {
 		SuperMario game = new SuperMario();
-
 	}
 }
 

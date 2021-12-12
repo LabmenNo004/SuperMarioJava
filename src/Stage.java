@@ -3,6 +3,9 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 public class Stage extends JPanel implements Runnable {
 	private static final float FRAMERATE = 30;
 	private int cameraX = 0;
@@ -15,7 +18,10 @@ public class Stage extends JPanel implements Runnable {
 	private boolean inProgress = true;
 	private boolean showMario=true;
 	protected static boolean camUpdate = true; //when enter tube = false, when enter again/coming out = true
+	private boolean isDead = false;
+	AudioStream BGM = null;
 
+	
 	public Stage(int stageNumber) {
 		this.map = new Map(stageNumber);
 
@@ -30,8 +36,13 @@ public class Stage extends JPanel implements Runnable {
 		setMaximumSize(size);
 		setSize(size);
 		setLayout(null);
+		
 
+		BGM = SuperMario.playSound("bgm2");
+
+		
 	}
+	
 
 	public void run() {
 
@@ -44,13 +55,23 @@ public class Stage extends JPanel implements Runnable {
 				mario.tick();
 				if (mario.getX() >= Map.flagX && mario.getX() < Map.flagX + 20) {
 					win();
+					SuperMario.playSound("pass1");
 				}
-				if (mario.y>Map.mapHeight || time < 0.5) {
+				if (isDead) {
+					SuperMario.playSound("die");
+					AudioPlayer.player.stop(BGM);
+
+
 					SuperMario.loseLife();
 					Thread.currentThread().interrupt();
 					return;
 				}
+				if (mario.y>Map.mapHeight || time < 0.5) {
+//					die
+					isDead = true;
+				}
 			} else if(SuperMario.stageNumber==1){
+				
 //				animation of going to castle
 				if(mario.getY()+mario.height<Map.mapHeight-(Map.BLOCK_SIZE*2)) {
 					mario.y+=5;
@@ -89,7 +110,9 @@ public class Stage extends JPanel implements Runnable {
 			}
 		}
 	}
-
+	public void die() {
+		isDead = true;
+	}
 	public void win() {
 		inProgress = false;
 		SuperMario.increaseScore(2000);
