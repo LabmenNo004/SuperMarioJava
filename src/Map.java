@@ -272,7 +272,7 @@ public class Map {
 	}
 
 	public void stageTwoObjIniti() {
-	//TESTING --HiddenRoom -- assume x16 y15
+	//HiddenRoom--------------------------------------------------------------
 		//Starting Point: x: 183 y: 15
 		//floor
 		for (int i = 183; i <= 203; i++) { //assume making 100 floor tiles
@@ -306,12 +306,28 @@ public class Map {
 		allObj.add(new PipeBody(1, 181*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*17), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 		allObj.add(new PipeBody(1, 181*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*16), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 		allObj.add (new PipeHead(1, 181*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*15), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
+		
+		//coin
+		for (int i = 183; i < 200 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE , BLOCK_SIZE));
+		}
 
-
-	//-----------------------
+	//------------------------------------------------------------
 	//coin objects creation:
 		//no type, only 1
-		allObj.add(new Coin(5*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE , BLOCK_SIZE));
+		for (int i = 42; i <= 45 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		allObj.add(new Coin(41*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE , BLOCK_SIZE));
+		allObj.add(new Coin(46*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE , BLOCK_SIZE));
+		for (int i = 59; i <= 62 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		allObj.add(new Coin(69*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE , BLOCK_SIZE));
+		for (int i = 85; i <= 90 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE , BLOCK_SIZE));
+		}
 		
 	//floor objects creation:
 		//empty floor list:
