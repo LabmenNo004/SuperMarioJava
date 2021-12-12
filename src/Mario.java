@@ -255,6 +255,7 @@ public class Mario extends Charactor{
 					this.EnemyDownCollide(enm);
 					allenemy.remove(enm);
 					this.setVelY(-6);
+					this.isInAir = true;
 					break;
 				} else {
 //					up collision
