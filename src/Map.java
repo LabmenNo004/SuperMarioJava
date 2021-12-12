@@ -273,30 +273,46 @@ public class Map {
 
 	public void stageTwoObjIniti() {
 	//TESTING --HiddenRoom -- assume x16 y15
-		//Starting Point: x: 163+18 y: 15
+		//Starting Point: x: 183 y: 15
+		//floor
+		for (int i = 183; i <= 203; i++) { //assume making 100 floor tiles
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+			//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
 		//normal blocks
 		for (int i = 0; i <13; i++) {
 			allObj.add(new Block(6, 180*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(3+i)), BLOCK_SIZE , BLOCK_SIZE));
 		}
-		for (int i = 183; i <194; i++) {
+		for (int i = 183; i <203; i++) {
 			for (int j = 0; j <5 ; j++) {
 			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(15-j)), BLOCK_SIZE , BLOCK_SIZE));
 			}
 		}
-		for (int i = 183; i <192; i++) {
+		for (int i = 183; i <200; i++) {
 			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(6)), BLOCK_SIZE , BLOCK_SIZE));
 		}
 		for (int i = 0; i <13; i++) {
-			allObj.add(new Block(6, 194*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(3+i)), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Block(6, 203*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(3+i)), BLOCK_SIZE , BLOCK_SIZE));
 		}
 		
 		//pipe out
-		hiddenPipeExit = new PipeHead(1, 192*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,true); //has hidden passage
+		hiddenPipeExit = new PipeHead(1, 201*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,true); //has hidden passage
 		allObj.add(hiddenPipeExit); 
-		allObj.add(new PipeBody(1, 192*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		allObj.add(new PipeBody(1, 201*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		
+		//pipe in (no usage)
+		allObj.add(new PipeBody(1, 181*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*17), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		allObj.add(new PipeBody(1, 181*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*16), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		allObj.add (new PipeHead(1, 181*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*15), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
 
 
 	//-----------------------
+	//coin objects creation:
+		//no type, only 1
+		allObj.add(new Coin(5*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE , BLOCK_SIZE));
+		
 	//floor objects creation:
 		//empty floor list:
 		//x:81-83; 121,122; 125,126; 139-145; 154-161
@@ -330,7 +346,7 @@ public class Map {
 			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
 			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
 		}
-		for (int i = 162; i <= 193; i++) { //assume making 100 floor tiles
+		for (int i = 162; i <= 182; i++) { //assume making 100 floor tiles
 			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
 			//public Floor(int floorType, int x, int y,int length, int width)
 			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
