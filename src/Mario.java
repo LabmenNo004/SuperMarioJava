@@ -284,9 +284,9 @@ public class Mario extends Charactor{
 			//Starting Point: x: 163+18=181 y: 15
 			//set mario x y to above
 			this.setX(181 * Map.BLOCK_SIZE);
-			this.setY(15* Map.BLOCK_SIZE);
+			this.setY(4* Map.BLOCK_SIZE);
 			//set camera X
-			SuperMario.stage.setCameraX(181 * Map.BLOCK_SIZE);
+			SuperMario.stage.setCameraX(180 * Map.BLOCK_SIZE);
 			Stage.camUpdate = false;
 		}
 		if (stageNumber ==3) {
@@ -302,7 +302,7 @@ public class Mario extends Charactor{
 			//Exiting Point: x:116 Y:5
 			//set Mariox y to above
 			this.setX(116* Map.BLOCK_SIZE);
-			this.setY(5* Map.BLOCK_SIZE);
+			this.setY(Map.mapHeight-(Map.BLOCK_SIZE*5));
 			SuperMario.stage.setCameraX(116* Map.BLOCK_SIZE);
 			Stage.camUpdate = true;
 		}
