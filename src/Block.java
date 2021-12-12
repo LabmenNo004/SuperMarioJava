@@ -27,13 +27,18 @@ public class Block extends GameObject{
 		return blockType;
 	}
 	public void change() {
+		if (this.blockType  == 3) {
+			this.blockType = 8;
 		try {
 			this.image = ImageIO.read(new File(path+ "block8.png"));
 			Stage.interactives.add(new Coin(x,y,height,width));
 			SuperMario.eatCoin();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace();}
 		}
+
+
+		
 	}
 }

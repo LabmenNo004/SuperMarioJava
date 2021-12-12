@@ -1,23 +1,26 @@
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
-import java.io.*;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 import sun.audio.*;
 
 public class SuperMario {
 	// everything static, since there is only one game.
 	public static final int WIDTH = 400;
 	public static final int HEIGHT = 318;
-	public static int stageNumber = 1;
+	public static int stageNumber = 2;
 	public static int marioLives = 3;
 	public static int score = 0;
 	public static int coins=0;
@@ -49,7 +52,7 @@ public class SuperMario {
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setResizable(false);
+		frame.setResizable(false);
 
 		frame.addKeyListener(new CustomKeyListener());
 

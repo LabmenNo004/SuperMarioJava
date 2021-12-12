@@ -18,6 +18,10 @@ public class Map {
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
 	protected static final int BLOCK_SIZE = 16; //constant of each block legth and width
 	protected static int flagX;
+	protected static PipeHead hiddenPipeIn; //1st in
+	protected static PipeHead hiddenPipeExit; //exit room
+	protected static PipeHead hiddenPipeOut; //back to main map
+	
 	public Map(int stageNumber) {
 		allObj = new ArrayList<>();
 		allEnemy = new ArrayList<>();
@@ -27,16 +31,23 @@ public class Map {
 		stageEnemyCreation(stageNumber);
 		stageMarioSpawn(stageNumber);
 	}
-	
+		
 	public void stageMarioSpawn (int stageNumber) {
 		//at the beginning
 		marioSpawnCoord = new int[2];
 		//x assuming x starts at 0, will give a bit space (3 blocks)
-		this.marioSpawnCoord[0] = BLOCK_SIZE*3;
+		this.marioSpawnCoord[0] = BLOCK_SIZE*3;		
 		//y assuming floor at y:mapHeight - 3 blocks (3 blocks above bottom; 2 blocks of floor)
 		this.marioSpawnCoord[1] = mapHeight-(BLOCK_SIZE*3);
 		//may add other spawn point based on stage later
+		
+		//TESTING:
+		//this.marioSpawnCoord[0] = BLOCK_SIZE*(163+18); 
+		//this.marioSpawnCoord[1] = mapHeight-(BLOCK_SIZE*15);
+
 	}
+	
+
 
 	public void stageEnemyCreation (int stageNumber) {
 		allEnemy = new ArrayList<>();
@@ -226,27 +237,27 @@ public class Map {
 
 	//pipe object creation
 		//will be similar to above once we tested out if above works
-	allObj.add(new PipeHead(1, 29*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+	allObj.add(new PipeHead(1, 29*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
 	allObj.add(new PipeBody(1, 29*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	
-	allObj.add(new PipeHead(1, 39*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+	allObj.add(new PipeHead(1, 39*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
 	allObj.add(new PipeBody(1, 39*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	allObj.add(new PipeBody(1, 39*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	
-	allObj.add(new PipeHead(1, 47*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+	allObj.add(new PipeHead(1, 47*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
 	allObj.add(new PipeBody(1, 47*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	allObj.add(new PipeBody(1, 47*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	allObj.add(new PipeBody(1, 47*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 
-	allObj.add(new PipeHead(1, 58*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+	allObj.add(new PipeHead(1, 58*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
 	allObj.add(new PipeBody(1, 58*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	allObj.add(new PipeBody(1, 58*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	allObj.add(new PipeBody(1, 58*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	
-	allObj.add(new PipeHead(1, 164*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+	allObj.add(new PipeHead(1, 164*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
 	allObj.add(new PipeBody(1, 164*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 
-	allObj.add(new PipeHead(1, 180*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+	allObj.add(new PipeHead(1, 180*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
 	allObj.add(new PipeBody(1, 180*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	
 	//flagPole object creation
@@ -261,6 +272,31 @@ public class Map {
 	}
 
 	public void stageTwoObjIniti() {
+	//TESTING --HiddenRoom -- assume x16 y15
+		//Starting Point: x: 163+18 y: 15
+		//normal blocks
+		for (int i = 0; i <13; i++) {
+			allObj.add(new Block(6, 180*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(3+i)), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 183; i <194; i++) {
+			for (int j = 0; j <5 ; j++) {
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(15-j)), BLOCK_SIZE , BLOCK_SIZE));
+			}
+		}
+		for (int i = 183; i <192; i++) {
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(6)), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 0; i <13; i++) {
+			allObj.add(new Block(6, 194*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(3+i)), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		
+		//pipe out
+		hiddenPipeExit = new PipeHead(1, 192*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,true); //has hidden passage
+		allObj.add(hiddenPipeExit); 
+		allObj.add(new PipeBody(1, 192*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+
+
+	//-----------------------
 	//floor objects creation:
 		//empty floor list:
 		//x:81-83; 121,122; 125,126; 139-145; 154-161
@@ -363,7 +399,20 @@ public class Map {
 				allObj.add(new Block(6, l*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));				
 			}
 		}
-		
+		for (int i = 4; i<=6;i++) {
+			allObj.add(new Block(6, 55*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));				
+			allObj.add(new Block(6, 56*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));				
+		}
+		for (int i = 59; i<=62;i++) {
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));				
+		}
+		allObj.add(new Block(6, 69*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));				
+	
+		allObj.add(new Block(6, 70*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));				
+		//allObj.add(new Block(6, 70*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE , BLOCK_SIZE)); //cancel since no big mario			
+		for (int i = 77; i<=80;i++) {
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));				
+		}
 
 		
 		for (int i = 85; i<=90; i++) {			
@@ -411,22 +460,25 @@ public class Map {
 		for (int i =3 ; i<=6;i++ ) {
 			allObj.add(new Block(7, 138*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*i), BLOCK_SIZE , BLOCK_SIZE));
 		}
-		
-
-
+	//platform object creation
+		allObj.add(new Platform(1, 156*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (int)(BLOCK_SIZE*1) , BLOCK_SIZE*3));
+		allObj.add(new Platform(1, 141*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), (int)(BLOCK_SIZE*0.7) , BLOCK_SIZE*3));
+		allObj.add(new Platform(1, 141*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*8), (int)(BLOCK_SIZE*0.7) , BLOCK_SIZE*3));
 		
 	//pipe object creation
 		//will be similar to above once we tested out if above works
-		allObj.add(new PipeHead(1, 104*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		hiddenPipeIn = new PipeHead(1, 104*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE*2 , BLOCK_SIZE*2,true); //has hidden passage
+		allObj.add(hiddenPipeIn); 
 		allObj.add(new PipeBody(1, 104*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 		allObj.add(new PipeBody(1, 104*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 
-		allObj.add(new PipeHead(1, 110*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		allObj.add(new PipeHead(1, 110*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
 		allObj.add(new PipeBody(1, 110*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 		allObj.add(new PipeBody(1, 110*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 		allObj.add(new PipeBody(1, 110*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
-
-		allObj.add(new PipeHead(1, 116*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+		
+		hiddenPipeOut = new PipeHead(1, 116*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,false);//hidden passage exit
+		allObj.add(hiddenPipeOut); 
 		allObj.add(new PipeBody(1, 116*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 
 	//flagPole object creation

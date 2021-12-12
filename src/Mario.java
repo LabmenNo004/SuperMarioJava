@@ -18,9 +18,8 @@ public class Mario extends Charactor{
 	
 	private List<GameObject> allObj = null;
 	private List<Enemy> allEnemy = null;
-	private final static int MAXVEL = 15;
+	
 	protected static BufferedImage maImage = null;
-    protected boolean jumping=false;
 	
 	public Mario(int x, int y,int height, int width) {
 		super(x,y,height,width);
@@ -38,7 +37,7 @@ public class Mario extends Charactor{
 			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
 			System.out.println("mario image loaded");
 			if(this.FACE && !isInAir) {
-			maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
+				maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
 			}
 			else if(this.FACE && isInAir){
 				maImage = ImageIO.read(new File(path+"jump_right"+".png"));
@@ -91,7 +90,6 @@ public class Mario extends Charactor{
 		collisionDetection();
 		EnemycollisionDetection();
 		addingGravity();
-		this.image = getMarioImage(); 
 //		if(x+length>400) x = 400-length;   //   to control Mario not go out of the screen
 //		if(y+width>318) y = 318-width;
 	}
@@ -114,7 +112,6 @@ public class Mario extends Charactor{
 	public void downCollide(GameObject obj) {
 //		this.falling = false;
 //		this.jumping = false;
-		if (VelY>0)
 		this.setVelY(0);
 	}
 	
@@ -145,12 +142,6 @@ public class Mario extends Charactor{
 	}*/
 	public void rightPressed() {
 		setVelX(5);
-
-		if(!this.FACE) {
-			this.FACE=true;
-		}
-		//System.out.println("left:"+LEFT);
-		//System.out.println("right:"+RIGHT);
 		
 	}
 	public void rightReleased() {
@@ -159,12 +150,6 @@ public class Mario extends Charactor{
 	}
 	public void leftPressed() {
 		setVelX(-5);
-
-		if(this.FACE) {
-			this.FACE=false;
-		}
-		//System.out.println("left:"+LEFT);
-		//System.out.println("right:"+RIGHT);
 		
 	}
 	public void leftReleased() {
@@ -172,22 +157,15 @@ public class Mario extends Charactor{
 
 	}
 	public void downPressed() {
-		if(isInAir) {
-		setVelY(5);
-	}
 	}
 	public void downReleased() {
-		setVelY(0);
 	}
 	public void jumpPressed() {
 
 		if(!this.isInAir) {
-
 			setVelY(-12);
 			this.isInAir = true;
 			SuperMario.playSound("jump");
-//		this.jumping = true;
-//		this.falling= false;
 	}
 	}
 	public void jumpReleased() {
@@ -197,10 +175,10 @@ public class Mario extends Charactor{
 	public void addingGravity() {
 	int velY = this.VelY;
 	//if(jumping) {
-		if (velY<MAXVEL) {
+
 		velY += 1;
 		setVelY(velY);
-		}
+		
 
 	//}
 	
@@ -276,4 +254,53 @@ public class Mario extends Charactor{
 		}
 	}
 	
+	public void checkHiddenPipe() {
+		//2 cases: either going in or going out of the room
+			//1) going in
+		if ((this.getX() >= Map.hiddenPipeIn.getX() && this.getX() <= Map.hiddenPipeIn.getX() + Map.hiddenPipeIn.getWidth())
+				&& (this.getY() == Map.hiddenPipeIn.getY() + Map.BLOCK_SIZE)) {
+			hiddenRoomIn(SuperMario.stageNumber);
+		}
+			//2) PipeExit
+		if ((this.getX() >= Map.hiddenPipeExit.getX() && this.getX() <= Map.hiddenPipeExit.getX() + Map.hiddenPipeExit.getWidth())
+				&& (this.getY() == Map.hiddenPipeExit.getY() + Map.BLOCK_SIZE)) {
+			hiddenRoomOut(SuperMario.stageNumber);
+		}
+	}
+	public void hiddenRoomIn(int stageNumber) {
+		//change mario x,y coord to the corr beginning point of the room
+		if (stageNumber ==1) {
+			
+		}
+		if (stageNumber ==2) {		
+			Stage.camUpdate = false;
+			//Starting Point: x: 163+18 y: 15
+			//set mario x y to above
+			this.setX(163+18);
+			this.setY(15);
+		}
+		if (stageNumber ==3) {
+			
+		}
+	}
+	public void hiddenRoomOut(int stageNumber) {
+		//change mario x,y coord to the corr beginning point of the map
+		if (stageNumber ==1) {
+		
+		}
+		if (stageNumber ==2) {
+			Stage.camUpdate = true;
+			//Exiting Point: x:116 Y:5
+			//set Mariox y to above
+			this.setX(116);
+			this.setY(5);
+		}
+		if (stageNumber ==3) {
+		}
+	}
+
+	
 }
+
+
+

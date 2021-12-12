@@ -19,6 +19,7 @@ public class Stage extends JPanel implements Runnable {
 	private float time = 400;
 	private boolean inProgress = true;
 	private boolean showMario=true;
+	protected static boolean camUpdate = true; //when enter tube = false, when enter again/coming out = true
 	private boolean isDead = false;
 	AudioStream BGM = null;
 	public static List<GameObject> interactives = new ArrayList<>();;
@@ -60,9 +61,10 @@ public class Stage extends JPanel implements Runnable {
 					o.tick();
 				}
 				
-				if (mario.getX() >= Map.flagX) {
+				if (mario.getX() >= Map.flagX && mario.getX() < Map.flagX + 20) {
 //					win					
 					//AudioPlayer.player.stop(BGM);
+
 					win();
 					SuperMario.playSound("pass1");
 				}
@@ -107,8 +109,9 @@ public class Stage extends JPanel implements Runnable {
 					kuribou.tick();
 				}
 			}
-
-			updateCamera();
+			if (camUpdate) { //false when entering tube
+				updateCamera();
+			}
 			repaint();
 			try {
 				Thread.sleep((long) (1000 / FRAMERATE));

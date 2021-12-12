@@ -4,26 +4,23 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class PipeHead extends GameObject{
-	private int pipeHeadType;
-	public boolean isHidden = false;
+public class Platform extends GameObject{
+	private int PlatformType;
 	
 	//Constructor
-	public PipeHead(int pipeHeadType, int x, int y,int length, int width, boolean isHidden) {
+	public Platform(int PlatformType, int x, int y,int length, int width) { //type for different type of platform size
 		super(x,y,length,width);
 		this.canCollide = true;
-		this.isHidden = isHidden;
 		
-		this.pipeHeadType = pipeHeadType;
+		this.PlatformType = PlatformType;
 		
 		//pulling image		
 		try {
 			this.image = new BufferedImage(width, length, BufferedImage.TYPE_INT_ARGB);
-			this.image = ImageIO.read(new File(path+ "pipeHead"+ pipeHeadType +".png")); // user.dir/scr/images/Floor#.png
+			this.image = ImageIO.read(new File(path+ "platform"+ PlatformType +".png")); // user.dir/scr/images/Floor#.png
 		} catch (IOException e) {
 			System.out.println("Fail to import image");
 			e.printStackTrace();
 		}
 	}
-
 }
