@@ -14,6 +14,7 @@ public class Stage extends JPanel implements Runnable {
 	private float time = 400;
 	private boolean inProgress = true;
 	private boolean showMario=true;
+	protected static boolean camUpdate = true; //when enter tube = false, when enter again/coming out = true
 
 	public Stage(int stageNumber) {
 		this.map = new Map(stageNumber);
@@ -41,7 +42,7 @@ public class Stage extends JPanel implements Runnable {
 				this.time -= (1 / FRAMERATE);
 				
 				mario.tick();
-				if (mario.getX() >= Map.flagX) {
+				if (mario.getX() >= Map.flagX && mario.getX() < Map.flagX + 20) {
 					win();
 				}
 				if (mario.y>Map.mapHeight || time < 0.5) {
@@ -76,8 +77,9 @@ public class Stage extends JPanel implements Runnable {
 					kuribou.tick();
 				}
 			}
-
-			updateCamera();
+			if (camUpdate) { //false when entering tube
+				updateCamera();
+			}
 			repaint();
 			try {
 				Thread.sleep((long) (1000 / FRAMERATE));

@@ -18,9 +18,8 @@ public class Mario extends Charactor{
 	
 	private List<GameObject> allObj = null;
 	private List<Enemy> allEnemy = null;
-	private final static int MAXVEL = 15;
+	
 	protected static BufferedImage maImage = null;
-    protected boolean jumping=false;
 	
 	public Mario(int x, int y,int height, int width) {
 		super(x,y,height,width);
@@ -37,18 +36,7 @@ public class Mario extends Charactor{
 		try {
 			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
 			System.out.println("mario image loaded");
-			if(this.FACE && !isInAir) {
 			maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
-			}
-			else if(this.FACE && isInAir){
-				maImage = ImageIO.read(new File(path+"marioWalkRight"+".png"));
-			}
-			else  if(!this.FACE && !isInAir) {
-				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
-			}
-			else if(!this.FACE && isInAir) {
-				maImage = ImageIO.read(new File(path+"marioWalkLeft"+".png"));
-			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -90,7 +78,6 @@ public class Mario extends Charactor{
 		if(y<=0) y=0;
 		collisionDetection();
 		addingGravity();
-		this.image = getMarioImage(); 
 //		if(x+length>400) x = 400-length;   //   to control Mario not go out of the screen
 //		if(y+width>318) y = 318-width;
 	}
@@ -107,7 +94,6 @@ public class Mario extends Charactor{
 	public void downCollide(GameObject obj) {
 //		this.falling = false;
 //		this.jumping = false;
-		if (VelY>0)
 		this.setVelY(0);
 	}
 
@@ -128,12 +114,6 @@ public class Mario extends Charactor{
 	}*/
 	public void rightPressed() {
 		setVelX(5);
-
-		if(!this.FACE) {
-			this.FACE=true;
-		}
-		//System.out.println("left:"+LEFT);
-		//System.out.println("right:"+RIGHT);
 		
 	}
 	public void rightReleased() {
@@ -142,12 +122,6 @@ public class Mario extends Charactor{
 	}
 	public void leftPressed() {
 		setVelX(-5);
-
-		if(this.FACE) {
-			this.FACE=false;
-		}
-		//System.out.println("left:"+LEFT);
-		//System.out.println("right:"+RIGHT);
 		
 	}
 	public void leftReleased() {
@@ -167,7 +141,6 @@ public class Mario extends Charactor{
 		if(!this.isInAir) {
 
 		setVelY(-12);
-		this.isInAir = true;
 //		this.jumping = true;
 //		this.falling= false;
 	}
@@ -179,10 +152,10 @@ public class Mario extends Charactor{
 	public void addingGravity() {
 	int velY = this.VelY;
 	//if(jumping) {
-		if (velY<MAXVEL) {
+
 		velY += 1;
 		setVelY(velY);
-		}
+		
 
 	//}
 	
