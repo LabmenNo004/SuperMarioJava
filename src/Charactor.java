@@ -117,8 +117,10 @@ public abstract class Charactor implements Runnable {
 		int edge = 6;
 		int slide = 0;
 		GameObject sobj = null;
+		boolean isMario = this instanceof Mario;
 		for (GameObject obj : allObj) {
-			if (!obj.canCollide) continue;
+			boolean isCoin = (isMario && obj instanceof Coin);
+			if (!obj.canCollide && !isCoin) continue;
 			if (obj.getX() > (this.getX() + this.getWidth()) || obj.getX() + obj.getWidth() < this.getX()
 					|| obj.getY() > (this.getY() + this.getHeight()) || obj.getY() + obj.getHeight() < this.getY()) {
 //				if Character on left or right or above or below, skip
@@ -147,12 +149,20 @@ public abstract class Charactor implements Runnable {
 					&& rightOverlap < downOverlap)) {
 
 //				right collision
+				if (isCoin) {
+					((Coin)obj).eat();
+					continue;
+				}
 				this.setX(obj.getX() - this.getWidth());
 				this.rightCollide(obj);
 			} else if (this.getX() <= obj.getX() + obj.getWidth()
 					&& this.getX() + this.getWidth() > obj.getX() + obj.getWidth() && (leftOverlap < upOverlap
 					&& leftOverlap < downOverlap)) {
 //					left collision
+				if (isCoin) {
+					((Coin)obj).eat();
+					continue;
+				}
 				this.setX(obj.getX() + obj.getWidth());
 				this.leftCollide(obj);
 			}
@@ -160,11 +170,19 @@ public abstract class Charactor implements Runnable {
 			else {
 				if (this.getY() + this.getHeight() < obj.getY() + obj.getHeight()) {
 //					down collision
+					if (isCoin) {
+						((Coin)obj).eat();
+						continue;
+					}
 					this.setY(obj.getY() - this.getHeight());
 					inAir = false;
 					downCollide(obj);
 				} else {
 //					up collision
+					if (isCoin) {
+						((Coin)obj).eat();
+						continue;
+					}
 					this.setY(obj.getY() + obj.getHeight());
 					upCollide(obj);
 				}

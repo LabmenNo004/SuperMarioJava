@@ -140,7 +140,8 @@ public class Stage extends JPanel implements Runnable {
 				g.drawImage(obj.getImage(), obj.getX() - cameraX, obj.getY(), null);
 		}
 		for (GameObject obj : map.getAllObj()) {
-			g.drawImage(obj.getImage(), obj.getX() - cameraX, obj.getY(), null);
+			if (obj.visible)
+				g.drawImage(obj.getImage(), obj.getX() - cameraX, obj.getY(), null);
 		}
     	for (Enemy ene: map.getAllEnemy()) {
     		g.drawImage(ene.getImage(), ene.getX()-cameraX, ene.getY(), null);

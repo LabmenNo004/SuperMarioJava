@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 
 public class Coin extends GameObject{
 	boolean move = false;
-	
+	boolean exist = true;
 	public Coin(int x, int y,int length, int width) { //type for different type of blocks
 		super(x,y,length,width);
 		this.canCollide = false;
@@ -27,6 +27,13 @@ public class Coin extends GameObject{
 			counter+=1;
 		}else {
 			this.visible = false;
+		}
+	}
+	public void eat() {
+		if (exist) {
+			this.visible=false;
+			SuperMario.eatCoin();
+			this.exist = false;
 		}
 	}
 }
