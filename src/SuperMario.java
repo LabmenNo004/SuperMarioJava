@@ -135,6 +135,7 @@ public class SuperMario {
 		stageNumber = 1;
 		marioLives = 3;
 		score = 0;
+		coins = 0;
 //		restart
 		hasStarted= false;
 		gameStart();
