@@ -120,7 +120,9 @@ public class Stage extends JPanel implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		AudioPlayer.player.stop(BGM);
 		Thread.currentThread().interrupt();
+		
 	}
 	public void die() {
 		isDead = true;

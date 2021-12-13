@@ -133,6 +133,7 @@ public abstract class Charactor implements Runnable, java.io.Serializable {
 			int upOverlap = obj.getY() + obj.getHeight() - this.getY();
 			int downOverlap = this.getY() + this.getHeight() - obj.getY();
 			
+			if (!isCoin) {
 			if (this.isInAir && rightOverlap < edge) {
 //				slide
 				slide = 1;
@@ -145,7 +146,7 @@ public abstract class Charactor implements Runnable, java.io.Serializable {
 				sobj = obj;
 				continue;
 			}
-			
+			}
 			if (obj.getX() <= (this.getX() + this.getWidth()) && obj.getX() > this.getX() && (rightOverlap < upOverlap
 					&& rightOverlap < downOverlap)) {
 

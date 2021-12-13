@@ -77,7 +77,7 @@ public class GameData implements java.io.Serializable{
 		new Map(stageNumber);
 		Stage.interactives = this.interactives;
 		Stage.camUpdate = this.camUpdate;
-		
+		Stage.BGM = SuperMario.playSound("bgm");
 		Map.allEnemy=this.allEnemy;
 		Map.allObj = this.allObj;
 		if (allObj!=null) {
