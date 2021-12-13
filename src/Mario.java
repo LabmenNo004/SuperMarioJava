@@ -260,7 +260,8 @@ public class Mario extends Charactor{
 
 			if (isInAir && (downOverlap<=6 || leftOverlap>=6 || leftOverlap>=6)) {
 				allenemy.remove(enm);
-				
+				SuperMario.increaseScore(200);
+				SuperMario.playSound("stepEnemy");
 				this.setVelY(-6);
 				this.isInAir = true;
 				break;
