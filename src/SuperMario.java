@@ -146,6 +146,8 @@ public class SuperMario {
 		if (coins == 100) {
 			coins = 0;
 			score+=10000;
+			marioLives++;
+			playSound("OneUp");
 		}
 		playSound("coin");
 	}

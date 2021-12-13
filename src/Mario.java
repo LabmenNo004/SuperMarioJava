@@ -17,6 +17,8 @@ public class Mario extends Charactor{
 	
 	
 	protected static BufferedImage maImage = null;
+	private int counterRight=0;
+	private int counterLeft=0;
 	
 	public Mario(int x, int y,int height, int width) {
 		super(x,y,height,width);
@@ -33,17 +35,43 @@ public class Mario extends Charactor{
 		try {
 			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
 //			System.out.println("mario image loaded");
-			if(this.face && !isInAir) {
+			if(this.face && !isInAir &&!this.walk) {
 				maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
 			}
 			else if(this.face && isInAir){
 				maImage = ImageIO.read(new File(path+"jump_right"+".png"));
 			}
-			else  if(!this.face && !isInAir) {
+			else  if(!this.face && !isInAir && !this.walk) {
 				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
+				System.out.println(counterLeft);
 			}
 			else if(!this.face && isInAir) {
 				maImage = ImageIO.read(new File(path+"jump_left"+".png"));
+			}
+			
+			else if(this.face && !isInAir && this.walk == true && counterRight ==0 ) {
+				maImage = ImageIO.read(new File(path+"marioRight"+".png"));
+			}
+			else if(this.face && !isInAir && this.walk == true && counterRight ==1 ) {
+				maImage = ImageIO.read(new File(path+"marioWalkRight1"+".png"));
+			}
+			else if(this.face && !isInAir && this.walk == true && counterRight ==2 ) {
+				maImage = ImageIO.read(new File(path+"marioWalkRight2"+".png"));
+			}
+			else if(this.face && !isInAir && this.walk == true && counterRight ==3 ) {
+				maImage = ImageIO.read(new File(path+"marioWalkRight3"+".png"));
+			}
+			else if(!this.face && !isInAir && this.walk == true && counterLeft ==0 ) {
+				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
+			}
+			else if(!this.face && !isInAir && this.walk == true && counterLeft ==1 ) {
+				maImage = ImageIO.read(new File(path+"marioWalkLeft1"+".png"));
+			}
+			else if(!this.face && !isInAir && this.walk == true && counterLeft ==2 ) {
+				maImage = ImageIO.read(new File(path+"marioWalkLeft2"+".png"));
+			}
+			else if(!this.face && !isInAir && this.walk == true && counterLeft ==3 ) {
+				maImage = ImageIO.read(new File(path+"marioWalkLeft3"+".png"));
 			}
 			
 		} catch (IOException e) {
@@ -101,6 +129,7 @@ public class Mario extends Charactor{
 //		this.falling = false;
 //		this.jumping = false;
 		this.setVelY(0);
+		this.walk = true;
 	}
 	
 	public void EnemyRightCollide(Enemy enm) {
@@ -132,26 +161,61 @@ public class Mario extends Charactor{
 		setVelY((int)gravity);
 		
 	}*/
+	
+	public void rightWalk() {
+		if(counterRight<3) {
+		counterRight+=1;
+		}
+		else {
+			counterRight = 0;
+		}
+	}
+	
+	public void leftWalk() {
+		if(counterLeft<3) {
+		counterLeft+=1;
+		}
+		else {
+			counterLeft = 0;
+		}
+		
+	}
+	
 	public void rightPressed() {
-		if (! isInAir)
+		if (! isInAir) {
+		rightWalk();
 		this.face = true;
+		this.walk = true;
+		}
 		setVelX(5);
+		
 		
 	}
 	public void rightReleased() {
 		if (VelX>0)
 		setVelX(0);
+		if(!isInAir) {
+			this.walk = false;
+			this.counterRight = 0;
+		}
 
 	}
 	public void leftPressed() {
-		if (! isInAir)
+		if (! isInAir) {
+			leftWalk();
 		this.face = false;
+		this.walk = true;
+		}
 		setVelX(-5);
 		
 	}
 	public void leftReleased() {
 		if (VelX<0)
 		setVelX(0);
+		if(!isInAir) {
+			this.walk = false;
+			this.counterLeft = 0;
+		}
 
 	}
 	public void downPressed() {
@@ -162,6 +226,7 @@ public class Mario extends Charactor{
 	public void jumpPressed() {
 
 		if(!this.isInAir) {
+			this.walk = false;
 			setVelY(-12);
 			this.isInAir = true;
 			SuperMario.playSound("jump");
@@ -261,20 +326,27 @@ public class Mario extends Charactor{
 		
 		if ((this.getX() >= Map.hiddenPipeIn.getX() && this.getX() <= Map.hiddenPipeIn.getX() + Map.hiddenPipeIn.getWidth())
 				&& (this.getY() == Map.hiddenPipeIn.getY() - Map.BLOCK_SIZE)) {
-			System.out.println("1st if called");
+			SuperMario.playSound("enterTube");
+			System.out.println("Pipe In");
 			hiddenRoomIn(SuperMario.stageNumber);
 		}
 			//2) PipeExit
 		else if ((this.getX() >= Map.hiddenPipeExit.getX() && this.getX() <= Map.hiddenPipeExit.getX() + Map.hiddenPipeExit.getWidth())
 				&& (this.getY() == Map.hiddenPipeExit.getY() - Map.BLOCK_SIZE)) {
-			System.out.println("pipe function out called");
+			SuperMario.playSound("enterTube");
+			System.out.println("Pipe Out");
 			hiddenRoomOut(SuperMario.stageNumber);
 		}
 	}
 	public void hiddenRoomIn(int stageNumber) {
 		//change mario x,y coord to the corr beginning point of the room
 		if (stageNumber ==1) {
-			
+			//set mario x y to above
+			this.setX(221 * Map.BLOCK_SIZE);
+			this.setY(5* Map.BLOCK_SIZE);
+			//set camera X
+			SuperMario.stage.setCameraX(220 * Map.BLOCK_SIZE);
+			Stage.camUpdate = false;
 		}
 		if (stageNumber ==2) {
 			//Starting Point: x: 163+18=181 y: 15
@@ -292,7 +364,12 @@ public class Mario extends Charactor{
 	public void hiddenRoomOut(int stageNumber) {
 		//change mario x,y coord to the corr beginning point of the map
 		if (stageNumber ==1) {
-		
+			//Exiting Point: x: 164 Y:5
+			//set Mariox y to above
+			this.setX(164* Map.BLOCK_SIZE);
+			this.setY(Map.mapHeight-(Map.BLOCK_SIZE*5));
+			SuperMario.stage.setCameraX(164* Map.BLOCK_SIZE);
+			Stage.camUpdate = true;
 		}
 		if (stageNumber ==2) {
 			//Exiting Point: x:116 Y:5

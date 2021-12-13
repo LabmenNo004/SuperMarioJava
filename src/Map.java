@@ -42,7 +42,7 @@ public class Map implements java.io.Serializable{
 		//may add other spawn point based on stage later
 		
 		//TESTING:
-		//this.marioSpawnCoord[0] = BLOCK_SIZE*(163+18); 
+		//this.marioSpawnCoord[0] = BLOCK_SIZE*(100); 
 		//this.marioSpawnCoord[1] = mapHeight-(BLOCK_SIZE*15);
 
 	}
@@ -55,21 +55,37 @@ public class Map implements java.io.Serializable{
 		if (stageNumber == 1) {
 		//stage 1
 			//Enemy character creation: assume character# is 0
-			//below are testing location
-			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*6, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
-			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*8, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
-			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*10, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
-			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*75, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
-			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*78, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
-			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*79, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
-			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*80, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
-
+			//below are temp location
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*28, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*29, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*32, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*48, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*50, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*52, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*68, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*84, mapHeight-(BLOCK_SIZE*11), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*110, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*112, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*148, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*178, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*187, mapHeight-(BLOCK_SIZE*11), BLOCK_SIZE, BLOCK_SIZE));
 				//need to know: Enemy type#, spawn coords
-				//allEnemy.add(new EnemyKuribo(getMarioSpawnCoord()[0]+50,getMarioSpawnCoord()[1],12,12));
+				//allEnemy.add(new EnemyKuribo(getMarioSpawnCoord()[0]+50,getMarioSpawnCoord()[1],16,16));
 		
 			}
 		else if (stageNumber == 2) {
 			//stage 2
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*17, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*38, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*44, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*60, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*62, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*64, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*75, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*95, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*97, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*112, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*132, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
 		}
 		else if (stageNumber == 3) {
 			//stage 3			
@@ -92,7 +108,7 @@ public class Map implements java.io.Serializable{
 			//stage 1
 			stageOneObjIniti();
 			flagX = 198*BLOCK_SIZE;
-			mapWidth = 3520;
+			mapWidth = 4220;
 		}
 		else if (stageNumber == 2) {
 			//stage 2
@@ -108,6 +124,51 @@ public class Map implements java.io.Serializable{
 
 	//each stage "Floorplan"----------------------------------------
 	public void stageOneObjIniti() {
+		//HiddenRoom--------------------------------------------------------------
+		//Starting Point: x: 221 y: 15
+		//floor
+		for (int i = 220; i <= 243; i++) { //assume making 100 floor tiles
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+			//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new Floor(2, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
+		//normal blocks
+			//left pillar
+		for (int i = 0; i <13; i++) {
+			allObj.add(new Block(6, 220*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(3+i)), BLOCK_SIZE , BLOCK_SIZE));
+		}
+			//upper
+		for (int i = 224; i <239; i++) {
+			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(15)), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 224; i <239; i++) {
+			for (int j = 0; j < 1; j++) {
+				allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(3+j)), BLOCK_SIZE , BLOCK_SIZE));				
+			}
+		}
+			//right pillar
+		for (int i = 0; i <13; i++) {
+			allObj.add(new Block(6, 243*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(3+i)), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		
+		//pipe out
+		hiddenPipeExit = new PipeHead(1, 241*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,true); //has hidden passage
+		allObj.add(hiddenPipeExit); 
+		allObj.add(new PipeBody(1, 241*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
+				
+		//coin		
+		for (int i = 224; i < 239 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE , BLOCK_SIZE));
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 225; i < 238 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*8), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		
+
+	//------------------------------------------------------------
+
 		//floor objects creation:
 		//empty floor list:
 		//x:70,71; 87,88,89; 154,155
@@ -125,7 +186,7 @@ public class Map implements java.io.Serializable{
 		allObj.add(new Floor(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
 		allObj.add(new Floor(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
 	}
-	for (int i = 156; i < 221; i++) { //last tile is 220
+	for (int i = 156; i < 220; i++) { //last tile is 220
 		allObj.add(new Floor(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
 		allObj.add(new Floor(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
 	}
@@ -249,12 +310,14 @@ public class Map implements java.io.Serializable{
 	allObj.add(new PipeBody(1, 47*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	allObj.add(new PipeBody(1, 47*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 
-	allObj.add(new PipeHead(1, 58*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
+	hiddenPipeIn = new PipeHead(1, 58*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), BLOCK_SIZE*2 , BLOCK_SIZE*2,true); 
+	allObj.add(hiddenPipeIn); //hidden path in
 	allObj.add(new PipeBody(1, 58*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	allObj.add(new PipeBody(1, 58*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 	allObj.add(new PipeBody(1, 58*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
-	
-	allObj.add(new PipeHead(1, 164*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
+
+	hiddenPipeOut = new PipeHead(1, 164*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,false); //hidden pipe out
+	allObj.add(hiddenPipeOut);
 	allObj.add(new PipeBody(1, 164*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE*2 , BLOCK_SIZE*2));
 
 	allObj.add(new PipeHead(1, 180*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE*2 , BLOCK_SIZE*2,false));
