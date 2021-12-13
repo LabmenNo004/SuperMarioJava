@@ -12,7 +12,6 @@ public abstract class Charactor implements Runnable, java.io.Serializable {
 	protected BufferedImage image; // changed to BufferedImage
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
 	protected int VelX, VelY;
-	public Id id;
 	protected boolean isInAir;
     protected boolean face=true;  // true=right, false=left
     protected boolean walk = true;
@@ -95,9 +94,6 @@ public abstract class Charactor implements Runnable, java.io.Serializable {
 		VelY = velY;
 	}
 
-	public Id getId() {
-		return this.id;
-	}
 
 	public abstract void rightCollide(GameObject obj);
 
