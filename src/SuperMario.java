@@ -22,14 +22,17 @@ public class SuperMario {
 	public static final int WIDTH = 400;
 	public static final int HEIGHT = 318;
 	public static int stageNumber = 1;
+	public static int lastStage = 2;
 	public static int marioLives = 3;
 	public static int score = 0;
 	public static int coins=0;
 	private static JFrame frame;
 	public static boolean hasStarted = false;
+	public static boolean hasEnded = false;
 	public static Stage stage = null;
 	public static BufferedImage[] numberImages = new BufferedImage[10];
 	public static BufferedImage startImages;
+	public static BufferedImage endImages;
 	public static BufferedImage uiImages;
 	public static Thread stageThread = null;
 	private GameData gameData = new GameData();
@@ -38,6 +41,7 @@ public class SuperMario {
 		try {
 			startImages = ImageIO.read(new File(GameObject.path+"start.png"));
 			uiImages = ImageIO.read(new File(GameObject.path+"UI.png"));
+			endImages = ImageIO.read(new File(GameObject.path+"gameEnd.png"));
 		for (int i=0; i<10; i++) {
 			
 				numberImages[i] = ImageIO.read(new File(GameObject.path+ i +".png"));
@@ -102,6 +106,15 @@ public class SuperMario {
 	}
 	
 	public static void gameStart() {
+//		restore data
+		if (hasEnded) {
+			stageNumber = 1;
+			marioLives = 3;
+			score = 0;
+			coins = 0;
+		}
+		hasEnded = false;
+		
 		StartPanel startPanel = new StartPanel();
 		frame.getContentPane().removeAll();
 		frame.add(startPanel);
@@ -122,23 +135,26 @@ public class SuperMario {
 		SwingUtilities.updateComponentTreeUI(frame);
 	}
 	public static void gameWin() {
-		stageNumber=stageNumber+1;
-		hasStarted=false;
-		gameStart();
+		if (stageNumber != lastStage) {
+			stageNumber=stageNumber+1;
+			hasStarted=false;
+			gameStart();
+		}else {
+			gameOver();
+		}
 	}
 	
 	public static void gameOver() {
 //		show game over view, showing score. 
 //		needs implement
-
-//		restore data
-		stageNumber = 1;
-		marioLives = 3;
-		score = 0;
-		coins = 0;
+		EndPanel endPanel = new EndPanel();
+		frame.getContentPane().removeAll();
+		frame.add(endPanel);
+		SwingUtilities.updateComponentTreeUI(frame);		
+			
 //		restart
-		hasStarted= false;
-		gameStart();
+		hasEnded = true;
+		hasStarted= false;		
 	}
 	public static void eatCoin() {
 		score+=200;
@@ -171,6 +187,21 @@ public class SuperMario {
 	public static int getHEIGHT() {
 		return HEIGHT;
 	}
+	
+	public static void paintHighScore(Graphics g) {
+		//g.drawImage(SuperMario.uiImages, 0 , -20,null);
+		int size = 14;
+//		score
+		int x = 150;
+		int y = 150;
+		int offset = 0;
+		BufferedImage[] scoreImages = getImages(score, 6);
+		for (BufferedImage img: scoreImages) {
+			g.drawImage(img,x+offset,y,size,size,null);
+			offset+=size;
+		}
+	}
+
 	
 	public static void paintUI(Graphics g) {
 		g.drawImage(SuperMario.uiImages, 0 , -20,null);
@@ -243,6 +274,10 @@ public class SuperMario {
 		}
 
 		public void keyPressed(KeyEvent e) {
+			if (hasEnded) {
+				gameStart();
+				return;
+			}
 			if (hasStarted) {
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 					stage.getMario().leftPressed();
@@ -346,6 +381,20 @@ class StartPanel extends JPanel{
 		 /* Draw the image, applying the filter */
 	    	g.drawImage(SuperMario.startImages, 0 , -40, SuperMario.WIDTH,SuperMario.HEIGHT,null);
 	    	SuperMario.paintUI(g);
+	    	
+	    }
+	
+}
+
+class EndPanel extends JPanel{
+	EndPanel(){
+		//this.setBackground(Color.BLACK);
+	}
+	
+	 public void paintComponent(Graphics g) {
+		 /* Draw the image, applying the filter */
+	    	g.drawImage(SuperMario.endImages, 0 , -40, SuperMario.WIDTH,SuperMario.HEIGHT,null);
+	    	SuperMario.paintHighScore(g);
 	    	
 	    }
 	
