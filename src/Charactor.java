@@ -13,7 +13,6 @@ public abstract class Charactor implements Runnable, java.io.Serializable {
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
 	protected int VelX, VelY;
 	public Id id;
-	public Handler handler;
 	protected boolean isInAir;
     protected boolean face=true;  // true=right, false=left
     protected boolean walk = true;
@@ -46,9 +45,6 @@ public abstract class Charactor implements Runnable, java.io.Serializable {
 	public abstract void tick();
 
 
-	public void die() {
-		handler.removeCharactor(this);
-	}
 
 	public int getX() {
 		return x;

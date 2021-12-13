@@ -19,6 +19,7 @@ public class Mario extends Charactor{
 	protected static BufferedImage maImage = null;
 	private int counterRight=0;
 	private int counterLeft=0;
+	private static int MAXV = 12;
 	
 	public Mario(int x, int y,int height, int width) {
 		super(x,y,height,width);
@@ -132,19 +133,9 @@ public class Mario extends Charactor{
 		this.walk = true;
 	}
 	
-	public void EnemyRightCollide(Enemy enm) {
-		SuperMario.stage.die();
-	}
 
-	public void EnemyLeftCollide(Enemy enm) {
-		SuperMario.stage.die();
-	}
 
-	public void EnemyUpCollide(Enemy enm) {					
-		}
 
-	public void EnemyDownCollide(Enemy enm) {
-		}
 
 	/*
 	if(jumping) {
@@ -241,8 +232,7 @@ public class Mario extends Charactor{
 	//if(jumping) {
 
 		velY += 1;
-		setVelY(velY);
-		
+		setVelY(Math.min(velY, MAXV));
 
 	//}
 	
@@ -267,55 +257,22 @@ public class Mario extends Charactor{
 			int upOverlap = enm.getY() + enm.getHeight() - this.getY();
 			int downOverlap = this.getY() + this.getHeight() - enm.getY();
 			
-			if (this.isInAir && rightOverlap < edge) {
-//				slide
-				slide = 1;
-				sobj = enm;
-				continue;
-			}
-			if (this.isInAir && leftOverlap < edge) {
-//				slide
-				slide = 2;
-				sobj = enm;
-				continue;
-			}
-			
-			if (enm.getX() <= (this.getX() + this.getWidth()) && enm.getX() > this.getX() && (rightOverlap < upOverlap
-					&& rightOverlap < downOverlap)) {
 
-//				right collision
-				this.EnemyRightCollide(enm);
-			} else if (this.getX() <= enm.getX() + enm.getWidth()
-					&& this.getX() + this.getWidth() > enm.getX() + enm.getWidth() && (leftOverlap < upOverlap
-					&& leftOverlap < downOverlap)) {
-//					left collision
-				this.EnemyLeftCollide(enm);
+			if (isInAir && (downOverlap<=6 || leftOverlap>=6 || leftOverlap>=6)) {
+				allenemy.remove(enm);
+				
+				this.setVelY(-6);
+				this.isInAir = true;
+				break;
+			}else {
+				SuperMario.stage.die();
+
 			}
 
-			else {
-				if (this.getY() + this.getHeight() < enm.getY() + enm.getHeight()) {
-//					down collision
-					this.EnemyDownCollide(enm);
-					allenemy.remove(enm);
-					this.setVelY(-6);
-					this.isInAir = true;
-					break;
-				} else {
-//					up collision
-					this.EnemyUpCollide(enm);
-				}
-			}
-		}
+
 		//this.isInAir=inAir;
-		if(isInAir) {
-			if(slide == 1) {
-				this.EnemyRightCollide(sobj);
-			}
-			else if (slide == 2) {
-				this.setX(sobj.getX() + sobj.getWidth());
-				this.EnemyLeftCollide(sobj);
-			}
-		}
+
+	}
 	}
 	
 	public void checkHiddenPipe() {

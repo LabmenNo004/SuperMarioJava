@@ -15,7 +15,6 @@ public class Stage extends JPanel implements Runnable {
 	private Map map = null;
 	private Mario mario;
 	private EnemyKuribo enemykuribo; //will use allEnemy list to create enemies
-	public Handler handler;
 	private float time = 400;
 	private boolean inProgress = true;
 	private boolean showMario=true;

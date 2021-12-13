@@ -17,7 +17,6 @@ public class EnemyKuribo extends Enemy{
 	private List<GameObject> allObj = null;
 	private List<Enemy> allEnemy = null;
 	protected static BufferedImage KuriImage = null;
-	public Handler handler;
 	int counter = 0;
 	
 	
