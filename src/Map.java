@@ -170,7 +170,7 @@ public class Map implements java.io.Serializable{
 			allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(15)), BLOCK_SIZE , BLOCK_SIZE));
 		}
 		for (int i = 224; i <239; i++) {
-			for (int j = 0; j < 1; j++) {
+			for (int j = 0; j < 3; j++) {
 				allObj.add(new Block(6, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*(3+j)), BLOCK_SIZE , BLOCK_SIZE));				
 			}
 		}
