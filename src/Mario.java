@@ -128,8 +128,11 @@ public class Mario extends Charactor{
 	public void downCollide(GameObject obj) {
 //		this.falling = false;
 //		this.jumping = false;
+		if (this.VelX!=0) {
+			this.walk = true;
+		}
 		this.setVelY(0);
-//		this.walk = true;
+//		
 	}
 	
 
