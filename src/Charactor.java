@@ -14,7 +14,7 @@ public abstract class Charactor implements Runnable, java.io.Serializable {
 	protected int VelX, VelY;
 	protected boolean isInAir;
     protected boolean face=true;  // true=right, false=left
-    protected boolean walk = true;
+    protected boolean walk = false;
 
 
 

@@ -17,8 +17,7 @@ public class Mario extends Charactor{
 	
 	
 	protected static BufferedImage maImage = null;
-	private int counterRight=0;
-	private int counterLeft=0;
+	private int counter=0;
 	private static int MAXV = 12;
 	
 	public Mario(int x, int y,int height, int width) {
@@ -44,37 +43,37 @@ public class Mario extends Charactor{
 			}
 			else  if(!this.face && !isInAir && !this.walk) {
 				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
-				System.out.println(counterLeft);
+//				System.out.println(counterLeft);
 			}
 			else if(!this.face && isInAir) {
 				maImage = ImageIO.read(new File(path+"jump_left"+".png"));
 			}
 			
-			else if(this.face && !isInAir && this.walk == true && counterRight ==0 ) {
+			else if(this.face && !isInAir && this.walk == true && counter ==0 ) {
 				maImage = ImageIO.read(new File(path+"marioRight"+".png"));
 			}
-			else if(this.face && !isInAir && this.walk == true && counterRight ==1 ) {
+			else if(this.face && !isInAir && this.walk == true && counter ==1 ) {
 				maImage = ImageIO.read(new File(path+"marioWalkRight1"+".png"));
 			}
-			else if(this.face && !isInAir && this.walk == true && counterRight ==2 ) {
+			else if(this.face && !isInAir && this.walk == true && counter ==2 ) {
 				maImage = ImageIO.read(new File(path+"marioWalkRight2"+".png"));
 			}
-			else if(this.face && !isInAir && this.walk == true && counterRight ==3 ) {
+			else if(this.face && !isInAir && this.walk == true && counter ==3 ) {
 				maImage = ImageIO.read(new File(path+"marioWalkRight3"+".png"));
 			}
-			else if(!this.face && !isInAir && this.walk == true && counterLeft ==0 ) {
+			else if(!this.face && !isInAir && this.walk == true && counter ==0 ) {
 				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
 			}
-			else if(!this.face && !isInAir && this.walk == true && counterLeft ==1 ) {
+			else if(!this.face && !isInAir && this.walk == true && counter ==1 ) {
 				maImage = ImageIO.read(new File(path+"marioWalkLeft1"+".png"));
 			}
-			else if(!this.face && !isInAir && this.walk == true && counterLeft ==2 ) {
+			else if(!this.face && !isInAir && this.walk == true && counter ==2 ) {
 				maImage = ImageIO.read(new File(path+"marioWalkLeft2"+".png"));
 			}
-			else if(!this.face && !isInAir && this.walk == true && counterLeft ==3 ) {
+			else if(!this.face && !isInAir && this.walk == true && counter ==3 ) {
 				maImage = ImageIO.read(new File(path+"marioWalkLeft3"+".png"));
 			}
-			
+			walk();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("failed to import background image");
@@ -130,7 +129,7 @@ public class Mario extends Charactor{
 //		this.falling = false;
 //		this.jumping = false;
 		this.setVelY(0);
-		this.walk = true;
+//		this.walk = true;
 	}
 	
 
@@ -153,28 +152,19 @@ public class Mario extends Charactor{
 		
 	}*/
 	
-	public void rightWalk() {
-		if(counterRight<3) {
-		counterRight+=1;
+	public void walk() {
+		if(counter<3) {
+		counter+=1;
 		}
 		else {
-			counterRight = 0;
+			counter = 0;
 		}
 	}
 	
-	public void leftWalk() {
-		if(counterLeft<3) {
-		counterLeft+=1;
-		}
-		else {
-			counterLeft = 0;
-		}
-		
-	}
 	
 	public void rightPressed() {
 		if (! isInAir) {
-		rightWalk();
+//		rightWalk();
 		this.face = true;
 		this.walk = true;
 		}
@@ -183,17 +173,17 @@ public class Mario extends Charactor{
 		
 	}
 	public void rightReleased() {
-		if (VelX>0)
-		setVelX(0);
-		if(!isInAir) {
-			this.walk = false;
-			this.counterRight = 0;
+		if (VelX>0) {
+			setVelX(0);
+			if(!isInAir) {
+			
+				this.walk = false;
+			}
 		}
-
 	}
 	public void leftPressed() {
 		if (! isInAir) {
-			leftWalk();
+//			leftWalk();
 		this.face = false;
 		this.walk = true;
 		}
@@ -201,13 +191,13 @@ public class Mario extends Charactor{
 		
 	}
 	public void leftReleased() {
-		if (VelX<0)
-		setVelX(0);
+		if (VelX<0) {
+			setVelX(0);
 		if(!isInAir) {
+			
 			this.walk = false;
-			this.counterLeft = 0;
 		}
-
+		}
 	}
 	public void downPressed() {
 		checkHiddenPipe();
