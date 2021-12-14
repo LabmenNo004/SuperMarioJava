@@ -22,7 +22,7 @@ public class SuperMario {
 	public static final int WIDTH = 400;
 	public static final int HEIGHT = 318;
 	public static int stageNumber = 1;
-	public static int lastStage = 2;
+	public static int lastStage = 3;
 	public static int marioLives = 3;
 	public static int score = 0;
 	public static int coins=0;

@@ -40,7 +40,6 @@ public class Map implements java.io.Serializable{
 		this.marioSpawnCoord[0] = BLOCK_SIZE*3;		
 		//y assuming floor at y:mapHeight - 3 blocks (3 blocks above bottom; 2 blocks of floor)
 		this.marioSpawnCoord[1] = mapHeight-(BLOCK_SIZE*3);
-		//may add other spawn point based on stage later
 		
 		//TESTING:
 		//this.marioSpawnCoord[0] = BLOCK_SIZE*(100); 
@@ -89,7 +88,32 @@ public class Map implements java.io.Serializable{
 			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*132, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
 		}
 		else if (stageNumber == 3) {
-			//stage 3			
+			//stage 3
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*29, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*30, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*31, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*29, mapHeight-(BLOCK_SIZE*11), BLOCK_SIZE, BLOCK_SIZE));			
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*45, mapHeight-(BLOCK_SIZE*12), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*46, mapHeight-(BLOCK_SIZE*12), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*47, mapHeight-(BLOCK_SIZE*12), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*62, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*67, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));			
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*68, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*69, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*73, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*80, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*81, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*106, mapHeight-(BLOCK_SIZE*9), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*107, mapHeight-(BLOCK_SIZE*9), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*108, mapHeight-(BLOCK_SIZE*9), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*118, mapHeight-(BLOCK_SIZE*8), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*119, mapHeight-(BLOCK_SIZE*8), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*132, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*135, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE, BLOCK_SIZE));
+			allEnemy.add(new EnemyKuribo(BLOCK_SIZE*142, mapHeight-(BLOCK_SIZE*9), BLOCK_SIZE, BLOCK_SIZE));
+			
+
+
 		}
 	}
 	
@@ -120,6 +144,8 @@ public class Map implements java.io.Serializable{
 		else if (stageNumber == 3) {
 			//stage 3
 			stageThreeObjIniti();
+			flagX = 153*BLOCK_SIZE;
+			mapWidth = 3520;
 		}
 	}
 
@@ -335,7 +361,6 @@ public class Map implements java.io.Serializable{
 	//
 
 	}
-
 	public void stageTwoObjIniti() {
 	//HiddenRoom--------------------------------------------------------------
 		//Starting Point: x: 183 y: 15
@@ -589,7 +614,283 @@ public class Map implements java.io.Serializable{
 
 
 	}
-	public void stageThreeObjIniti() {}
+	public void stageThreeObjIniti() {
+		//floor objects creation:
+		for (int i = 0; i < 16; i++) {
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+				//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new Floor(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new Floor(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
+		for (int i = 130; i < 174; i++) {
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+				//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new Floor(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new Floor(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
+		
+		//item box
+		allObj.add(new Block(3, 61*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*5), BLOCK_SIZE , BLOCK_SIZE));//item box
+
+		//castle
+		allObj.add(new Castle(1, 0*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE*5 , BLOCK_SIZE*5));//5 blocks of height
+		allObj.add(new Castle(2, 156*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*13), BLOCK_SIZE*5 , BLOCK_SIZE*5));//7 blocks of height
+				
+		//coin objects creation:
+			//no type, only 1
+		for (int i = 29; i <= 31 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*11), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 35; i <= 35 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 39; i <= 40 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*13), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 52; i <= 53 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*9), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 62; i <= 65 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*11), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 86; i <= 87 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*10), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 93; i <= 94 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*11), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 97; i <= 98 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*11), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 113; i <= 115 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE , BLOCK_SIZE));
+		}
+		for (int i = 121; i <= 122 ; i++) {
+			allObj.add(new Coin(i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*11), BLOCK_SIZE , BLOCK_SIZE));
+		}
+
+		
+		//platform object creation
+		allObj.add(new Platform(1, 57*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*10), (int)(BLOCK_SIZE*1) , BLOCK_SIZE*3));
+		allObj.add(new Platform(1, 87*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), (int)(BLOCK_SIZE*0.7) , BLOCK_SIZE*3));
+		allObj.add(new Platform(1, 94*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (int)(BLOCK_SIZE*0.7) , BLOCK_SIZE*3));
+		allObj.add(new Platform(1, 132*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*9), (int)(BLOCK_SIZE*0.7) , BLOCK_SIZE*3));
+			//mushroom platform left:2 Body:3 Right: 4
+		allObj.add(new Platform(2, 20*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), (BLOCK_SIZE) , BLOCK_SIZE));
+		allObj.add(new Platform(3, 21*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), (BLOCK_SIZE) , BLOCK_SIZE));
+		allObj.add(new Platform(3, 22*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), (BLOCK_SIZE) , BLOCK_SIZE));
+		allObj.add(new Platform(4, 23*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 26*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 27 ; i <=32; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 33*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 28*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*10), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 29 ; i <=31; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*10), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 32*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*10), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 34*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 35 ; i <=35; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 36*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 37*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 38 ; i <=40; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 41*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), (BLOCK_SIZE) , BLOCK_SIZE));
+		
+		allObj.add(new Platform(2, 42*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*11), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 43 ; i <=47; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*11), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 48*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*11), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 52*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 53 ; i <=54; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 55*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 61*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 62 ; i <=64; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 65*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 62*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*10), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 63 ; i <=64; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*10), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 65*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*10), (BLOCK_SIZE) , BLOCK_SIZE));
+		
+		allObj.add(new Platform(2, 67*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 68 ; i <=70; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 71*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 72*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 73 ; i <=73; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 74*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 78*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*9), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 79 ; i <=82; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*9), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 83*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*9), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 98*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 99 ; i <=100; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 101*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*4), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 104*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*8), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 105 ; i <=110; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*8), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 111*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*8), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 113*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 114 ; i <=114; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 115*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), (BLOCK_SIZE) , BLOCK_SIZE));
+		
+		allObj.add(new Platform(2, 116*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 117 ; i <=118; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 119*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		allObj.add(new Platform(2, 123*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+		for (int i = 124 ; i <=125; i++) { //x body block length
+			allObj.add(new Platform(3, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+		}
+		allObj.add(new Platform(4, 126*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*6), (BLOCK_SIZE) , BLOCK_SIZE));
+
+		//wallPaper creation
+		for (int i = 21; i <= 22; i++) {
+			//floor assumption: length & width = 16; y starts at mapHeight - 2 blocks ; floorType 1
+				//public Floor(int floorType, int x, int y,int length, int width)
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*2), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*1), BLOCK_SIZE , BLOCK_SIZE)); //lowest level
+		}
+
+		for (int i = 27; i <= 32; i++) { //x
+			for (int j = 1 ; j <=5; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 29; i <= 31; i++) { //x
+			for (int j = 7 ; j <=9; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 35; i <= 35; i++) { //x
+			for (int j = 1 ; j <=2; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 38; i <= 40; i++) { //x
+			for (int j = 1 ; j <=6; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 43; i <= 47; i++) { //x
+			for (int j = 1 ; j <=10; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 53; i <= 54; i++) { //x
+			for (int j = 1 ; j <=1; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 62; i <= 64; i++) { //x
+			for (int j = 1 ; j <=1; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 63; i <= 64; i++) { //x
+			for (int j = 3 ; j <=9; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 68; i <= 70; i++) { //x
+			for (int j = 1 ; j <=1; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 73; i <= 73; i++) { //x
+			for (int j = 1 ; j <=5; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 79; i <= 82; i++) { //x
+			for (int j = 1 ; j <=8; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 99; i <= 100; i++) { //x
+			for (int j = 1 ; j <=3; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 105; i <= 110; i++) { //x
+			for (int j = 1 ; j <=7; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 114; i <= 114; i++) { //x
+			for (int j = 1 ; j <=1; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 117; i <= 118; i++) { //x
+			for (int j = 1 ; j <=5; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 124; i <= 125; i++) { //x
+			for (int j = 1 ; j <=5; j++) { //y
+			allObj.add(new WallPaper(1, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		
+		//Block creation
+		for (int i = 139; i <= 140; i++) { //x
+			for (int j = 3 ; j <=6; j++) { //y
+			allObj.add(new Block(4, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 141; i <= 142; i++) { //x
+			for (int j = 3 ; j <=8; j++) { //y
+			allObj.add(new Block(4, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		for (int i = 143; i <= 144; i++) { //x
+			for (int j = 3 ; j <=10; j++) { //y
+			allObj.add(new Block(4, i*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*j), BLOCK_SIZE , BLOCK_SIZE)); //2nd lowest
+			}
+		}
+		
+		
+		//flagPole object creation
+		allObj.add(new FlagPole(1, 153*BLOCK_SIZE, (int)(mapHeight-(BLOCK_SIZE*12.5)), BLOCK_SIZE , BLOCK_SIZE));
+		flag = new Flag(1, 153*BLOCK_SIZE-8, mapHeight-(BLOCK_SIZE*12), BLOCK_SIZE , BLOCK_SIZE);
+		allObj.add(flag); //flag in the middle of a block (of the pole), need to go down once goal is hit
+		allObj.add(new Block(4, 153*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE , BLOCK_SIZE));
+		
+	}
 	
 	//--------------------------------------------------------------
 	
