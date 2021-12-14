@@ -83,6 +83,9 @@ public class Stage extends JPanel implements Runnable {
 			} else {
 //				animation of going to castle
 				camUpdate = false;
+				if (map.getFlag().getY()+map.getFlag().height<Map.mapHeight-(Map.BLOCK_SIZE*3)) {
+					map.getFlag().setY(map.getFlag().getY() + 5);
+				}
 				if(mario.getY()+mario.height<Map.mapHeight-(Map.BLOCK_SIZE*2)) {
 					mario.y+=5;
 				}else if(mario.getX() <= Map.flagX+Map.BLOCK_SIZE*7) {
