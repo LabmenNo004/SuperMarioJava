@@ -18,6 +18,7 @@ public class Map implements java.io.Serializable{
 	protected static String path = System.getProperty("user.dir") + "/src/images/";
 	protected static final int BLOCK_SIZE = 16; //constant of each block legth and width
 	protected static int flagX;
+	protected Flag flag; //	
 	protected static PipeHead hiddenPipeIn; //1st in
 	protected static PipeHead hiddenPipeExit; //exit room
 	protected static PipeHead hiddenPipeOut; //back to main map
@@ -326,7 +327,8 @@ public class Map implements java.io.Serializable{
 	//flagPole object creation
 	allObj.add(new Block(4, 198*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE , BLOCK_SIZE));
 	allObj.add(new FlagPole(1, 198*BLOCK_SIZE, (int)(mapHeight-(BLOCK_SIZE*12.5)), BLOCK_SIZE , BLOCK_SIZE));
-	allObj.add(new Flag(1, 198*BLOCK_SIZE-8, mapHeight-(BLOCK_SIZE*12), BLOCK_SIZE , BLOCK_SIZE)); //flag in the middle of a block (of the pole), need to go down once goal is hit
+	flag = new Flag(1, 198*BLOCK_SIZE-8, mapHeight-(BLOCK_SIZE*12), BLOCK_SIZE , BLOCK_SIZE);
+	allObj.add(flag); //flag in the middle of a block (of the pole), need to go down once goal is hit
 	
 	//castle
 	allObj.add(new Castle(1, 203*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE*5 , BLOCK_SIZE*5));//5 blocks of height
@@ -578,8 +580,13 @@ public class Map implements java.io.Serializable{
 
 	//flagPole object creation
 		allObj.add(new FlagPole(1, 165*BLOCK_SIZE, (int)(mapHeight-(BLOCK_SIZE*12.5)), BLOCK_SIZE , BLOCK_SIZE));
-		allObj.add(new Flag(1, 165*BLOCK_SIZE-8, mapHeight-(BLOCK_SIZE*12), BLOCK_SIZE , BLOCK_SIZE)); //flag in the middle of a block (of the pole), need to go down once goal is hit
+		flag = new Flag(1, 165*BLOCK_SIZE-8, mapHeight-(BLOCK_SIZE*12), BLOCK_SIZE , BLOCK_SIZE);
+		allObj.add(flag); //flag in the middle of a block (of the pole), need to go down once goal is hit
 		allObj.add(new Block(7, 165*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*3), BLOCK_SIZE , BLOCK_SIZE));
+
+	//castle
+		allObj.add(new Castle(1, 170*BLOCK_SIZE, mapHeight-(BLOCK_SIZE*7), BLOCK_SIZE*5 , BLOCK_SIZE*5));//5 blocks of height
+
 
 	}
 	public void stageThreeObjIniti() {}
@@ -606,5 +613,8 @@ public class Map implements java.io.Serializable{
 	public int getHeight() {
 		//return map height
 		return mapHeight;
+	}
+	public Flag getFlag() {
+		return flag;
 	}
 }

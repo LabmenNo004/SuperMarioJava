@@ -80,9 +80,9 @@ public class Stage extends JPanel implements Runnable {
 //					die
 					isDead = true;
 				}
-			} else if(SuperMario.stageNumber==1){
-				
+			} else {
 //				animation of going to castle
+				camUpdate = false;
 				if(mario.getY()+mario.height<Map.mapHeight-(Map.BLOCK_SIZE*2)) {
 					mario.y+=5;
 				}else if(mario.getX() <= Map.flagX+Map.BLOCK_SIZE*7) {
@@ -96,10 +96,12 @@ public class Stage extends JPanel implements Runnable {
 						e.printStackTrace();
 					}
 					SuperMario.gameWin();
+					camUpdate = true;
 					
 					Thread.currentThread().interrupt();
 					return;
 				}
+				
 			}
 
 			//edited here to incorp. allEnemy list usage
