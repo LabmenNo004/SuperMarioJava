@@ -17,7 +17,8 @@ public class Platform extends GameObject{
 		//pulling image		
 		try {
 			this.image = new BufferedImage(width, length, BufferedImage.TYPE_INT_ARGB);
-			this.image = ImageIO.read(new File(path+ "platform"+ PlatformType +".png")); // user.dir/scr/images/Floor#.png
+			//this.image = ImageIO.read(new File(path+ "platform"+ PlatformType +".png")); // user.dir/scr/images/Floor#.png
+			this.image = ImageIO.read(getClass().getResource("/images/platform"+ PlatformType +".png")); // user.dir/scr/images/Floor#.png
 		} catch (IOException e) {
 			System.out.println("Fail to import image");
 			e.printStackTrace();
@@ -26,7 +27,8 @@ public class Platform extends GameObject{
 	public void reload() {
 		try {
 			this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-			this.image = ImageIO.read(new File(path + "platform" + PlatformType + ".png")); // user.dir/scr/images/Floor#.png
+			//this.image = ImageIO.read(new File(path + "platform" + PlatformType + ".png")); // user.dir/scr/images/Floor#.png
+			this.image = ImageIO.read(getClass().getResource("/images/platform"+ PlatformType +".png")); // user.dir/scr/images/Floor#.png
 		} catch (IOException e) {
 			System.out.println("Fail to import image");
 			e.printStackTrace();

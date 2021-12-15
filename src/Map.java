@@ -121,7 +121,9 @@ public class Map implements java.io.Serializable{
 		//set background
 		try {
 			bgImage = new BufferedImage(SuperMario.getWIDTH(), SuperMario.getHEIGHT(), BufferedImage.TYPE_INT_ARGB);
-			bgImage = ImageIO.read(new File(path+ "bg"+ stageNumber +".png"));// user.dir/scr/images/bg#.png
+			//bgImage = ImageIO.read(new File(path+ "bg"+ stageNumber +".png"));// user.dir/scr/images/bg#.png
+			bgImage = ImageIO.read(getClass().getResource("/images/bg"+ stageNumber +".png"));// user.dir/scr/images/bg#.png
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("failed to import background image");

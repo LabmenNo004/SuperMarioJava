@@ -37,14 +37,23 @@ public class SuperMario {
 	public static Thread stageThread = null;
 	private GameData gameData = new GameData();
 
-	static {
+	//static {
+		{
 		try {
-			startImages = ImageIO.read(new File(GameObject.path+"start.png"));
-			uiImages = ImageIO.read(new File(GameObject.path+"UI.png"));
-			endImages = ImageIO.read(new File(GameObject.path+"gameEnd.png"));
-		for (int i=0; i<10; i++) {
+			//startImages = ImageIO.read(new File(GameObject.path+"start.png"));
+			//uiImages = ImageIO.read(new File(GameObject.path+"UI.png"));
+			//endImages = ImageIO.read(new File(GameObject.path+"gameEnd.png"));
 			
-				numberImages[i] = ImageIO.read(new File(GameObject.path+ i +".png"));
+			//testing
+			startImages = ImageIO.read(getClass().getResource("/images/start.png"));
+			uiImages = ImageIO.read(getClass().getResource("/images/UI.png"));
+			endImages = ImageIO.read(getClass().getResource("/images/gameEnd.png"));
+
+			for (int i=0; i<10; i++) {
+			
+				//numberImages[i] = ImageIO.read(new File(GameObject.path+ i +".png"));
+				numberImages[i] = ImageIO.read(getClass().getResource("/images/"+ i +".png"));
+
 			} 
 		}catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -72,7 +81,8 @@ public class SuperMario {
 		FileInputStream fis;
 		try {
 			fis = new FileInputStream("mario.sav");
-	      ObjectInputStream ois = new ObjectInputStream(fis);
+
+			ObjectInputStream ois = new ObjectInputStream(fis);
 
 	      gameData = (GameData) ois.readObject();
 	      gameData.load();
@@ -346,6 +356,7 @@ public class SuperMario {
 	
 	public static AudioStream playSound(String s) {
 		String songFile = System.getProperty("user.dir") + "/src/sound/"+s+".wav";
+
 	    InputStream in;
 		try {
 			in = new FileInputStream(songFile);
@@ -353,6 +364,7 @@ public class SuperMario {
 		    AudioStream audioStream = new AudioStream(in);
 		    // play the audio clip with the audioplayer class
 		    AudioPlayer.player.start(audioStream);
+
 		    return audioStream;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

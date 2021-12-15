@@ -17,7 +17,9 @@ public class Castle extends GameObject{
 		//pulling image		
 		try {
 			this.image = new BufferedImage(width, length, BufferedImage.TYPE_INT_ARGB);
-			this.image = ImageIO.read(new File(path+ "castle"+ castleType +".png")); // user.dir/scr/images/Floor#.png
+			//this.image = ImageIO.read(new File(path+ "castle"+ castleType +".png")); // user.dir/scr/images/Floor#.png
+			this.image = ImageIO.read(getClass().getResource("/images/castle"+ castleType +".png")); // user.dir/scr/images/Floor#.png
+
 		} catch (IOException e) {
 			System.out.println("Fail to import image");
 			e.printStackTrace();

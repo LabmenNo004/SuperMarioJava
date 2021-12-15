@@ -36,42 +36,54 @@ public class Mario extends Charactor{
 			maImage = new BufferedImage(Map.getMarioSpawnCoord()[0],Map.getMarioSpawnCoord()[1], BufferedImage.TYPE_INT_ARGB);
 //			System.out.println("mario image loaded");
 			if(this.face && !isInAir &&!this.walk) {
-				maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
+				//maImage = ImageIO.read(new File(path+"marioRight"+".png"));// user.dir/scr/images/bg#.png
+				maImage = ImageIO.read(getClass().getResource("/images/marioRight"+".png"));
 			}
 			else if(this.face && isInAir){
-				maImage = ImageIO.read(new File(path+"jump_right"+".png"));
+				//maImage = ImageIO.read(new File(path+"jump_right"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/jump_right"+".png"));
 			}
 			else  if(!this.face && !isInAir && !this.walk) {
-				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
+				//maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/marioLeft"+".png"));
 //				System.out.println(counterLeft);
 			}
 			else if(!this.face && isInAir) {
-				maImage = ImageIO.read(new File(path+"jump_left"+".png"));
+				//maImage = ImageIO.read(new File(path+"jump_left"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/jump_left"+".png"));
 			}
 			
 			else if(this.face && !isInAir && this.walk == true && counter ==0 ) {
-				maImage = ImageIO.read(new File(path+"marioRight"+".png"));
+				//maImage = ImageIO.read(new File(path+"marioRight"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/marioRight"+".png"));
 			}
 			else if(this.face && !isInAir && this.walk == true && counter ==1 ) {
-				maImage = ImageIO.read(new File(path+"marioWalkRight1"+".png"));
+				//maImage = ImageIO.read(new File(path+"marioWalkRight1"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/marioWalkRight1"+".png"));
 			}
 			else if(this.face && !isInAir && this.walk == true && counter ==2 ) {
-				maImage = ImageIO.read(new File(path+"marioWalkRight2"+".png"));
+				//maImage = ImageIO.read(new File(path+"marioWalkRight2"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/marioWalkRight2"+".png"));
 			}
 			else if(this.face && !isInAir && this.walk == true && counter ==3 ) {
-				maImage = ImageIO.read(new File(path+"marioWalkRight3"+".png"));
+				//maImage = ImageIO.read(new File(path+"marioWalkRight3"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/marioWalkRight3"+".png"));
 			}
 			else if(!this.face && !isInAir && this.walk == true && counter ==0 ) {
-				maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
+				//maImage = ImageIO.read(new File(path+"marioLeft"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/marioLeft"+".png"));
 			}
 			else if(!this.face && !isInAir && this.walk == true && counter ==1 ) {
-				maImage = ImageIO.read(new File(path+"marioWalkLeft1"+".png"));
+				//maImage = ImageIO.read(new File(path+"marioWalkLeft1"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/marioWalkLeft1"+".png"));				
 			}
 			else if(!this.face && !isInAir && this.walk == true && counter ==2 ) {
-				maImage = ImageIO.read(new File(path+"marioWalkLeft2"+".png"));
+				//maImage = ImageIO.read(new File(path+"marioWalkLeft2"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/marioWalkLeft2"+".png"));				
 			}
 			else if(!this.face && !isInAir && this.walk == true && counter ==3 ) {
-				maImage = ImageIO.read(new File(path+"marioWalkLeft3"+".png"));
+				//maImage = ImageIO.read(new File(path+"marioWalkLeft3"+".png"));
+				maImage = ImageIO.read(getClass().getResource("/images/marioWalkLeft3"+".png"));				
 			}
 			walk();
 		} catch (IOException e) {

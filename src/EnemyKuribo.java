@@ -33,7 +33,8 @@ public void reload() {
 		try {
 			KuriImage = new BufferedImage(width,height, BufferedImage.TYPE_INT_ARGB);
 //			System.out.println("kuribo image loaded");
-			KuriImage = ImageIO.read(new File(path+"kuribou1"+".png"));// user.dir/scr/images/bg#.png
+			//KuriImage = ImageIO.read(new File(path+"kuribou1"+".png"));// user.dir/scr/images/bg#.png
+			KuriImage = ImageIO.read(getClass().getResource("/images/kuribou1"+".png"));// user.dir/scr/images/bg#.png
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

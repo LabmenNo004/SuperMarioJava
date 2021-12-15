@@ -17,7 +17,8 @@ public class Block extends GameObject{
 		//pulling image		
 		try {
 			this.image = new BufferedImage(width, length, BufferedImage.TYPE_INT_ARGB);
-			this.image = ImageIO.read(new File(path+ "block"+ blockType +".png")); // user.dir/scr/images/Block#.png
+			//this.image = ImageIO.read(new File(path+ "block"+ blockType +".png")); // user.dir/scr/images/Block#.png
+			this.image = ImageIO.read((getClass().getResource("/images/block" + blockType +".png")));
 		} catch (IOException e) {
 			System.out.println("Fail to import block image");
 			e.printStackTrace();
@@ -30,7 +31,8 @@ public class Block extends GameObject{
 		if (this.blockType  == 3) {
 			this.blockType = 8;
 		try {
-			this.image = ImageIO.read(new File(path+ "block8.png"));
+			//this.image = ImageIO.read(new File(path+ "block8.png"));
+			this.image = ImageIO.read(getClass().getResource("images/block8.png"));
 			Stage.interactives.add(new Coin(x,y,height,width));
 			SuperMario.eatCoin();
 		} catch (IOException e) {
@@ -44,7 +46,8 @@ public class Block extends GameObject{
 public void reload() {
 	try {
 		this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		this.image = ImageIO.read(new File(path+ "block"+ blockType +".png")); // user.dir/scr/images/Block#.png
+		//this.image = ImageIO.read(new File(path+ "block"+ blockType +".png")); // user.dir/scr/images/Block#.png
+		this.image = ImageIO.read(getClass().getResource("/images/block"+ blockType +".png")); // user.dir/scr/images/Block#.png
 	} catch (IOException e) {
 		System.out.println("Fail to import block image");
 		e.printStackTrace();
