@@ -17,7 +17,7 @@ public class Coin extends GameObject{
 			//this.image = ImageIO.read(new File(path+ "coin1.png")); // user.dir/scr/images/Block#.png
 			this.image = ImageIO.read(getClass().getResource("/images/coin1.png"));
 		} catch (IOException e) {
-			System.out.println("Fail to import block image");
+			System.out.println("Fail to import coin image");
 			e.printStackTrace();
 		}
 	}
@@ -39,9 +39,10 @@ public class Coin extends GameObject{
 	}
 public void reload() {
 	try {
-		this.image = ImageIO.read(new File(path+ "coin1.png")); // user.dir/scr/images/Block#.png
+		//this.image = ImageIO.read(new File(path+ "coin1.png")); // user.dir/scr/images/Block#.png
+		this.image = ImageIO.read(getClass().getResource("/images/coin1.png"));
 	} catch (IOException e) {
-		System.out.println("Fail to import block image");
+		System.out.println("Fail to import coin image");
 		e.printStackTrace();
 	}
 	}
