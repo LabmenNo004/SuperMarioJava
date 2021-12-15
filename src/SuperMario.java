@@ -355,11 +355,13 @@ public class SuperMario {
 //	playing sound: https://www.tabnine.com/code/java/classes/sun.audio.AudioPlayer
 	
 	public static AudioStream playSound(String s) {
-		String songFile = System.getProperty("user.dir") + "/src/sound/"+s+".wav";
+//		String songFile = System.getProperty("user.dir") + "/src/sound/"+s+".wav";
+		String songFile = "/sound/"+s+".wav";
 
 	    InputStream in;
 		try {
-			in = new FileInputStream(songFile);
+			in = SuperMario.class.getResourceAsStream(songFile);
+//					new FileInputStream(songFile);
 		    // create an audiostream from the inputstream
 		    AudioStream audioStream = new AudioStream(in);
 		    // play the audio clip with the audioplayer class
