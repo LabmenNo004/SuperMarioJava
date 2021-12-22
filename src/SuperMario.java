@@ -173,7 +173,7 @@ public class SuperMario {
 			coins = 0;
 			score+=10000;
 			marioLives++;
-			playSound("OneUp");
+			playSound("oneUp");
 		}
 		playSound("coin");
 	}
