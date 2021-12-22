@@ -129,6 +129,7 @@ public class SuperMario {
 		frame.getContentPane().removeAll();
 		frame.add(startPanel);
 		SwingUtilities.updateComponentTreeUI(frame);
+		
 	}
 
 	public static void increaseScore(int number) {
@@ -266,6 +267,17 @@ public class SuperMario {
 
 	class CustomKeyListener implements KeyListener {
 		public void keyTyped(KeyEvent e) {
+			if (hasEnded) {
+				gameStart();
+				try {
+					System.out.println("sleep called");
+					Thread.sleep(2000);
+				} catch (InterruptedException err) {
+					// TODO Auto-generated catch block
+					err.printStackTrace();
+				}
+				return;
+			}
 //			System.out.print("typed"+e.getKeyCode());
 			 if(e.getKeyCode() == KeyEvent.VK_S) {
 				gameData.save();
@@ -286,6 +298,13 @@ public class SuperMario {
 		public void keyPressed(KeyEvent e) {
 			if (hasEnded) {
 				gameStart();
+				try {
+					System.out.println("sleep called");
+					Thread.sleep(2000);
+				} catch (InterruptedException err) {
+					// TODO Auto-generated catch block
+					err.printStackTrace();
+				}
 				return;
 			}
 			if (hasStarted) {
